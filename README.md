@@ -1,2 +1,4 @@
 # CharManager
-I named it CharManager for now. If any of you have a better name for this application, please let me know!
+The name will be changed on Friday when we have our meeting on the name. The most popular one appears to be Community Link.
+
+Setup:
