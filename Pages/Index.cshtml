@@ -1,0 +1,14 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1>Test!</h1>
+    <p>If you can see this, the page loaded correctly!</p>
+    <p>If you cann see the list below, the information is being grabbed from the database correctly:</p>
+    @foreach (var x in Model.TestClasses) {
+        <p>@Html.DisplayFor(modelItem => x.TestName)</p>
+    }
+</div>
