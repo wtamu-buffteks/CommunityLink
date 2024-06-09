@@ -8,40 +8,52 @@ namespace CharityLink.Models {
         public int UserID { get; set; }
         [Required]
         [StringLength(50)]
-        public string Username { get; set; }
+        public string username { get; set; }
         [Required]
-        [StringLength(100)]
-        private string UserPassword { get; set; }
+        [StringLength(255)]
+        private string passwordHash  { get; private set; }
         [StringLength(50)]
-        public string Email { get; set; }
+        [EmailAddress]
+        public string email { get; set; }
         [StringLength(15)]
-        public string PhoneNumber { get; set; }
+        [Phone]
+        public string phoneNumber { get; set; }
         [StringLength(100)]
-        public string FullName { get; set; }
+        public string fullName { get; set; }
         [StringLength(25)]
-        public string UserStatus { get; set; }
+        public string userStatus { get; set; }
         [StringLength(100)]
-        public string UserLocation { get; set; }
-        public DateTime StartDate { get; set; } = DateTime.Now;
-        public DateTime EndDate { get; set; }
+        public string userLocation { get; set; }
+        public DateTime startDate { get; set; } = DateTime.Now;
+        public DateTime endDate { get; set; }
+        //subclasses
+        public Volunteer volunteer { get; set; }
+        public Employee employee { get; set; }
+        public Requestor requestor { get; set; }
 
-        public void SetPassword(string password)
+        //has many of these
+        public List<Message> messages { get; set; }
+        public List<ActionNeeded> ActionNeededs { get; set; }
+
+        //used during password creation or changing
+        public void setPassword(string password)
         {
             PasswordHash = HashPassword(password);
         }
 
-        public bool ValidatePassword(string password)
+        //checks if the entered password matches the real password
+        public bool validatePassword(string password)
         {
             return VerifyPassword(password, PasswordHash);
         }
-
-        private string HashPassword(string password)
+        //hashes the password for secruity
+        private string hashPassword(string password)
         {
             // Implement password hashing logic here
             return BCrypt.Net.BCrypt.HashPassword(password);
         }
-
-        private bool VerifyPassword(string password, string hashedPassword)
+        //checks if the password matches the real password
+        private bool verifyPassword(string password, string hashedPassword)
         {
             // Implement password verification logic here
             return BCrypt.Net.BCrypt.Verify(password, hashedPassword);
