@@ -40,7 +40,8 @@ namespace CharityLink.Models {
         public Stat? Stat { get; set; }
 
         //has many of these
-        public List<Message>? Messages { get; set; }
+        public List<Message>? MessagesSent  { get; set; }
+        public List<Message>? MessagesReceived { get; set; }
         public List<ActionNeeded>? ActionNeededs { get; set; }
          public List<UsersAttending> UsersAttending { get; set; } = new List<UsersAttending>();
 

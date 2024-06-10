@@ -6,10 +6,9 @@ namespace CharityLink.Models {
     public class Message {
         [Key]
         public int MessageID { get; set; }
-        [Required]
-        public int SenderID { get; set; }
+        public int? SenderID { get; set; }
         [ForeignKey("SenderID")]
-        public required User Sender { get; set; }
+        public User? Sender { get; set; }
         [Required]
         public int ReceiverID { get; set; }
         [ForeignKey("ReceiverID")]
@@ -20,5 +19,6 @@ namespace CharityLink.Models {
         [Required]
         [StringLength(5000)]
         public required string SenderMessage { get; set; }
+        public bool Read { get; set; } = false;// has the user read the message?
     }
 }
