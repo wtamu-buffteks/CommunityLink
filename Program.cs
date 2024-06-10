@@ -1,9 +1,13 @@
-
+using CommunityLink.Models;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+
+builder.Services.AddDbContext<CommunityLinkDbContext>(options => 
+    options.UseMySQL(builder.Configuration.GetConnectionString("CommunityLinkContext")));
 
 var app = builder.Build();
 
