@@ -1,3 +1,4 @@
+using Apart.Models;
 using CommunityLink.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,6 +11,12 @@ builder.Services.AddDbContext<CommunityLinkDbContext>(options =>
     options.UseMySQL(builder.Configuration.GetConnectionString("CommunityLinkContext")));
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope()){
+    var services = scope.ServiceProvider;
+
+    SeedData.Initialize(services);
+}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
