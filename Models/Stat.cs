@@ -9,12 +9,12 @@ namespace CharityLink.Models {
         [Required]
         public int UserID { get; set; }
         [ForeignKey("UserID")]
-        public required User user { get; set; }
+        public required User User { get; set; }
 
-        public float moneyDonated { get; set; } = 0.00f; //calculated as sum of total request donations filled
+        public float MoneyDonated { get; set; } = 0.00f; //calculated as sum of total request donations filled
         //Holds Stats of physical donations
-        public List<DonationStat> donationStats { get; set; } = new List<DonationStat>();
+        public List<DonationStat> DonationStats { get; set; } = new List<DonationStat>();
         //Holds Stats of requests donated to
-        public List<RequestStat> requestStats { get; set; } = new List<RequestStat>();
+        public List<RequestStat> RequestStats { get; set; } = new List<RequestStat>();
     }
 }

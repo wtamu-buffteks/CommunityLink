@@ -8,60 +8,60 @@ namespace CharityLink.Models {
         public int UserID { get; set; }
         [Required]
         [StringLength(50)]
-        public required string username { get; set; }
-        private string _passwordHash = string.Empty;
+        public required string Username { get; set; }
+        private string _PasswordHash = string.Empty;
 
         [Required]
         [StringLength(255)]
         public string PasswordHash
         {
-            get => _passwordHash;
-            private set => _passwordHash = value;  // Private setter
+            get => _PasswordHash;
+            private set => _PasswordHash = value;  // Private setter
         }
         [StringLength(50)]
         [EmailAddress]
-        public string? email { get; set; }
+        public string? Email { get; set; }
         [StringLength(15)]
         [Phone]
-        public string? phoneNumber { get; set; }
+        public string? PhoneNumber { get; set; }
         [StringLength(100)]
-        public string? fullName { get; set; }
+        public string? FullName { get; set; }
         [StringLength(25)]
-        public string? userStatus { get; set; }
+        public string? UserStatus { get; set; }
         [StringLength(100)]
-        public string? userLocation { get; set; }
-        public DateTime startDate { get; set; } = DateTime.Now;
-        public DateTime? endDate { get; set; }
+        public string? UserLocation { get; set; }
+        public DateTime StartDate { get; set; } = DateTime.Now;
+        public DateTime? EndDate { get; set; }
         //subclasses
-        public Volunteer? volunteer { get; set; }
-        public Employee? employee { get; set; }
-        public Requestor? requestor { get; set; }
+        public Volunteer? Volunteer { get; set; }
+        public Employee? Employee { get; set; }
+        public Requestor? Requestor { get; set; }
         // has one of these
-        public Stat? stat { get; set; }
+        public Stat? Stat { get; set; }
 
         //has many of these
-        public List<Message>? messages { get; set; }
+        public List<Message>? Messages { get; set; }
         public List<ActionNeeded>? ActionNeededs { get; set; }
 
         //used during password creation or changing
-        public void setPassword(string password)
+        public void SetPassword(string password)
         {
-            PasswordHash = hashPassword(password);
+            PasswordHash = HashPassword(password);
         }
 
         //checks if the entered password matches the real password
-        public bool validatePassword(string password)
+        public bool ValidatePassword(string password)
         {
-            return verifyPassword(password, PasswordHash);
+            return VerifyPassword(password, PasswordHash);
         }
         //hashes the password for secruity
-        private string hashPassword(string password)
+        private string HashPassword(string password)
         {
             // Implement password hashing logic here
             return BCrypt.Net.BCrypt.HashPassword(password);
         }
         //checks if the password matches the real password
-        private bool verifyPassword(string password, string hashedPassword)
+        private bool VerifyPassword(string password, string hashedPassword)
         {
             // Implement password verification logic here
             return BCrypt.Net.BCrypt.Verify(password, hashedPassword);
