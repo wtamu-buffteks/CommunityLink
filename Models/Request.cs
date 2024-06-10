@@ -7,8 +7,8 @@ namespace CharityLink.Models {
         [Key]
         public int RequestID { get; set; }
         [Required]
-        [ForeignKey("requestor")]
         public int RequestorID { get; set; }
+        [ForeignKey("RequestorID")]
         public required Requestor requestor { get; set; }
         public float amountRequested { get; set; } = 0.00f;
         public float amountRecieved { get; set; } = 0.00f;

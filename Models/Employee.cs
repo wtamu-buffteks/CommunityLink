@@ -7,8 +7,8 @@ namespace CharityLink.Models {
         [Key]
         public int EmployeeID { get; set; }
         [Required]
-        [ForeignKey("user")]
         public int UserID { get; set; }
+        [ForeignKey("UserID")]
         public required User user { get; set; }
         [Required]
         [StringLength(25)]

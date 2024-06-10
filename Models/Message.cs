@@ -7,12 +7,12 @@ namespace CharityLink.Models {
         [Key]
         public int MessageID { get; set; }
         [Required]
-        [ForeignKey("sender")]
         public int SenderID { get; set; }
+        [ForeignKey("SenderID")]
         public required User sender { get; set; }
         [Required]
-        [ForeignKey("receiver")]
         public int ReceiverID { get; set; }
+        [ForeignKey("ReceiverID")]
         public required User receiver { get; set; }
         [Required]
         [StringLength(50)]

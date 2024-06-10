@@ -7,12 +7,12 @@ namespace CharityLink.Models {
         [Key]
         public int ActionNeededId { get; set; }
         [Required]
-        [ForeignKey("user")]
         public int UserID { get; set; }
+        [ForeignKey("UserID")]
         public required User user { get; set; }
-        [ForeignKey("employee")]
         public int? EmployeeID { get; set; }
-        public required Employee employee { get; set; }
+        [ForeignKey("EmployeeID")]
+        public Employee? employee { get; set; }
         [Required]
         [StringLength(50)]
         public required string title { get; set; }

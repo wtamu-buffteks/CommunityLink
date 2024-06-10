@@ -36,6 +36,8 @@ namespace CharityLink.Models {
         public Volunteer? volunteer { get; set; }
         public Employee? employee { get; set; }
         public Requestor? requestor { get; set; }
+        // has one of these
+        public Stat? stat { get; set; }
 
         //has many of these
         public List<Message>? messages { get; set; }
