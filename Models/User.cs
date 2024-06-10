@@ -42,6 +42,7 @@ namespace CharityLink.Models {
         //has many of these
         public List<Message>? Messages { get; set; }
         public List<ActionNeeded>? ActionNeededs { get; set; }
+         public List<UsersAttending> UsersAttending { get; set; } = new List<UsersAttending>();
 
         //used during password creation or changing
         public void SetPassword(string password)
