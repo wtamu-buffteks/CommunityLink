@@ -9,16 +9,16 @@ namespace CharityLink.Models {
         [Required]
         [ForeignKey("sender")]
         public int SenderID { get; set; }
-        public User sender { get; set; }
+        public required User sender { get; set; }
         [Required]
         [ForeignKey("receiver")]
         public int ReceiverID { get; set; }
-        public User receiver { get; set; }
+        public required User receiver { get; set; }
         [Required]
         [StringLength(50)]
-        public string title { get; set; }
+        public required string title { get; set; }
         [Required]
         [StringLength(5000)]
-        public string senderMessage { get; set; }
+        public required string senderMessage { get; set; }
     }
 }

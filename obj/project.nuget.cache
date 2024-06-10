@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "c/a8M55UJ+vGEmqv2qZ/er6HM7Ud537F+EIYJICkfQTP5Fo1xjZhHy+fDfFy98w/L+TIOlmfGfWHXc8WSNyjWg==",
+  "dgSpecHash": "m+9VJUnHj0N2YU2sl8zh9oBbe/LSQxbsHJZZk9J3rfUbIrQSOzcQHDexkxDuVole0Z1SG6J7QISPyBO/zc3Jlg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Darri\\OneDrive\\Desktop\\WTProjects\\CommunityLink\\CommunityLink.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Darri\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\Darri\\.nuget\\packages\\bouncycastle.cryptography\\2.2.1\\bouncycastle.cryptography.2.2.1.nupkg.sha512",
     "C:\\Users\\Darri\\.nuget\\packages\\google.protobuf\\3.25.1\\google.protobuf.3.25.1.nupkg.sha512",
     "C:\\Users\\Darri\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",

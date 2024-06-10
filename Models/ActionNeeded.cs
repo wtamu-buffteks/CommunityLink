@@ -9,15 +9,15 @@ namespace CharityLink.Models {
         [Required]
         [ForeignKey("user")]
         public int UserID { get; set; }
-        public User user { get; set; }
+        public required User user { get; set; }
         [ForeignKey("employee")]
         public int? EmployeeID { get; set; }
-        public Employee employee { get; set; }
+        public required Employee employee { get; set; }
         [Required]
         [StringLength(50)]
-        public string title { get; set; }
+        public required string title { get; set; }
         [Required]
         [StringLength(5000)]
-        public string actionMessage { get; set; }
+        public required string actionMessage { get; set; }
     }
 }

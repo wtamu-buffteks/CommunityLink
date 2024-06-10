@@ -9,7 +9,7 @@ namespace CharityLink.Models {
         [Required]
         [ForeignKey("user")]
         public int UserID { get; set; }
-        public User user { get; set;}
+        public required User user { get; set;}
         public int hoursWorked { get; set; } = 0;
     }
 }

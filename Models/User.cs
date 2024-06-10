@@ -8,43 +8,49 @@ namespace CharityLink.Models {
         public int UserID { get; set; }
         [Required]
         [StringLength(50)]
-        public string username { get; set; }
+        public required string username { get; set; }
+        private string _passwordHash = string.Empty;
+
         [Required]
         [StringLength(255)]
-        private string passwordHash  { get; private set; }
+        public string PasswordHash
+        {
+            get => _passwordHash;
+            private set => _passwordHash = value;  // Private setter
+        }
         [StringLength(50)]
         [EmailAddress]
-        public string email { get; set; }
+        public string? email { get; set; }
         [StringLength(15)]
         [Phone]
-        public string phoneNumber { get; set; }
+        public string? phoneNumber { get; set; }
         [StringLength(100)]
-        public string fullName { get; set; }
+        public string? fullName { get; set; }
         [StringLength(25)]
-        public string userStatus { get; set; }
+        public string? userStatus { get; set; }
         [StringLength(100)]
-        public string userLocation { get; set; }
+        public string? userLocation { get; set; }
         public DateTime startDate { get; set; } = DateTime.Now;
-        public DateTime endDate { get; set; }
+        public DateTime? endDate { get; set; }
         //subclasses
-        public Volunteer volunteer { get; set; }
-        public Employee employee { get; set; }
-        public Requestor requestor { get; set; }
+        public Volunteer? volunteer { get; set; }
+        public Employee? employee { get; set; }
+        public Requestor? requestor { get; set; }
 
         //has many of these
-        public List<Message> messages { get; set; }
-        public List<ActionNeeded> ActionNeededs { get; set; }
+        public List<Message>? messages { get; set; }
+        public List<ActionNeeded>? ActionNeededs { get; set; }
 
         //used during password creation or changing
         public void setPassword(string password)
         {
-            PasswordHash = HashPassword(password);
+            PasswordHash = hashPassword(password);
         }
 
         //checks if the entered password matches the real password
         public bool validatePassword(string password)
         {
-            return VerifyPassword(password, PasswordHash);
+            return verifyPassword(password, PasswordHash);
         }
         //hashes the password for secruity
         private string hashPassword(string password)

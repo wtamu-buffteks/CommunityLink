@@ -9,13 +9,13 @@ namespace CharityLink.Models {
         [Required]
         [ForeignKey("user")]
         public int UserID { get; set; }
-        public User user { get; set; }
+        public required User user { get; set; }
         [Required]
         [StringLength(25)]
-        public string role { get; set; }
+        public required string role { get; set; }
         public int hoursWorked { get; set; } = 0;
 
         // has many of these
-        public List<ActionNeeded> ActionNeededs { get; set; }
+        public List<ActionNeeded>? ActionNeededs { get; set; }
     }
 }

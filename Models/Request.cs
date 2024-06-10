@@ -9,19 +9,21 @@ namespace CharityLink.Models {
         [Required]
         [ForeignKey("requestor")]
         public int RequestorID { get; set; }
-        public Requestor requestor { get; set; }
+        public required Requestor requestor { get; set; }
         public float amountRequested { get; set; } = 0.00f;
         public float amountRecieved { get; set; } = 0.00f;
-        public DateTime requestDate { get; set; } = Datetime.Now;
+        [Required]
+        public required DateTime requestDate { get; set; } = DateTime.Now;
         [Required]
         [StringLength(30)]
-        public string requestTitle { get; set; }
-        public DateTime requestDeadline { get; set; }
+        public required string requestTitle { get; set; }
+        [Required]
+        public required DateTime requestDeadline { get; set; }
         [StringLength(3000)]
-        public string requestDescription { get; set; }
+        public string? requestDescription { get; set; }
         [StringLength(25)]
-        public string requestStatus { get; set; }
+        public string? requestStatus { get; set; }
         [StringLength(25)]
-        public string category { get; set; }
+        public string? category { get; set; }
     }
 }
