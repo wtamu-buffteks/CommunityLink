@@ -19,7 +19,7 @@ namespace CharityLink.Models {
         public required DateTime DateDonated { get; set; } //The day the item was donated to the organization
         public DateTime? DateGiven { get; set; } //The day the item was given to a requestor
         [Required]
-        public required int RequestStatID { get; set; } //The request this item was sent to
+        public int RequestStatID { get; set; } //The request this item was sent to
         [ForeignKey("RequestStatID")]
         public required RequestStat RequestStat { get; set; }
     }

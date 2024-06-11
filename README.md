@@ -89,3 +89,43 @@ After thorough testing in the development branch, stable changes can be merged i
 ### Delete your Branch
 
 After merging your pull request, delete the branch on the repository. This indicates that the work on the branch is complete and prevents you or others from accidentally using old branches. You can keep a local copy of the branch for back up purposes. [Link](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-branches-in-your-repository/deleting-and-restoring-branches-in-a-pull-request)
+
+# Testing Info
+
+Here I am writing info that could be useful for testing:
+
+## Users
+
+I created 8 Users, one for each possible subtype combination:
+
+Hero
+Subtypes: None
+Password: Hero123
+
+Spider
+Subtypes: Volunteer
+Password: Spider123
+
+Overlord
+Subtypes: Employee
+Password: Overlord123
+
+Danger
+Subtypes: Requestor
+Password: Danger123
+
+Frank
+Subtypes: Volunteer, Employee
+Password: Frank123
+
+Junnie
+Subtypes: Volunteer, Requestor
+Password: Junnie123
+
+Ninja
+Subtypes: Employee, Requestor
+Password: Ninja123
+
+Yea-Yea
+Subtypes: Volunteer, Employee, Requestor
+Password: Yea-Yea123
