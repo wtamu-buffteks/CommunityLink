@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "m+9VJUnHj0N2YU2sl8zh9oBbe/LSQxbsHJZZk9J3rfUbIrQSOzcQHDexkxDuVole0Z1SG6J7QISPyBO/zc3Jlg==",
+  "dgSpecHash": "IscrkS2bCBvPY8HDbJshs1lzTZIRgIOBPNh4Fuec3b1yID8lDt6uHyDb0mf9C0lkqHOV/IHyWfGGaJxG90nM3Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Darri\\OneDrive\\Desktop\\WTProjects\\CommunityLink\\CommunityLink.csproj",
+  "projectFilePath": "C:\\Users\\Darri\\OneDrive\\Desktop\\WTProjects\\CommunityLink-1\\CommunityLink.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Darri\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\Darri\\.nuget\\packages\\bouncycastle.cryptography\\2.2.1\\bouncycastle.cryptography.2.2.1.nupkg.sha512",

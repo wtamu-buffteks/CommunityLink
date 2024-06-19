@@ -3757,11 +3757,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Darri\\OneDrive\\Desktop\\WTProjects\\CommunityLink\\CommunityLink.csproj",
+      "projectUniqueName": "C:\\Users\\Darri\\OneDrive\\Desktop\\WTProjects\\CommunityLink-1\\CommunityLink.csproj",
       "projectName": "CommunityLink",
-      "projectPath": "C:\\Users\\Darri\\OneDrive\\Desktop\\WTProjects\\CommunityLink\\CommunityLink.csproj",
+      "projectPath": "C:\\Users\\Darri\\OneDrive\\Desktop\\WTProjects\\CommunityLink-1\\CommunityLink.csproj",
       "packagesPath": "C:\\Users\\Darri\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Darri\\OneDrive\\Desktop\\WTProjects\\CommunityLink\\obj\\",
+      "outputPath": "C:\\Users\\Darri\\OneDrive\\Desktop\\WTProjects\\CommunityLink-1\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Darri\\AppData\\Roaming\\NuGet\\NuGet.Config"
