@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CommunityLink")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dcbc16d5dd8a5b39afa64d79d4e2a8d088dc3668")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+08abc099e7cac5003c470a850af20f6c1556aee7")]
 [assembly: System.Reflection.AssemblyProductAttribute("CommunityLink")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CommunityLink")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
