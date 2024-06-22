@@ -2,7 +2,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace CharityLink.Models {
+namespace CommunityLink.Models {
     public class DonationStat {
         [Key]
         public int DonationStatID { get; set; }

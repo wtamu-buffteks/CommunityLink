@@ -15,4 +15,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Updated README.md on coding procedures
 
-### On this Branch
+### On this Branch - 2024-6-21
+- Added the ability to sign in
+- Set up some basic account setting stuff
+- Fixed the models to have the correct name for the project
+
+
+### Known Bugs
+- If you don't type in the correct sign in info on the sign in page, it will show errors for into in both forms rather than just the one you pressed
