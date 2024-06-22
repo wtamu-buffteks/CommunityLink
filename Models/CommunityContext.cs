@@ -1,4 +1,4 @@
-using CharityLink.Models;
+using CommunityLink.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace CommunityLink.Models {

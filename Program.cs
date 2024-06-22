@@ -1,4 +1,3 @@
-using Apart.Models;
 using CommunityLink.Models;
 using Microsoft.EntityFrameworkCore;
 

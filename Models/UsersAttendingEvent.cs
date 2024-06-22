@@ -2,7 +2,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace CharityLink.Models {
+namespace CommunityLink.Models {
     public class UsersAttending {
         [Key, Column(Order = 0)]
         public int UserID { get; set; }
