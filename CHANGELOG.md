@@ -15,10 +15,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Updated README.md on coding procedures
 
-### On this Branch - 2024-6-21
-- Added the ability to sign in
-- Set up some basic account setting stuff
-- Fixed the models to have the correct name for the project
+## [0.2.0] - 2024-6-21
+
+### Added
+- Ability to sign in
+- Ability to add a user
+
+### Fixed
+- Corrected the model namespace to have the correct name for the project
+
+## [0.2.1] - 2024-6-21
+
+### Changed
+- Quick update and Changelog fix
 
 
 ### Known Bugs
