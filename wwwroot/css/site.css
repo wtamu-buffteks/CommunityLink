@@ -21,6 +21,43 @@ body {
   margin-bottom: 60px;
 }
 
+
+.navbar {
+overflow: hidden;
+position: fixed;
+top: 0;
+width: 100%;
+background-color: rgba(255, 255, 255, 1);
+-webkit-backdrop-filter: blur(5px);
+backdrop-filter: blur(5px);
+z-index:2;
+}
+
+.navbarText{
+  display: block;
+  color: #ffffff;
+  opacity: 2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  z-index:1;
+}
+
+.navbar-brand{
+  opacity: 1;
+  z-index:2;
+}
+
+.navbar a:hover{
+  /* border-radius: 1000px;   */
+  z-index:2;
+
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: #0d6efd;
+}
+
 .donationBlueBox {
   position: absolute;
   display: flex;
@@ -62,7 +99,7 @@ body {
 }
 
 .section1{
-  padding-top: 500px;
+  padding-top: 700px;
 }
 
 
@@ -74,7 +111,7 @@ body {
   font-size: 2em;
   color: white;
   font-family: "Bricolage Grotesque Bold", 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  
+  text-decoration: none;
   
   /* UI Properties */
   background: #248646;
@@ -116,6 +153,8 @@ body {
 .rightLeftMargin {
   margin-right: 3rem;
   margin-left: 3rem;
+  padding-left: 3rem;
+  padding-right: 3rem;
 }
 
 .text-left {
@@ -127,7 +166,7 @@ body {
 }
 
 #wallet {
-  background-image: url('~/images/Wallet.png');
+  background-image: url('/images/Wallet.png');
   background-repeat: no-repeat;
   box-sizing: border-box;
   /* height: auto; */
@@ -150,6 +189,27 @@ body {
   max-width: 100%;
 }
 
-.row > * {
+.spacerFromTop{
+  margin-top: 184px;
+}
+
+/* .row > * {
+  padding: 0px;
+} */
+
+.row.splitscreen > * {
   padding: 0px;
 }
+
+.splitscreen{
+  display: flex;
+}
+
+a:hover{
+ color:white;
+  
+}
+
+.bg-white {
+  --bs-bg-opacity: .5;
+  background-color: rgba(var(--bs-white-rgb),var(--bs-bg-opacity)) !important;}
