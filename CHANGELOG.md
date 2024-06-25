@@ -47,3 +47,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - layout cshtml updated to reflect pages in XD layout
 - changes to index and sign-in css to look correct after fixed nav bar implemented
 
+## [0.2.3] - 2024-6-25
+
+### Added
+- About was given css elements
+- image file "GivingFood" added
+
+### Changes
+- changes to About.cshtml css to match other pages
