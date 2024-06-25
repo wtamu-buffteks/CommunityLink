@@ -32,3 +32,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Known Bugs
 - If you don't type in the correct sign in info on the sign in page, it will show errors for into in both forms rather than just the one you pressed
+
+
+## [0.2.2] - 2024-6-24
+
+### Added
+- bin and obj added to gitignore
+- About, Donate and Donation page
+- Donate was given css elements
+- image folder and files
+- translucent, fixed navigation bar
+
+### Changes
+- layout cshtml updated to reflect pages in XD layout
+- changes to index and sign-in css to look correct after fixed nav bar implemented
+

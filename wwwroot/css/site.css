@@ -20,3 +20,196 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+
+.navbar {
+overflow: hidden;
+position: fixed;
+top: 0;
+width: 100%;
+background-color: rgba(255, 255, 255, 1);
+-webkit-backdrop-filter: blur(5px);
+backdrop-filter: blur(5px);
+z-index:2;
+}
+
+.navbarText{
+  display: block;
+  color: #ffffff;
+  opacity: 2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  z-index:1;
+}
+
+.navbar-brand{
+  opacity: 1;
+  z-index:2;
+}
+
+.navbar a:hover{
+  /* border-radius: 1000px;   */
+  z-index:2;
+
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: #0d6efd;
+}
+
+.donationBlueBox {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 228px;
+  left: 0px;
+  width: 100%;
+  height: 457px;
+  opacity: 1;
+  text-align: center;
+  /* UI Properties */
+  background: #0B64CF 0% 0% no-repeat padding-box;
+  opacity: 1;
+}
+
+#DonationTitle{
+  text-align: center !important;
+  font-family: "Vista Sans OTCE Black", Arial, Helvetica, sans-serif;
+  font-size: 3.6em;
+  letter-spacing: 0.8px;
+  color: #FFFFFF;
+}
+
+.BlueTitleH1{
+  font-family: "Bricolage Grotesque", 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 2.4em;
+  font-weight: bold;
+  color: #102E68;
+
+}
+
+.BodyBlack{
+  font-family: "Bricolage Grotesque", 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 1.3em;
+  font-weight: bold;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+.section1{
+  padding-top: 700px;
+}
+
+
+.greenButton{
+  /* Layout Properties */
+  width: 100%; /* Ensure button width is responsive */
+  max-width: 485px; /* Limit width for larger screens */
+  height: 106px;
+  font-size: 2em;
+  color: white;
+  font-family: "Bricolage Grotesque Bold", 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  text-decoration: none;
+  
+  /* UI Properties */
+  background: #248646;
+  border-radius: 800px;
+  opacity: 1;
+}
+
+.no-gutters {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.row-md-height {
+  display: table;
+  table-layout: fixed;
+  height: 100%;
+  width: 100%;
+}
+
+.col-md-height {
+  display: flex;
+  align-items: center; /* Center vertically */
+  justify-content: center; /* Center horizontally */
+}
+
+.inside-full-height {
+  width: 100%;
+  height: 100%;
+  margin-bottom: 0;
+  margin-top: 0;
+  background-size: cover;
+  background-position: center;
+}
+
+.content-wrapper {
+  padding: 3rem;
+}
+
+.rightLeftMargin {
+  margin-right: 3rem;
+  margin-left: 3rem;
+  padding-left: 3rem;
+  padding-right: 3rem;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+#wallet {
+  background-image: url('/images/Wallet.png');
+  background-repeat: no-repeat;
+  box-sizing: border-box;
+  /* height: auto; */
+  /* object-fit: cover; */
+  width: 50vw;
+  /* max-height: 100%; */
+}
+
+#monetaryDonations{
+  width: 50vw;
+  height: 100%;
+  background: #B9D1F0 0% 0% no-repeat padding-box;
+  opacity: 1;
+  }
+
+
+.container {
+  margin: 0px;
+  padding: 0px;
+  max-width: 100%;
+}
+
+.spacerFromTop{
+  margin-top: 184px;
+}
+
+/* .row > * {
+  padding: 0px;
+} */
+
+.row.splitscreen > * {
+  padding: 0px;
+}
+
+.splitscreen{
+  display: flex;
+}
+
+a:hover{
+ color:white;
+  
+}
+
+.bg-white {
+  --bs-bg-opacity: .5;
+  background-color: rgba(var(--bs-white-rgb),var(--bs-bg-opacity)) !important;}
