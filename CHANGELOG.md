@@ -61,6 +61,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - The application will now remember if you are signed in
+- The cookie will last up to 7 days, but if you block the cookie, it will still remember you for the session
 - Gave the ability to sign out
 
 ### Changes

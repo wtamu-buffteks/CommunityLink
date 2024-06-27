@@ -10,6 +10,8 @@ builder.Services.AddRazorPages();
 builder.Services.AddDbContext<CommunityLinkDbContext>(options => 
     options.UseMySQL(builder.Configuration.GetConnectionString("CommunityLinkContext")));
 
+builder.Services.AddHttpContextAccessor();
+
 builder.Services.AddDistributedMemoryCache(); //enables the cache
 
 builder.Services.AddSession(options => {
