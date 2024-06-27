@@ -37,6 +37,10 @@ public class SignInModel : PageModel
         var user = _context.Users.SingleOrDefault(u => u.Username == Username);
         if (user != null && user.ValidatePassword(Password))
         {
+            // Set session variables
+            HttpContext.Session.SetString("Username", user.Username);
+            HttpContext.Session.SetInt32("UserID", user.UserID);
+
             // Handle successful sign-in
             return RedirectToPage("/Index");
         }
