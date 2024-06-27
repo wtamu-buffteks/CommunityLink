@@ -60,6 +60,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- The application will now remember if you are signed in
+- Gave the ability to sign out
+
 ### Changes
 - Applied lazy loading to the images to improve performance
 

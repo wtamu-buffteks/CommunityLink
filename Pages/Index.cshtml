@@ -2,34 +2,19 @@
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
-    var username = HttpContext.Session.GetString("Username");
 }
 <div class="spacerFromTop">
 </div>
 
 <img src="" alt="Removed placeholderIndex.svg for now. Please incorporate the design elements into Index.cshtml normally. See [0.2.4] in the Changelog for more" loading="lazy"> <!--/images/placeholderIndex.svg really hurts loading time and would destroy the SEO of any website that uses it-->
 
-<!--quick session test-->
+<!--Temporary placeholder to show that you are signed in-->
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <div id="welcomeInfo">
-        @if (!string.IsNullOrEmpty(username))
+        @if (!string.IsNullOrEmpty(Model.Username))
         {
-            <p>Welcome, @username!</p>
-        }
-        else
-        {
-            <p>Welcome to Community Link!</p>
-        }
-    </div>
-</div>
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <div id="welcomeInfo">
-        @if (!string.IsNullOrEmpty(Model.CUsername) && Model.CUsername != "Guest")
-        {
-            <p>Welcome, @Model.CUsername!</p>
+            <p>Welcome, @Model.Username!</p>
         }
         else
         {

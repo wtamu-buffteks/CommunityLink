@@ -43,7 +43,7 @@ public class SignInModel : PageModel
             HttpContext.Session.SetInt32("UserID", user.UserID);
 
             //cookie setup. Will last 7 days
-            var options = new CookieOptions {Expires = System.DateTime.Now.AddSeconds(30)};
+            var options = new CookieOptions {Expires = System.DateTime.Now.AddDays(7)};
             Response.Cookies.Append("Username", user.Username, options);
             Response.Cookies.Append("UserID", user.UserID.ToString(), options);
 
