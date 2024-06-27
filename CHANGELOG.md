@@ -55,3 +55,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changes
 - changes to About.cshtml css to match other pages
+
+## [0.2.4] - 2024-6-27
+
+### Added
+
+### Changes
+- Applied lazy loading to the images to improve performance
+
+### Removed
+- Removed placeholderIndex.svg from the index page as it significantly slowed down the website's performance due to its large size and reliance on external resources. It is simply too large and complex to be called with a single image tag. The file remains in the images folder for reference. We can use its design elements and incorporate them into the index page in a way that maintains performance and SEO.
