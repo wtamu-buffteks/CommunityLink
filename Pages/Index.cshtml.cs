@@ -7,6 +7,8 @@ namespace CommunityLink.Pages;
 
 public class IndexModel : PageModel
 {
+    public int? UserID { get; set; }
+    public string? CUsername { get; set; }
     private readonly CommunityLinkDbContext _context;
     private readonly ILogger<IndexModel> _logger;
 
@@ -18,6 +20,24 @@ public class IndexModel : PageModel
 
     public void OnGet()
     {
+        // Check if the UserID cookie exists
+        if (Request.Cookies.TryGetValue("UserID", out string? userIdString) && int.TryParse(userIdString, out int userId))
+        {
+            UserID = userId;
+        }
+        else
+        {
+            UserID = null;
+        }
+
+        if (Request.Cookies.TryGetValue("Username", out string? username))
+        {
+            CUsername = username;
+        }
+        else
+        {
+            CUsername = "Guest";
+        }
 
     }
 }

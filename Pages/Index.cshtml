@@ -9,13 +9,27 @@
 
 <img src="" alt="Removed placeholderIndex.svg for now. Please incorporate the design elements into Index.cshtml normally. See [0.2.4] in the Changelog for more" loading="lazy"> <!--/images/placeholderIndex.svg really hurts loading time and would destroy the SEO of any website that uses it-->
 
-<!--quick test-->
+<!--quick session test-->
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <div id="welcomeInfo">
         @if (!string.IsNullOrEmpty(username))
         {
             <p>Welcome, @username!</p>
+        }
+        else
+        {
+            <p>Welcome to Community Link!</p>
+        }
+    </div>
+</div>
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <div id="welcomeInfo">
+        @if (!string.IsNullOrEmpty(Model.CUsername) && Model.CUsername != "Guest")
+        {
+            <p>Welcome, @Model.CUsername!</p>
         }
         else
         {
