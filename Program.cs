@@ -1,5 +1,6 @@
 using CommunityLink.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +9,16 @@ builder.Services.AddRazorPages();
 
 builder.Services.AddDbContext<CommunityLinkDbContext>(options => 
     options.UseMySQL(builder.Configuration.GetConnectionString("CommunityLinkContext")));
+
+builder.Services.AddHttpContextAccessor();
+
+builder.Services.AddDistributedMemoryCache(); //enables the cache
+
+builder.Services.AddSession(options => {
+    options.IdleTimeout = TimeSpan.FromMinutes(10); //if the user does nothing for 10 minutes
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
 
 var app = builder.Build();
 
@@ -31,6 +42,8 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.UseSession();
 
 app.MapRazorPages();
 

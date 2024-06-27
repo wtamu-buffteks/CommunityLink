@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -22,7 +24,7 @@
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container rightLeftMargin">
                 <a class="navbar-brand righLeftMargin" asp-area="" asp-page="/Index">
-                    <img src="~/images/CommunityLinkLogo.svg" alt="CommunityLink Logo" style="height:154px;">
+                    <img src="~/images/CommunityLinkLogo.svg" alt="CommunityLink Logo" style="height:104px;">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -45,9 +47,18 @@
                         <li class="nav-item navbarText">
                             <a class="nav-link" asp-area="" asp-page="/Index">Request</a>
                         </li>
-                        <li class="nav-item navbarText">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Sign-in">Sign In</a>
-                        </li>
+                        @if (HttpContextAccessor.HttpContext.Request.Cookies.TryGetValue("Username", out string? username) || !string.IsNullOrEmpty(HttpContextAccessor.HttpContext.Session.GetString("Username")))
+                        {
+                            <li class="nav-item navbarText">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/SignOut">Sign Out</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item navbarText">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Sign-in">Sign In</a>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>

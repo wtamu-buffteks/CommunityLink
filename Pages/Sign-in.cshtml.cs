@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using CommunityLink.Models;
+using System.Security.Cryptography.X509Certificates;
 
 namespace CommunityLink.Pages;
 
@@ -37,6 +38,15 @@ public class SignInModel : PageModel
         var user = _context.Users.SingleOrDefault(u => u.Username == Username);
         if (user != null && user.ValidatePassword(Password))
         {
+            // Set session variables If the user blocks the cookie, the program will use this
+            HttpContext.Session.SetString("Username", user.Username);
+            HttpContext.Session.SetInt32("UserID", user.UserID);
+
+            //cookie setup. Will last 7 days
+            var options = new CookieOptions {Expires = System.DateTime.Now.AddDays(7)};
+            Response.Cookies.Append("Username", user.Username, options);
+            Response.Cookies.Append("UserID", user.UserID.ToString(), options);
+
             // Handle successful sign-in
             return RedirectToPage("/Index");
         }
@@ -68,5 +78,7 @@ public class SignInModel : PageModel
         return RedirectToPage("/Index");
     }
 
-    public void OnGet() { }
+    public void OnGet() {
+        
+    }
 }
