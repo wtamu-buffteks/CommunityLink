@@ -3,8 +3,43 @@
 @{
     ViewData["Title"] = "Home page";
 }
+<div class="spacerFromTop">
+</div>
 
+<img src="" alt="Removed placeholderIndex.svg for now. Please incorporate the design elements into Index.cshtml normally. See [0.2.4] in the Changelog for more" loading="lazy"> <!--/images/placeholderIndex.svg really hurts loading time and would destroy the SEO of any website that uses it-->
+
+<!--Temporary placeholder to show that you are signed in-->
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <div id="welcomeInfo">
+        @if (!string.IsNullOrEmpty(Model.Username))
+        {
+            <p>Welcome, @Model.Username!</p>
+        }
+        else
+        {
+            <p>Welcome to Community Link!</p>
+        }
+    </div>
 </div>
+
+@* <div class="flexContainer">
+<div class="indexBlueBox">
+<div class="inside-full-height" style="background-image: url(/images/donationbins.png);" id="leftImgIndex" loading="lazy">
+</div>
+
+<p id="centerIndexText" class="bodyWhite">
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+ex
+ea commodo consequat.
+</p>
+<div class="emptyFlexRight"></div>
+</div>
+
+</div>
+
+<div class="imageContainer">
+<img src="/images/verticalDonationBins.png" alt="vertical image of volunteers sorting donation bins"
+class="indexImage" id="rightImgIndex" loading="lazy">
+</div> *@

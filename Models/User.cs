@@ -2,7 +2,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace CharityLink.Models {
+namespace CommunityLink.Models {
     public class User {
         [Key]
         public int UserID { get; set; }
@@ -59,13 +59,11 @@ namespace CharityLink.Models {
         //hashes the password for secruity
         private string HashPassword(string password)
         {
-            // Implement password hashing logic here
             return BCrypt.Net.BCrypt.HashPassword(password);
         }
         //checks if the password matches the real password
         private bool VerifyPassword(string password, string hashedPassword)
         {
-            // Implement password verification logic here
             return BCrypt.Net.BCrypt.Verify(password, hashedPassword);
         }
     }

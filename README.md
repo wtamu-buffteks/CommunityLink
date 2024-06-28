@@ -8,7 +8,19 @@ run dotnet --version to see. If you don't have version 8 get it <a src="dotnet.m
 
 dotnet.microsoft.com/en-us/download/dotnet/8.0
 
-With that, I got it to work on my secondary device. If you have any problems running and pushing to the repository, please let me know!
+If you are making a branch for the first time, you will need to restore the bin files. To do this, you'll need to:
+
+- run git clone <repository-url>
+- cd <repository-directory>
+- dotnet restore
+- dotnet build
+- Then you should be ready to run with dotnet run. If this doesn't work, please contact me so we can troubleshoot
+
+To get the most up to date version of the development branch:
+
+- git fetch
+- git checkout development
+- git pull origin development
 
 
 # Procedural Guidelines

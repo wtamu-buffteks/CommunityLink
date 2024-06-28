@@ -1,8 +1,7 @@
-using CharityLink.Models;
 using CommunityLink.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Apart.Models {
+namespace CommunityLink.Models {
     public static class SeedData {
         public static void Initialize(IServiceProvider serviceProvider) {
             using (var context = new CommunityLinkDbContext( 
