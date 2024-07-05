@@ -2,5 +2,103 @@
 @model MyApp.Namespace.DonationModel
 @{
     ViewData["Title"] = "Monetary Donation Page";
-
 }
+
+<div class="spacerFromTop">
+</div>
+
+<div>
+    <h1 id="yourDonation">Your Donation</h1>
+    <p class="BodyBlack alignTextCenter">Thank you for your donation!</p>
+</div>
+
+<hr>
+
+<form method="post">
+    <div class="rightLeftMargin">
+        <p class="donationH1">Frequency</p>
+        <div class="radio-group">
+            <label asp-for="DonationFrequency" class="radio-button">
+                <input type="radio" name="DonationFrequency" value="Once">
+                <span class="radio-text">One Time</span>
+            </label>
+            <label asp-for="DonationFrequency" class="radio-button">
+                <input type="radio" name="DonationFrequency" value="Monthly">
+                <span class="radio-text">Monthly</span>
+            </label>
+        </div>
+        <hr>
+        <div id="iWantToGive">
+            <p class="donationH1">I Want to Give</p>
+            <div class="radio-group">
+                <label asp-for="GiveAmount" class="radio-button" id="Ten">
+                    <input type="radio" name="giveAmount" value="$10">
+                    <span class="radio-text">$10</span>
+                </label>
+                <label asp-for="GiveAmount" class="radio-button" id="Twenty">
+                    <input type="radio" name="giveAmount" value="$20">
+                    <span class="radio-text">$20</span>
+                </label>
+                <label asp-for="GiveAmount" class="radio-button" id="TwoFive">
+                    <input type="radio" name="giveAmount" value="$25">
+                    <span class="radio-text">$25</span>
+                </label>
+                <label asp-for="GiveAmount" class="radio-button" id="ThreeFive">
+                    <input type="radio" name="giveAmount" value="$35">
+                    <span class="radio-text">$35</span>
+                </label>
+                <label asp-for="GiveAmount" class="radio-button" id="Fifty">
+                    <input type="radio" name="giveAmount" value="$50">
+                    <span class="radio-text">$50</span>
+                </label>
+                <hr>
+            </div>
+        </div>
+        <div id="otherAmountDiv">
+            <label asp-for="GiveAmount" class="radio-button" id="otherDollarAmount">
+                <input type="radio" name="giveAmount" value="Other">
+                <span class="radio-text">Other</span>
+            </label>
+            <div id="OtherAmount">
+                <label for="otherAmountInput" class="form-label"></label>
+                <input class="form-control form-control-lg" type="text" placeholder="other donation amount"
+                    aria-label=".form-control-lg otherAmount">
+                <div id="otherDonationHelpBlock" class="form-text">
+                    $10 is the minimum online donation. All donations are tax deductible.
+                </div>
+            </div>
+        </div>
+        <hr>
+        @* may or may not keep "I Want to Support" section, would be to tie donation to existing Request that is in the
+        Monetary category*@
+        <p class="donationH1">I Want to Support</p>
+        <hr>
+        <p class="donationH1">Payment Details</p>
+        <p class="donationH2">Personal Information</p>
+        <p class="donationH3">First Name</p>
+
+
+
+    </div>
+    <hr>
+    <div id="buttonCenter">
+        <button class="rightLeftMargin BodyBlack" id="submitDonationButton" type="submit">Submit Donation</button>
+    </div>
+    @* <div>
+    <p>Selected Frequency: @Model.DonationFrequency</p>
+    <p>Selected Amount: @Model.GiveAmount</p>
+    </div> *@
+    <script>
+        document.getElementById("otherDollarAmount").addEventListener("click", function () { document.getElementById("OtherAmount").style.display = "flex" });
+
+        function hideOtherBox() {
+            document.getElementById("OtherAmount").style.display = "none"
+        }
+        document.getElementById("Ten").addEventListener("click", hideOtherBox);
+        document.getElementById("Twenty").addEventListener("click", hideOtherBox);
+        document.getElementById("TwoFive").addEventListener("click", hideOtherBox);
+        document.getElementById("ThreeFive").addEventListener("click", hideOtherBox);
+        document.getElementById("Fifty").addEventListener("click", hideOtherBox);
+    </script>
+
+</form>
