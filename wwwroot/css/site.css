@@ -25,7 +25,6 @@ body {
   margin-bottom: 60px;
 }
 
-
 .navbar {
   overflow: hidden;
   position: fixed;
@@ -55,14 +54,15 @@ body {
 .navbar a:hover {
   /* border-radius: 1000px;   */
   z-index: 2;
-
 }
 
 .navbar-light .navbar-nav .nav-link {
   color: #0d6efd;
 }
 
-.donationBlueBox, .aboutBlueBox, .indexBlueBox {
+.donationBlueBox,
+.aboutBlueBox,
+.indexBlueBox {
   position: absolute;
   display: flex;
   justify-content: center;
@@ -74,28 +74,30 @@ body {
   opacity: 1;
   text-align: center;
   /* UI Properties */
-  background: #0B64CF 0% 0% no-repeat padding-box;
+  background: #0b64cf 0% 0% no-repeat padding-box;
   z-index: 0;
 }
 
-#DonationTitle, #AboutTitle {
+#DonationTitle,
+#AboutTitle {
   text-align: center !important;
   font-family: "Vista Sans OTCE Black", Arial, Helvetica, sans-serif;
   font-size: 3.6em;
   letter-spacing: 0.8px;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .BlueTitleH1 {
-  font-family: "Bricolage Grotesque", 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-family: "Bricolage Grotesque", "Trebuchet MS", "Lucida Sans Unicode",
+    "Lucida Grande", "Lucida Sans", Arial, sans-serif;
   font-size: 2.4em;
   font-weight: bold;
-  color: #102E68;
-
+  color: #102e68;
 }
 
 .BodyBlack {
-  font-family: "Bricolage Grotesque", 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-family: "Bricolage Grotesque", "Trebuchet MS", "Lucida Sans Unicode",
+    "Lucida Grande", "Lucida Sans", Arial, sans-serif;
   font-size: 1.3em;
   font-weight: bold;
   padding-top: 12px;
@@ -106,7 +108,6 @@ body {
   padding-top: 700px;
 }
 
-
 .greenButton {
   /* Layout Properties */
   width: 100%;
@@ -116,7 +117,8 @@ body {
   height: 106px;
   font-size: 2em;
   color: white;
-  font-family: "Bricolage Grotesque Bold", 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-family: "Bricolage Grotesque Bold", "Trebuchet MS", "Lucida Sans Unicode",
+    "Lucida Grande", "Lucida Sans", Arial, sans-serif;
   text-decoration: none;
 
   /* UI Properties */
@@ -174,7 +176,7 @@ body {
 }
 
 #wallet {
-  background-image: url('/images/Wallet.png');
+  background-image: url("/images/Wallet.png");
   background-repeat: no-repeat;
   box-sizing: border-box;
   /* height: auto; */
@@ -186,10 +188,9 @@ body {
 #monetaryDonations {
   width: 50vw;
   height: 100%;
-  background: #B9D1F0 0% 0% no-repeat padding-box;
+  background: #b9d1f0 0% 0% no-repeat padding-box;
   opacity: 1;
 }
-
 
 .container {
   margin: 0px;
@@ -205,7 +206,7 @@ body {
   padding: 0px;
 } */
 
-.row.splitscreen>* {
+.row.splitscreen > * {
   padding: 0px;
 }
 
@@ -215,23 +216,22 @@ body {
 
 a:hover {
   color: white;
-
 }
 
 .bg-white {
-  --bs-bg-opacity: .5;
+  --bs-bg-opacity: 0.5;
   background-color: rgba(var(--bs-white-rgb), var(--bs-bg-opacity)) !important;
 }
 
 #givingFood {
-  background-image: url('/images/GivingFood.png');
+  background-image: url("/images/GivingFood.png");
   background-repeat: no-repeat;
   box-sizing: border-box;
   height: 80.6vw;
   width: 50vw;
 }
 
-#leftImgIndex{
+#leftImgIndex {
   display: flex;
   flex: auto;
   justify-content: flex-start;
@@ -242,7 +242,7 @@ a:hover {
   max-width: 335px;
 }
 
-#centerIndexText{
+#centerIndexText {
   display: flex;
   width: 35%;
   justify-content: center;
@@ -254,17 +254,16 @@ a:hover {
   padding-right: 2em;
 }
 
-.emptyFlexRight{
+.emptyFlexRight {
   display: flex;
   width: 35%;
   flex: auto;
   justify-content: flex-end;
   flex-direction: row;
   order: 3;
-
 }
 
-#rightImgIndex{
+#rightImgIndex {
   display: flex;
   flex: auto;
   z-index: 1;
@@ -274,19 +273,19 @@ a:hover {
   display: none;
 }
 
-
-.bodyWhite{
-  font-family: "Bricolage Grotesque", 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+.bodyWhite {
+  font-family: "Bricolage Grotesque", "Trebuchet MS", "Lucida Sans Unicode",
+    "Lucida Grande", "Lucida Sans", Arial, sans-serif;
   font-size: 1.3em;
   font-weight: bold;
   padding-top: 12px;
   padding-bottom: 12px;
-  color:white;
+  color: white;
   z-index: 1;
 }
 
 .indexBlueBox {
-  background-color:#0B64CF;
+  background-color: #0b64cf;
   padding: 20px;
   margin-bottom: 20px;
   text-align: center;
@@ -306,3 +305,119 @@ a:hover {
   align-items: center;
 }
 
+#yourDonation {
+  text-align: center !important;
+  font-family: "Vista Sans OTCE Black", Arial, Helvetica, sans-serif;
+  font-size: 3.6em;
+  letter-spacing: 0.8px;
+  color: #000000;
+}
+
+.alignTextCenter {
+  text-align: center;
+}
+
+.flexCenter {
+  display: flex;
+  justify-content: center;
+  text-align: left;
+}
+
+.donationH1 {
+  font: "Bricolage Grotesque", "Trebuchet MS", "Lucida Sans Unicode",
+    "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+  font-size: 1.5rem;
+}
+
+.radio-group {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.radio-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.radio-button input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  cursor: pointer;
+}
+.radio-text {
+  display: inline-block;
+  padding: 10px 20px;
+  border: 2px solid #0964cf;
+  border-radius: 20px;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.radio-button input[type="radio"]:checked + .radio-text {
+  background-color: #0964cf;
+  border-color: #0964cf;
+  color: white;
+}
+
+.radio-button input[type="radio"]:focus + .radio-text {
+  border-color: #0964cf;
+}
+
+.iWantToGive {
+}
+
+#otherDollarAmount {
+  display: flex;
+  flex: 0 1 100%;
+  padding-top: 20px;
+}
+
+#buttonCenter {
+  display: flex;
+  justify-content: center;
+}
+
+#submitDonationButton {
+  background-color: #248646;
+  display: flex;
+  justify-content: center;
+  padding: 10px 20px;
+  border: 2px solid #248646;
+  color: white;
+  border-radius: 20px;
+  cursor: pointer;
+  user-select: none;
+  font-size: 1.35em;
+  font-weight: bold;
+}
+
+#otherDonationHelpBlock {
+  color: #0339a6;
+  font-size: 1em;
+  padding-right: 1em;
+  padding-left: 1em;
+}
+
+#otherAmountDiv {
+  display: flex;
+  justify-content: flex-start;
+}
+
+#OtherAmount {
+  display: none;
+  padding: 1em;
+  flex-basis: 2000em;
+}
+
+.donationH2 {
+  font-size: 1.25rem;
+}
+.donationH3 {
+  font-size: 1.2rem;
+}

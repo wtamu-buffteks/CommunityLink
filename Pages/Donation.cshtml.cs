@@ -1,3 +1,4 @@
+using CommunityLink.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -5,8 +6,25 @@ namespace MyApp.Namespace
 {
     public class DonationModel : PageModel
     {
-        public void OnGet()
+        private readonly ILogger<DonationModel> _logger;
+        private readonly CommunityLinkDbContext _context;
+
+        public DonationModel(CommunityLinkDbContext context, ILogger<DonationModel> logger)
         {
+            _context = context;
+            _logger = logger;
+        }
+
+        [BindProperty]
+        public string DonationFrequency { get; set; } = string.Empty;
+
+        [BindProperty]
+        public string GiveAmount { get; set; } = string.Empty;
+
+        public IActionResult OnPost()
+        {
+            _logger.LogInformation("HEYOOOO");
+            return Page();
         }
     }
 }
