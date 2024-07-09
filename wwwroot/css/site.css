@@ -67,7 +67,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  top: 178px;
+  top: 131px;
   left: 0px;
   width: 100%;
   height: 457px;
@@ -105,7 +105,7 @@ body {
 }
 
 .section1 {
-  padding-top: 700px;
+  padding-top: 650px;
 }
 
 .greenButton {
@@ -186,6 +186,13 @@ body {
 }
 
 #monetaryDonations {
+  width: 50vw;
+  height: 100%;
+  background: #b9d1f0 0% 0% no-repeat padding-box;
+  opacity: 1;
+}
+
+#itemDonations {
   width: 50vw;
   height: 100%;
   background: #b9d1f0 0% 0% no-repeat padding-box;
@@ -420,4 +427,52 @@ a:hover {
 }
 .donationH3 {
   font-size: 1.2rem;
+}
+
+#modalButton {
+  width: auto;
+  height: auto;
+  border: none;
+}
+
+#donationLocationModal {
+  display: none;
+  position: fixed;
+  z-index: 999999;
+  top: 0;
+  justify-content: center;
+}
+
+#closeModal {
+  font-size: larger;
+  display: flex;
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 1em;
+}
+
+#donationModal {
+  display: none;
+}
+
+.modal-content {
+  height: 85%;
+  width: 85%;
+  background-color: white;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 2em;
+}
+
+.fadeBack {
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 500;
 }

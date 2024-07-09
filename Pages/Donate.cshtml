@@ -54,3 +54,55 @@
         </div>
     </div>
 </div>
+<!-- The Modal -->
+<div id="donationLocationModal" class="donationModal">
+    <div class="fadeBack">
+        <div class="modal-content">
+            <span onclick="document.getElementById('donationLocationModal').style.display='none'"
+                class="w3-button w3-display-topright" id="closeModal">X</span>
+            <div class="BodyBlack">
+                <div class="text-center BlueTitleH1">
+                    <p>FIND A LOCATION</p>
+                    <p class="donationH2">STORE LOCATIONS &amp; DONATIONS</p>
+                </div>
+                <hr>
+                @* this can be made fancy, where the locations come from a database *@
+                <p>124 Conch Street, Bikini Bottom, Pacific Ocean</p>
+                <p>USA 96970</p>
+                <p>707-663-Gary</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="no-gutters splitscreen">
+    <div class="col-md-6 col-md-height col-md-middle">
+        <div class="inside-full-height">
+            <div class="content text-left">
+                <div class="content-wrapper" id="itemDonations">
+                    <h1 class="BlueTitleH1">Item Donations</h1>
+                    <p class="BodyBlack">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+                        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </p>
+                    @* <a href=" http://localhost:5245/donation" class="greenButton btn-lg" id="" target="_blank">
+                    <span> Find A Location </span>
+                    </a> *@
+
+                    <!-- Trigger/Open the Modal -->
+                    <button onclick="document.getElementById('donationLocationModal').style.display='flex'"
+                        class="greenButton btn-lg" id="modalButton">Find A Location</button>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-md-height col-md-middle" id="wallet">
+        <div class="inside-full-height" style="background-image: url(/images/DonateBox.png);" loading="lazy">
+        </div>
+    </div>
+</div>
