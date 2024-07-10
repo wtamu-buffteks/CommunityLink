@@ -73,6 +73,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.2.5] - 2024-7-10
 
 ### Added
-- My Profile page
--- It will not allow a non-signed in user to access the page
--- The user can change their Username, Password(if they confirm it first), Email, Phone Number, Full Name, Address. They can check themselves in or out of being a Volunteer or Requestor.
+#### My Profile page
+- It will not allow a non-signed in user to access the page
+- The user can change their Username, Password(if they confirm it first), Email, Phone Number, Full Name, Address. They can check themselves in or out of being a Volunteer or Requestor.
