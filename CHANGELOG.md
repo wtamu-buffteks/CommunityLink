@@ -69,3 +69,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 - Removed placeholderIndex.svg from the index page as it significantly slowed down the website's performance due to its large size and reliance on external resources. It is simply too large and complex to be called with a single image tag. The file remains in the images folder for reference. We can use its design elements and incorporate them into the index page in a way that maintains performance and SEO.
+
+## [0.2.5] - 2024-7-10
+
+### Added
+#### My Profile page
+- It will not allow a non-signed in user to access the page
+- The user can change their Username, Password(if they confirm it first), Email, Phone Number, Full Name, Address. They can check themselves in or out of being a Volunteer or Requestor.
