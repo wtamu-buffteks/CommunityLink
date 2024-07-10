@@ -1,15 +1,61 @@
 @page
-@model IndexModel
+@model MyPageModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "My page";
 }
-<div class="spacerFromTop">
-</div>
+<div class="spacerFromTop"></div>
 
-<img src="" alt="Removed placeholderIndex.svg for now. Please incorporate the design elements into Index.cshtml normally. See [0.2.4] in the Changelog for more" loading="lazy"> <!--/images/placeholderIndex.svg really hurts loading time and would destroy the SEO of any website that uses it-->
-
-<!--Temporary placeholder to show that you are signed in-->
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <div id="welcomeInfo"></div>
+    <h1 class="display-4">My Profile</h1>
 </div>
+
+<form method="post">
+    <div class="form-group">
+        <label for="Username">Username</label>
+        <input type="text" class="form-control" id="Username" name="Username" value="@Model.ThisUser?.Username" required />
+    </div>
+    <div class="form-group">
+        <label for="Password">Current Password</label>
+        <input type="password" class="form-control" id="CurrentPassword" name="CurrentPassword" />
+    </div>
+    <div class="form-group">
+        <label for="NewPassword">New Password</label>
+        <input type="password" class="form-control" id="NewPassword" name="NewPassword" />
+    </div>
+    <div class="form-group">
+        <label for="Email">Email</label>
+        <input type="email" class="form-control" id="Email" name="Email" value="@Model.ThisUser?.Email" />
+    </div>
+    <div class="form-group">
+        <label for="PhoneNumber">Phone Number</label>
+        <input type="text" class="form-control" id="PhoneNumber" name="PhoneNumber" value="@Model.ThisUser?.PhoneNumber" />
+    </div>
+    <div class="form-group">
+        <label for="FullName">Full Name</label>
+        <input type="text" class="form-control" id="FullName" name="FullName" value="@Model.ThisUser?.FullName" />
+    </div>
+    <div class="form-group">
+        <label for="UserLocation">Address</label>
+        <input type="text" class="form-control" id="UserLocation" name="UserLocation" value="@Model.ThisUser?.UserLocation" />
+    </div>
+    <div class="form-group form-check">
+        <input type="checkbox" class="form-check-input" id="IsVolunteer" name="IsVolunteer" @(Model.ThisUser?.Volunteer != null ? "checked" : "") />
+        <label class="form-check-label" for="IsVolunteer">Volunteer</label>
+    </div>
+    <div class="form-group form-check">
+        <input type="checkbox" class="form-check-input" id="IsRequestor" name="IsRequestor" @(Model.ThisUser?.Requestor != null ? "checked" : "") />
+        <label class="form-check-label" for="IsRequestor">Requestor</label>
+    </div>
+    <div class="form-group">
+        <label for="Role">Role</label>
+        <input type="text" class="form-control" id="Role" name="Role" value="@Model.ThisUser?.Employee?.Role ?? "N/A"" readonly />
+    </div>
+    <button type="submit" class="btn btn-primary">Update</button>
+</form>
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Message"]
+    </div>
+}

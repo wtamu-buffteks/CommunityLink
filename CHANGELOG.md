@@ -74,3 +74,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - My Profile page
+-- It will not allow a non-signed in user to access the page

@@ -45,10 +45,13 @@
                             <a class="nav-link text-dark" asp-area="" asp-page="/Index">Events</a>
                         </li><!--Will have more appear once sign in is functional-->
                         <li class="nav-item navbarText">
-                            <a class="nav-link" asp-area="" asp-page="/Index">Request</a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Request</a>
                         </li>
                         @if (HttpContextAccessor.HttpContext.Request.Cookies.TryGetValue("Username", out string? username) || !string.IsNullOrEmpty(HttpContextAccessor.HttpContext.Session.GetString("Username")))
                         {
+                            <li class="nav-item navbarText">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/MyProfile">My Profile</a>
+                            </li>
                             <li class="nav-item navbarText">
                                 <a class="nav-link text-dark" asp-area="" asp-page="/SignOut">Sign Out</a>
                             </li>
