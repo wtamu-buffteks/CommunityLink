@@ -7,7 +7,6 @@ namespace CommunityLink.Pages;
 
 public class MyPageModel : PageModel
 {
-    public int? UserID { get; set; }
     public User? ThisUser { get; set; }
     private readonly CommunityLinkDbContext _context;
     private readonly ILogger<MyPageModel> _logger;
@@ -129,7 +128,6 @@ public class MyPageModel : PageModel
             }
 
             // Update volunteer status
-            Console.WriteLine(IsVolunteer); //is always False
             if (IsVolunteer && ThisUser.Volunteer == null)
             {
                 ThisUser.Volunteer = new Volunteer { User = ThisUser };
@@ -143,7 +141,6 @@ public class MyPageModel : PageModel
             }
 
             // Update requestor status
-            Console.WriteLine(IsRequestor); //is always
             if (IsRequestor && ThisUser.Requestor == null)
             {
                 ThisUser.Requestor = new Requestor { User = ThisUser };
