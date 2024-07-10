@@ -18,6 +18,33 @@ public class MyPageModel : PageModel
         _logger = logger;
     }
 
+    [BindProperty]
+    public string Username { get; set; } = string.Empty;
+
+    [BindProperty]
+    public string CurrentPassword { get; set; } = string.Empty;
+
+    [BindProperty]
+    public string NewPassword { get; set; } = string.Empty;
+
+    [BindProperty]
+    public string? Email { get; set; }
+
+    [BindProperty]
+    public string? PhoneNumber { get; set; }
+
+    [BindProperty]
+    public string? FullName { get; set; }
+
+    [BindProperty]
+    public string? UserLocation { get; set; }
+
+    [BindProperty]
+    public bool IsVolunteer { get; set; }
+
+    [BindProperty]
+    public bool IsRequestor { get; set; }
+
     public IActionResult OnGet()
     {
         // Check if the UserID cookie exists
@@ -45,83 +72,94 @@ public class MyPageModel : PageModel
             return RedirectToPage("/Index");
         }
 
-        if (User == null)
+        if (ThisUser == null)
         {
             // Handle case where user is not found in the database
             return RedirectToPage("/Index");
         }
 
+        // Populates the properties with current data
+        Username = ThisUser.Username;
+        Email = ThisUser.Email;
+        PhoneNumber = ThisUser.PhoneNumber;
+        FullName = ThisUser.FullName;
+        UserLocation = ThisUser.UserLocation;
+        IsVolunteer = ThisUser.Volunteer != null;
+        IsRequestor = ThisUser.Requestor != null;
+
         return Page();
     }
 
-    public IActionResult OnPost(string Username, string CurrentPassword, string NewPassword, string Email, string PhoneNumber, string FullName, string UserLocation, bool IsVolunteer, bool IsRequestor)
-{
-    int? userId = null;
-
-    if (Request.Cookies.TryGetValue("UserID", out string? userIdString) && int.TryParse(userIdString, out int parsedUserId))
+    public IActionResult OnPost()
     {
-        userId = parsedUserId;
+        int? userId = null;
+
+        if (Request.Cookies.TryGetValue("UserID", out string? userIdString) && int.TryParse(userIdString, out int parsedUserId))
+        {
+            userId = parsedUserId;
+        }
+        else if (HttpContext.Session.GetInt32("UserID") is int sessionUserId)
+        {
+            userId = sessionUserId;
+        }
+
+        if (userId.HasValue)
+        {
+            ThisUser = _context.Users.Include(u => u.Volunteer)
+                                     .Include(u => u.Employee)
+                                     .Include(u => u.Requestor)
+                                     .FirstOrDefault(u => u.UserID == userId.Value);
+
+            if (ThisUser == null)
+            {
+                return RedirectToPage("/Index");
+            }
+
+            // Update info
+            ThisUser.Username = Username;
+            ThisUser.Email = Email;
+            ThisUser.PhoneNumber = PhoneNumber;
+            ThisUser.FullName = FullName;
+            ThisUser.UserLocation = UserLocation;
+
+            // Update password if current password is correct and new password is provided
+            if (!string.IsNullOrEmpty(CurrentPassword) && !string.IsNullOrEmpty(NewPassword) && ThisUser.ValidatePassword(CurrentPassword))
+            {
+                ThisUser.SetPassword(NewPassword);
+            }
+
+            // Update volunteer status
+            Console.WriteLine(IsVolunteer); //is always False
+            if (IsVolunteer && ThisUser.Volunteer == null)
+            {
+                ThisUser.Volunteer = new Volunteer { User = ThisUser };
+                _context.Volunteers.Add(ThisUser.Volunteer);
+            }
+            else if (!IsVolunteer && ThisUser.Volunteer != null)
+            {
+                Console.WriteLine("Test");
+                _context.Volunteers.Remove(ThisUser.Volunteer);
+                ThisUser.Volunteer = null;
+            }
+
+            // Update requestor status
+            Console.WriteLine(IsRequestor); //is always
+            if (IsRequestor && ThisUser.Requestor == null)
+            {
+                ThisUser.Requestor = new Requestor { User = ThisUser };
+                _context.Requestors.Add(ThisUser.Requestor);
+            }
+            else if (!IsRequestor && ThisUser.Requestor != null)
+            {
+                Console.WriteLine("Test");
+                _context.Requestors.Remove(ThisUser.Requestor);
+                ThisUser.Requestor = null;
+            }
+
+            _context.SaveChanges();
+            TempData["Message"] = "Profile updated successfully!";
+        }
+
+        return Page();
     }
-    else if (HttpContext.Session.GetInt32("UserID") is int sessionUserId)
-    {
-        userId = sessionUserId;
-    }
-
-    if (userId.HasValue)
-    {
-        ThisUser = _context.Users.Include(u => u.Volunteer)
-                                 .Include(u => u.Employee)
-                                 .Include(u => u.Requestor)
-                                 .FirstOrDefault(u => u.UserID == userId.Value);
-
-        if (ThisUser == null)
-        {
-            return RedirectToPage("/Index");
-        }
-
-        // Update user information
-        ThisUser.Username = Username;
-        ThisUser.Email = Email;
-        ThisUser.PhoneNumber = PhoneNumber;
-        ThisUser.FullName = FullName;
-        ThisUser.UserLocation = UserLocation;
-
-        // Update password if current password is correct and new password is provided
-        if (!string.IsNullOrEmpty(CurrentPassword) && !string.IsNullOrEmpty(NewPassword) && ThisUser.ValidatePassword(CurrentPassword))
-        {
-            ThisUser.SetPassword(NewPassword);
-        }
-
-        // Update volunteer status
-        if (IsVolunteer && ThisUser.Volunteer == null)
-        {
-            ThisUser.Volunteer = new Volunteer { User = ThisUser };
-            _context.Volunteers.Add(ThisUser.Volunteer);
-        }
-        else if (!IsVolunteer && ThisUser.Volunteer != null)
-        {
-            _context.Volunteers.Remove(ThisUser.Volunteer);
-            ThisUser.Volunteer = null;
-        }
-
-        // Update requestor status
-        if (IsRequestor && ThisUser.Requestor == null)
-        {
-            ThisUser.Requestor = new Requestor { User = ThisUser };
-            _context.Requestors.Add(ThisUser.Requestor);
-        }
-        else if (!IsRequestor && ThisUser.Requestor != null)
-        {
-            _context.Requestors.Remove(ThisUser.Requestor);
-            ThisUser.Requestor = null;
-        }
-
-        _context.SaveChanges();
-        TempData["Message"] = "Profile updated successfully!";
-    }
-
-    return Page();
-}
-
-
 }
