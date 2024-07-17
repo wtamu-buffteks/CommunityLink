@@ -34,6 +34,7 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 
+// gets rid of redundancy
 builder
     .Services.AddDefaultIdentity<IdentityUser>(options =>
         options.SignIn.RequireConfirmedAccount = false
@@ -65,6 +66,7 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
+// ADD GOOD ROUTING TO AVOID 404 AND OTHER ERRORS
 // app.UseEndpoints(endpoints =>
 // {
 //     endpoints.MapControllerRoute(

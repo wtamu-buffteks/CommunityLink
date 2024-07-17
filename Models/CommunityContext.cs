@@ -155,6 +155,7 @@ namespace CommunityLink.Models
         //             .OnDelete(DeleteBehavior.Cascade);
         //     }
         // }
+        // Very important to add to enable identity scaffolding
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
