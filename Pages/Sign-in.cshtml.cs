@@ -31,6 +31,7 @@ public class SignInModel : PageModel
 
     [BindProperty]
     public string Email { get; set; } = string.Empty;
+    [BindProperty]
     public string PhoneNumber { get; set; } = string.Empty;
 
     public IActionResult OnPostSignIn()
@@ -70,12 +71,27 @@ public class SignInModel : PageModel
             Email = Email,
             PhoneNumber = PhoneNumber
         };
+        Console.WriteLine(newUser.PhoneNumber);
         newUser.SetPassword(NewPassword);
         _context.Users.Add(newUser);
         _context.SaveChanges();
 
-        // Handle successful registration
-        return RedirectToPage("/Index");
+        var user = _context.Users.SingleOrDefault(u => u.Username == NewUsername);
+        if (user != null) {
+            // Set session variables If the user blocks the cookie, the program will use this
+            HttpContext.Session.SetString("Username", user.Username);
+            HttpContext.Session.SetInt32("UserID", user.UserID);
+
+            //cookie setup. Will last 7 days
+            var options = new CookieOptions {Expires = System.DateTime.Now.AddDays(7)};
+            Response.Cookies.Append("Username", user.Username, options);
+            Response.Cookies.Append("UserID", user.UserID.ToString(), options);
+
+            // Handle successful sign-in
+            return RedirectToPage("/Index");
+        }
+        // return to the login page if all fails
+        return Page();
     }
 
     public void OnGet() {
