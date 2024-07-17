@@ -41,6 +41,7 @@ namespace CommunityLink.Models {
                         new RequestStat{
                             Stat = volunteerUserStats,
                             RequestorUsername = "James43",
+                            OldRequestID = 997,
                             AmountDonated = 50.00f,
                             DonationDate = new DateTime(2024, 6, 10),
                             RequestTitle = "Broken Tire"
@@ -129,6 +130,7 @@ namespace CommunityLink.Models {
                     var requestStat = new RequestStat {
                             Stat = volunteerEmployeeUserStats,
                             RequestorUsername = "Mark978",
+                            OldRequestID = 998,
                             DonationDate = new DateTime(2022, 6, 10),
                             RequestTitle = "Need shoes",
                             DonationStats = new List<DonationStat>{}
@@ -183,6 +185,7 @@ namespace CommunityLink.Models {
                         new RequestStat{
                             Stat = volunteerUserStats,
                             RequestorUsername = "Susan777",
+                            OldRequestID = 999,
                             AmountDonated = 5000.00f,
                             DonationDate = new DateTime(2023, 12, 25),
                             RequestTitle = "Broken Tire"

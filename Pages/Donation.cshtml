@@ -19,23 +19,23 @@
             <p class="donationH1">I Want to Give</p>
             <div class="radio-group">
                 <label asp-for="GiveAmount" class="radio-button" id="Ten">
-                    <input type="radio" name="giveAmount" value="$10">
+                    <input type="radio" name="giveAmount" value="10">
                     <span class="radio-text">$10</span>
                 </label>
                 <label asp-for="GiveAmount" class="radio-button" id="Twenty">
-                    <input type="radio" name="giveAmount" value="$20">
+                    <input type="radio" name="giveAmount" value="20">
                     <span class="radio-text">$20</span>
                 </label>
                 <label asp-for="GiveAmount" class="radio-button" id="TwoFive">
-                    <input type="radio" name="giveAmount" value="$25">
+                    <input type="radio" name="giveAmount" value="25">
                     <span class="radio-text">$25</span>
                 </label>
                 <label asp-for="GiveAmount" class="radio-button" id="ThreeFive">
-                    <input type="radio" name="giveAmount" value="$35">
+                    <input type="radio" name="giveAmount" value="35">
                     <span class="radio-text">$35</span>
                 </label>
                 <label asp-for="GiveAmount" class="radio-button" id="Fifty">
-                    <input type="radio" name="giveAmount" value="$50">
+                    <input type="radio" name="giveAmount" value="50">
                     <span class="radio-text">$50</span>
                 </label>
                 <hr>
@@ -56,21 +56,39 @@
             </div>
         </div>
         <hr>
-        @* may or may not keep "I Want to Support" section, would be to tie donation to existing Request that is in the
-        Monetary category*@
-        <p class="donationH1">I Want to Support</p>
+        <h1 class="donationH1">Request:</h1>
+        <div>
+            <p><strong>Request Title:</strong> @Model.ThisRequest?.RequestTitle</p>
+            <p><strong>Request Description:</strong> @Model.ThisRequest?.RequestDescription</p>
+            <p><strong>Requested Amount:</strong> @Model.ThisRequest?.AmountRequested.ToString("c")</p>
+            <p><strong>Amount Received:</strong> @Model.ThisRequest?.AmountRecieved.ToString("c")</p>
+        </div>
         <hr>
-        <p class="donationH1">Payment Details</p>
-        <p class="donationH2">Personal Information</p>
-        <p class="donationH3">First Name</p>
-
-
-
-    </div>
-    <hr>
-    <div id="buttonCenter">
-        <button class="rightLeftMargin BodyBlack" id="submitDonationButton" type="submit">Submit Donation</button>
-    </div>
+        <h1 class="donationH1">Donor:</h1>
+        <div>
+            <p><strong>Username:</strong> @Model.ThisUser?.Username</p>
+        </div>
+        <hr>
+        <h2 class="donationH2">Payment Details</h2>
+        <div class="form-group">
+            <label asp-for="CardNumber">Card Number</label>
+            <input asp-for="CardNumber" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="CardHolderName">Cardholder Name</label>
+            <input asp-for="CardHolderName" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="ExpiryDate">Expiry Date</label>
+            <input asp-for="ExpiryDate" class="form-control" placeholder="MM/YY" />
+        </div>
+        <div class="form-group">
+            <label asp-for="CVC">CVC</label>
+            <input asp-for="CVC" class="form-control" />
+        </div>
+        <div id="buttonCenter">
+            <button class="rightLeftMargin BodyBlack" id="submitDonationButton" type="submit">Submit Donation</button>
+        </div>
     @* <div>
     <p>Selected Frequency: @Model.DonationFrequency</p>
     <p>Selected Amount: @Model.GiveAmount</p>

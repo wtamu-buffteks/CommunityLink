@@ -8,15 +8,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.2.6] - 2024-7-17
 
 ### Notes
-- Since this branch was made before the branch fixing the changelog was approved and merged, the changelog was still in reverse order at the time of writing this. so to minimize harm when this one is merged, I fixed it in this branch too. It shouldn't cause any issues, but if it does, both files are correct and the same except this one has the latest notes.
+- This branch was created before the branch fixing the changelog was approved and merged. To minimize conflicts, I have also included the changelog fix in this branch. Both files are now correct and consistent, with this one including the latest notes.
 
 - I set the donation page to always donate to the first request in this version. When I implement the volunteer page next week, I'll set each request to go to the volunteer page.
 
+- The donations page was set to: "$10 is the minimum online donation. All donations are tax deductible." I went ahead and kept this, but since this application is meant for general useage, should we keep this? The Red Cross may have that minimum, but not every organization will.
+
 ### Added
-- It now automatically signs you in when you create an account so the user doesn't need to sign in right after creating an account.
+- The application now automatically signs you in upon creating an account, so the user does not need to sign in right after creating an account.
+
+- If someone accesses the donation page, but isn't signed in, it will redirect them to the sign-in page as we can't update their stats if we don't know who they are and the organization would need to keep track of donations for legal purposes. When I implement the volunteer page, I'll make the "Donate Now" button link to it so users can choose what specifically they'd like to donate to.
+
+- If the user makes a donation, and isn't a volunteer, it will automatically check them in as one now that they have now volunteered resources to a request.
+
+- The user can now donate to requests. When I implement the volunteer page next week, the user will be able to choose which one to donate to
+
+### changed
+
+- RequestStats now also holds onto the id of the original request to avoid confusion if two requestors make a request with the same name
 
 ### Fixed
-- fixed oversight that caused the phone number to not be saved when a user creates an account
+- Fixed an oversight that caused the phone number not to be saved when a user creates an account.
 
 ## [0.2.5] - 2024-7-10
 
