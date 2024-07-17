@@ -47,37 +47,26 @@
                         <li class="nav-item navbarText">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Index">Request</a>
                         </li>
-
-                        @*
-                        !!!
-                        @if (HttpContextAccessor.HttpContext.Request.Cookies.TryGetValue("Username", out string?
-                        username) ||
-                        !string.IsNullOrEmpty(HttpContextAccessor.HttpContext.Session.GetString("Username")))
+                        @if (HttpContextAccessor.HttpContext.Request.Cookies.TryGetValue("Username", out string? username) || !string.IsNullOrEmpty(HttpContextAccessor.HttpContext.Session.GetString("Username")))
                         {
-                        <li class="nav-item navbarText">
-                        <a class="nav-link text-dark" asp-area="" asp-page="/MyProfile">My Profile</a>
-                        </li>
-                        <li class="nav-item navbarText">
-                        <a class="nav-link text-dark" asp-area="" asp-page="/SignOut">Sign Out</a>
-                        </li>
+                            <li class="nav-item navbarText">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/MyProfile">My Profile</a>
+                            </li>
+                            <li class="nav-item navbarText">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/SignOut">Sign Out</a>
+                            </li>
                         }
                         else
                         {
-                        <li class="nav-item navbarText">
-                        <a class="nav-link text-dark" asp-area="" asp-page="/Sign-in">Sign In</a>
-                        </li>
+                            <li class="nav-item navbarText">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Sign-in">Sign In</a>
+                            </li>
                         }
-                        !!!*@
-                    </ul>
-                    <ul class="navbar-nav rightLeftMargin">
-                        <partial name="_LoginPartial">
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-    <div class="spacerFromTop">
-    </div>
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
@@ -92,7 +81,6 @@
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/lib/qrcode.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
