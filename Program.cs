@@ -1,17 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using CommunityLink.Models;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,32 +7,22 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 
-builder.Services.AddDbContext<CommunityLinkDbContext>(options =>
-    options.UseMySQL(builder.Configuration.GetConnectionString("CommunityLinkContext"))
-);
+builder.Services.AddDbContext<CommunityLinkDbContext>(options => 
+    options.UseMySQL(builder.Configuration.GetConnectionString("CommunityLinkContext")));
 
 builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddDistributedMemoryCache(); //enables the cache
 
-builder.Services.AddSession(options =>
-{
+builder.Services.AddSession(options => {
     options.IdleTimeout = TimeSpan.FromMinutes(10); //if the user does nothing for 10 minutes
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
 });
 
-// gets rid of redundancy
-builder
-    .Services.AddDefaultIdentity<IdentityUser>(options =>
-        options.SignIn.RequireConfirmedAccount = false
-    )
-    .AddEntityFrameworkStores<CommunityLinkDbContext>();
-
 var app = builder.Build();
 
-using (var scope = app.Services.CreateScope())
-{
+using (var scope = app.Services.CreateScope()){
     var services = scope.ServiceProvider;
 
     SeedData.Initialize(services);
@@ -63,17 +41,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseAuthentication();
 app.UseAuthorization();
-
-// ADD GOOD ROUTING TO AVOID 404 AND OTHER ERRORS
-// app.UseEndpoints(endpoints =>
-// {
-//     endpoints.MapControllerRoute(
-//         name: "default",
-//         pattern: "{controller=Home}/{action=Index}/{id?}");
-//     endpoints.MapRazorPages();
-// });
 
 app.UseSession();
 

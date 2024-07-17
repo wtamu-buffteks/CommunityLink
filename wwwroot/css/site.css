@@ -105,7 +105,7 @@ body {
 }
 
 .section1 {
-  padding-top: 450px;
+  padding-top: 650px;
 }
 
 .greenButton {
@@ -199,14 +199,10 @@ body {
   opacity: 1;
 }
 
-#zeroContainer .container {
+.container {
   margin: 0px;
   padding: 0px;
   max-width: 100%;
-  margin-left: 0px;
-  padding-left: 0px;
-  padding-right: 0px;
-  margin-right: 0px;
 }
 
 .spacerFromTop {
