@@ -3,6 +3,7 @@ using System;
 using CommunityLink.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CommunityLink.Migrations
 {
     [DbContext(typeof(CommunityLinkDbContext))]
-    partial class CommunityLinkDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240717160803_UpdateIdentitySetup")]
+    partial class UpdateIdentitySetup
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
