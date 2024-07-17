@@ -211,7 +211,7 @@ body {
 
 /* .row > * {
   padding: 0px;
-} */
+ } */
 
 .row.splitscreen > * {
   padding: 0px;
@@ -475,4 +475,14 @@ a:hover {
   left: 0;
   top: 0;
   z-index: 500;
+}
+
+#enableAuthButton {
+  font-size: 1.5em;
+}
+
+#MyProfileForm .form-control,
+#MyProfileForm .form-check-label,
+#MyProfileForm #enableAuthButton {
+  margin-bottom: 10px;
 }
