@@ -1,6 +1,8 @@
 # Changelog
 
+
 All notable changes to this project will be documented in this file.
+
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
@@ -62,6 +64,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.2.2] - 2024-6-24
 
+
 ### Added
 - bin and obj added to gitignore
 - About, Donate and Donation page
@@ -69,9 +72,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - image folder and files
 - translucent, fixed navigation bar
 
+
 ### Changes
 - layout cshtml updated to reflect pages in XD layout
 - changes to index and sign-in css to look correct after fixed nav bar implemented
+
 
 ## [0.2.1] - 2024-6-21
 
@@ -100,3 +105,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Updated README.md on coding procedures
+
