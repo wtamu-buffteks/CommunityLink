@@ -58,6 +58,7 @@ namespace CommunityLink.Models
         //             RequestStats = new List<RequestStat> {}
         //         };
 
+
         //         var volunteerUser = new User {// Volunteer only
         //             Username = "Spider",
         //             Email = "ILoveSpiders@example.com",
@@ -86,6 +87,7 @@ namespace CommunityLink.Models
         //             }
         //         );
 
+
         //         var employeeUser = new User {//employee, recently went inactive
         //             Username = "Overlord",
         //             Email = "Overlord@example.com",
@@ -107,6 +109,7 @@ namespace CommunityLink.Models
         //             DonationStats = new List<DonationStat>{},
         //             RequestStats = new List<RequestStat> {}
         //         };
+
 
         //         var requestorUser = new User { //Requestor
         //             Username = "Danger",
@@ -140,6 +143,7 @@ namespace CommunityLink.Models
         //             DonationStats = new List<DonationStat>{},
         //             RequestStats = new List<RequestStat> {}
         //         };
+
 
         //         var volunteerEmployeeUser = new User { //volunteer and employee
         //             Username = "Frank",
@@ -183,6 +187,7 @@ namespace CommunityLink.Models
         //         };
         //         volunteerEmployeeUserStats.DonationStats.Add(donationStat);
         //         requestStat.DonationStats.Add(donationStat);
+
 
         //         var volunteerRequestorUser = new User { //Volunteer and requestor
         //             Username = "Junnie",
@@ -228,6 +233,7 @@ namespace CommunityLink.Models
         //             }
         //         );
 
+
         //         var employeeRequestorUser = new User { //Employee and requestor
         //             Username = "Ninja",
         //             PhoneNumber = "(894) 555-1342",
@@ -264,6 +270,7 @@ namespace CommunityLink.Models
         //             DonationStats = new List<DonationStat>{},
         //             RequestStats = new List<RequestStat> {}
         //         };
+
 
         //         var allUser = new User { //all three
         //             Username = "Yea-Yea",
@@ -306,6 +313,8 @@ namespace CommunityLink.Models
         //             DonationStats = new List<DonationStat>{},
         //             RequestStats = new List<RequestStat> {}
         //         };
+
+
 
 
         //         context.Users.AddRange(nosubUser, volunteerUser, employeeUser, requestorUser, volunteerEmployeeUser, volunteerRequestorUser, employeeRequestorUser, allUser);
