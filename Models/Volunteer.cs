@@ -2,14 +2,18 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace CommunityLink.Models {
-    public class Volunteer {
+namespace CommunityLink.Models
+{
+    public class Volunteer
+    {
         [Key]
         public int VolunteerID { get; set; }
+
         [Required]
-        public int UserID { get; set; }
+        public required string UserID { get; set; }
+
         [ForeignKey("UserID")]
-        public required User User { get; set;}
+        public required CommunityUser User { get; set; }
         public int HoursWorked { get; set; } = 0;
     }
 }

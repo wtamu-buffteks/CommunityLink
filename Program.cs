@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CommunityLink.Models;
@@ -34,11 +32,13 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 
-// gets rid of redundancy
+// Add Identity services with role support
+// RequireConfirmedAccount = false gets rid of redundancy that asks user to confirm account
 builder
-    .Services.AddDefaultIdentity<IdentityUser>(options =>
+    .Services.AddDefaultIdentity<CommunityUser>(options =>
         options.SignIn.RequireConfirmedAccount = false
     )
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<CommunityLinkDbContext>();
 
 var app = builder.Build();
@@ -46,8 +46,10 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
+    var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+    var userManager = services.GetRequiredService<UserManager<CommunityUser>>();
 
-    SeedData.Initialize(services);
+    await SeedData.Initialize(services);
 }
 
 // Configure the HTTP request pipeline.
@@ -65,15 +67,6 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
-
-// ADD GOOD ROUTING TO AVOID 404 AND OTHER ERRORS
-// app.UseEndpoints(endpoints =>
-// {
-//     endpoints.MapControllerRoute(
-//         name: "default",
-//         pattern: "{controller=Home}/{action=Index}/{id?}");
-//     endpoints.MapRazorPages();
-// });
 
 app.UseSession();
 

@@ -8,6 +8,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
+
+## [0.2.6] - 2024-7-17
+
+
+### Added
+#### dotnet Identity
+- Applied Microsoft.AspNetCore.Identity
+
+### Changes
+- Moved model data
+- Commented out code mentioning `User` on MyProfile page and Sign-In page
+- Commented out code and changed the db Context code
+- Updated appsettings.json
+
+
 ## [0.2.5] - 2024-7-10
 
 
