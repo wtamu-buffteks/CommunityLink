@@ -105,7 +105,7 @@ body {
 }
 
 .section1 {
-  padding-top: 650px;
+  padding-top: 450px;
 }
 
 .greenButton {
@@ -199,10 +199,14 @@ body {
   opacity: 1;
 }
 
-.container {
+#zeroContainer .container {
   margin: 0px;
   padding: 0px;
   max-width: 100%;
+  margin-left: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+  margin-right: 0px;
 }
 
 .spacerFromTop {
@@ -211,7 +215,7 @@ body {
 
 /* .row > * {
   padding: 0px;
- } */
+} */
 
 .row.splitscreen > * {
   padding: 0px;
@@ -475,14 +479,4 @@ a:hover {
   left: 0;
   top: 0;
   z-index: 500;
-}
-
-#enableAuthButton {
-  font-size: 1.5em;
-}
-
-#MyProfileForm .form-control,
-#MyProfileForm .form-check-label,
-#MyProfileForm #enableAuthButton {
-  margin-bottom: 10px;
 }
