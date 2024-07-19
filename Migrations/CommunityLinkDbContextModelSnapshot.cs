@@ -488,6 +488,9 @@ namespace CommunityLink.Migrations
                     b.Property<DateTime>("DonationDate")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<int>("OldRequestID")
+                        .HasColumnType("int");
+
                     b.Property<string>("RequestTitle")
                         .IsRequired()
                         .HasMaxLength(30)

@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CommunityLink.Migrations
 {
     [DbContext(typeof(CommunityLinkDbContext))]
-    [Migration("20240718200925_InitialCreate")]
+    [Migration("20240719025030_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -490,6 +490,9 @@ namespace CommunityLink.Migrations
 
                     b.Property<DateTime>("DonationDate")
                         .HasColumnType("datetime(6)");
+
+                    b.Property<int>("OldRequestID")
+                        .HasColumnType("int");
 
                     b.Property<string>("RequestTitle")
                         .IsRequired()

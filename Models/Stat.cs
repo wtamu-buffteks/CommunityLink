@@ -9,7 +9,7 @@ namespace CommunityLink.Models
         public int StatID { get; set; }
 
         [Required]
-        public required string UserID { get; set; } = default!;
+        public string UserID { get; set; } = default!;
 
         [ForeignKey("UserID")]
         public required CommunityUser User { get; set; }

@@ -469,6 +469,7 @@ namespace CommunityLink.Migrations
                     RequestStatID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     StatID = table.Column<int>(type: "int", nullable: false),
+                    OldRequestID = table.Column<int>(type: "int", nullable: false),
                     RequestorUsername = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false),
                     AmountDonated = table.Column<float>(type: "float", nullable: false),
                     DonationDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),

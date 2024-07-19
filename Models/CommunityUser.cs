@@ -49,24 +49,24 @@ namespace CommunityLink.Models
             new List<UsersAttendingEvent>();
 
         // // Methods for password handling
-        // public void SetPassword(string password)
-        // {
-        //     PasswordHash = HashPassword(password);
-        // }
+        public void SetPassword(string password)
+        {
+            PasswordHash = HashPassword(password);
+        }
 
-        // public bool ValidatePassword(string password)
-        // {
-        //     return VerifyPassword(password, PasswordHash);
-        // }
+        public bool ValidatePassword(string password)
+        {
+            return VerifyPassword(password, PasswordHash);
+        }
 
-        // private string HashPassword(string password)
-        // {
-        //     return BCrypt.Net.BCrypt.HashPassword(password);
-        // }
+        private string HashPassword(string password)
+        {
+            return BCrypt.Net.BCrypt.HashPassword(password);
+        }
 
-        // private bool VerifyPassword(string password, string hashedPassword)
-        // {
-        //     return BCrypt.Net.BCrypt.Verify(password, hashedPassword);
-        // }
+        private bool VerifyPassword(string password, string hashedPassword)
+        {
+            return BCrypt.Net.BCrypt.Verify(password, hashedPassword);
+        }
     }
 }

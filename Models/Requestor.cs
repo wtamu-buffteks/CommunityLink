@@ -10,7 +10,7 @@ namespace CommunityLink.Models
         public int RequestorID { get; set; }
 
         [Required]
-        public required string UserID { get; set; }
+        public string UserID { get; set; }
 
         [ForeignKey("UserID")]
         public required CommunityUser User { get; set; }
