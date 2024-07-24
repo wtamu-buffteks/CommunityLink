@@ -48,7 +48,7 @@ public class SignInModel : PageModel
             Response.Cookies.Append("Username", user.Username, options);
             Response.Cookies.Append("UserID", user.UserID.ToString(), options);
 
-            // Handle successful sign-in
+            // Handle successful sign-in 
             return RedirectToPage("/Index");
         }
 
