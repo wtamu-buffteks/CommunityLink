@@ -1,4 +1,4 @@
-﻿@page
+﻿@page "requestId:int"
 @model MyApp.Namespace.DonationModel
 @{
     ViewData["Title"] = "Monetary Donation Page";
@@ -15,6 +15,7 @@
 <hr>
 
 <form method="post">
+    <input type="hidden" asp-for="ThisRequest.RequestID" value="@Model.ThisRequest?.RequestID" />
         <div id="iWantToGive">
             <p class="donationH1">I Want to Give</p>
             <div class="radio-group">
