@@ -36,7 +36,7 @@ namespace MyApp.Namespace
         [BindProperty]
         public string CVC { get; set; } = string.Empty;
 
-        public IActionResult OnGet()
+        public IActionResult OnGet(int? requestID)
         {
             // Check if the UserID cookie exists
             if (Request.Cookies.TryGetValue("UserID", out string? userIdString) && int.TryParse(userIdString, out int userId))
@@ -76,19 +76,25 @@ namespace MyApp.Namespace
                 _context.SaveChanges();
             }
 
-            //temporary grabbing of first request
-            ThisRequest = _context.Requests.FirstOrDefault();
-            if (ThisRequest == null) {
-                // Handles the case where no request could be grabbed
+            if (requestID == null)
+            {
+                TempData["Message"] = "No request specified for donation.";
+                return RedirectToPage("/Volunteer");
+            }
 
-                TempData["Message"] = "No requests available for donation.";
-                return RedirectToPage("/Index");
+            ThisRequest = _context.Requests.Include(r => r.Requestor)
+                                           .ThenInclude(r => r.User)
+                                           .FirstOrDefault(r => r.RequestID == requestID.Value);
+            if (ThisRequest == null)
+            {
+                TempData["Message"] = "Request not found.";
+                return RedirectToPage("/Volunteer");
             }
 
             return Page();
         }
 
-        public IActionResult OnPost()
+        public IActionResult OnPost(int requestID)
         {
             int? userId = null;
 
@@ -111,7 +117,7 @@ namespace MyApp.Namespace
                 ThisStat = ThisUser.Stat;
                 ThisRequest = _context.Requests.Include(r => r.Requestor)
                                                .ThenInclude(r => r.User)
-                                               .FirstOrDefault();
+                                               .FirstOrDefault(r => r.RequestID == requestID);
 
                 if (ThisStat == null || ThisRequest == null) {
                     TempData["Message"] = "Unable to process the donation.";
@@ -122,6 +128,8 @@ namespace MyApp.Namespace
                 if (GiveAmount == "Other") {
                     if (!float.TryParse(OtherAmount, out donationAmount)) {
                         TempData["Message"] = "Invalid donation amount.";
+                        Console.WriteLine(OtherAmount);
+                        Console.WriteLine(donationAmount);
                         return Page();
                     }
                 }

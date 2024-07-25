@@ -7,6 +7,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.7] - 2024-7-24
+### Notes
+- Reset the database
+
+### Added
+- Volunteer Services page. Users can now visit the page, choose a request, read about it, and make a donation to that request. If a user attempts to access the page without being signed in, they are redirected to the sign-in page.
+- The Volunteer Services page handles requests based on what category they fall under.
+- More requests for the sake of testing sorting options
+
+### Changed
+- Modified seed data to make more reqeusts by default
+- Modified the Nav bar to include the new page.
+- The donation page now defaults back to the Volunteer page if someone attempts to access it without having a request defined
+
 ## [0.2.6] - 2024-7-17
 
 ### Notes
