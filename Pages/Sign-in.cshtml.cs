@@ -36,12 +36,15 @@ public class SignInModel : PageModel
 
     public IActionResult OnPostSignIn()
     {
-        var user = _context.Users.SingleOrDefault(u => u.Username == Username);
+        var user = _context.Users
+                            .Include(u => u.Employee) // Ensure Employee is eagerly loaded
+                            .SingleOrDefault(u => u.Username == Username);
         if (user != null && user.ValidatePassword(Password))
         {
             // Set session variables If the user blocks the cookie, the program will use this
             HttpContext.Session.SetString("Username", user.Username);
             HttpContext.Session.SetInt32("UserID", user.UserID);
+            HttpContext.Session.SetString("IsEmployee", user.Employee != null ? "true" : "false"); //not stored as a cookie for security purposes
 
             //cookie setup. Will last 7 days
             var options = new CookieOptions {Expires = System.DateTime.Now.AddDays(7)};

@@ -67,6 +67,16 @@
             </div>
         </nav>
     </header>
+
+    @if (!string.IsNullOrEmpty(HttpContextAccessor.HttpContext.Session.GetString("IsEmployee")) && HttpContextAccessor.HttpContext.Session.GetString("IsEmployee") == "true") {
+        <div class="employee-actions-select">
+            <select class="form-select" id="employeeActionsSelect" onchange="handleEmployeeActionChange(this)">
+                <option value="">Employee Actions</option>
+                <option value="/RequestManagement">Request Management</option>
+                <!-- Add more employee actions here -->
+            </select>
+        </div>
+    }
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
@@ -82,6 +92,15 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <script>
+        function handleEmployeeActionChange(selectElement) {
+            var selectedValue = selectElement.value;
+            if (selectedValue) {
+                window.location.href = selectedValue;
+            }
+        }
+    </script>
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>

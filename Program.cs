@@ -45,6 +45,8 @@ app.UseAuthorization();
 
 app.UseSession();
 
+app.UseMiddleware<RestoreSessionMiddleware>();
+
 app.MapRazorPages();
 
 app.Run();

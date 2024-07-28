@@ -1,7 +1,7 @@
 @page
-@model CommunityLink.Pages.VolunteerModel
+@model CommunityLink.Pages.RequestManagementModel
 @{
-    ViewData["Title"] = "Volunteer Services";
+    ViewData["Title"] = "Request Management";
 }
 
 <div class="spacerFromTop"></div>
@@ -22,14 +22,14 @@
                      <thead>
                         <tr>
                             <th scope="col">
-                                <a asp-page="/Volunteer" asp-route-pageIndex="@Model.CurrentPage" asp-route-sortOrder="@Model.GetSortOrder("title")">Request Title</a>
+                                <a asp-page="/RequestManagement" asp-route-pageIndex="@Model.CurrentPage" asp-route-sortOrder="@Model.GetSortOrder("title")">Request Title</a>
                             </th>
                             <th scope="col">
-                                <a asp-page="/Volunteer" asp-route-pageIndex="@Model.CurrentPage" asp-route-sortOrder="@Model.GetSortOrder("date")">Request Description</a>
+                                <a asp-page="/RequestManagement" asp-route-pageIndex="@Model.CurrentPage" asp-route-sortOrder="@Model.GetSortOrder("date")">Request Description</a>
                             </th>
                             <th scope="col">Needed</th>
                             <th scope="col">
-                                <a asp-page="/Volunteer" asp-route-pageIndex="@Model.CurrentPage" asp-route-sortOrder="@Model.GetSortOrder("deadline")">Request Deadline</a>
+                                <a asp-page="/RequestManagement" asp-route-pageIndex="@Model.CurrentPage" asp-route-sortOrder="@Model.GetSortOrder("deadline")">Request Deadline</a>
                             </th>
                         </tr>
                     </thead>
@@ -37,7 +37,7 @@
                         @foreach (var request in Model.Requests) {
                             <tr>
                                 <td>
-                                    <a asp-page="/Volunteer" asp-route-requestId="@request.RequestID">@request.RequestTitle</a>
+                                    <a asp-page="/RequestManagement" asp-route-requestId="@request.RequestID">@request.RequestTitle</a>
                                 </td>
                                 <td class="request-description">@request.RequestDate - @request.RequestDescription</td>
                                 <td>
@@ -62,19 +62,19 @@
                         @if (Model.CurrentPage > 1)
                         {
                             <li class="page-item">
-                                <a class="page-link" asp-page="/Volunteer" asp-route-pageIndex="@(Model.CurrentPage - 1)">Previous</a>
+                                <a class="page-link" asp-page="/RequestManagement" asp-route-pageIndex="@(Model.CurrentPage - 1)">Previous</a>
                             </li>
                         }
                         @for (int i = 1; i <= Model.TotalPages; i++)
                         {
                             <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
-                                <a class="page-link" asp-page="/Volunteer" asp-route-pageIndex="@i">@i</a>
+                                <a class="page-link" asp-page="/RequestManagement" asp-route-pageIndex="@i">@i</a>
                             </li>
                         }
                         @if (Model.CurrentPage < Model.TotalPages)
                         {
                             <li class="page-item">
-                                <a class="page-link" asp-page="/Volunteer" asp-route-pageIndex="@(Model.CurrentPage + 1)">Next</a>
+                                <a class="page-link" asp-page="/RequestManagement" asp-route-pageIndex="@(Model.CurrentPage + 1)">Next</a>
                             </li>
                         }
                     </ul>
@@ -89,25 +89,31 @@
         <div class="row mt-3">
             <div class="col-12">
                 <div class="row justify-content-center">
-                    <div class="col-md-5 mx-3 text-center requestViewBox">
-                        <h3>@Model.SelectedRequest.RequestTitle</h3>
-                        <p>@Model.SelectedRequest.RequestDescription</p>
-                    </div>
-                    <div class="col-md-5 mx-3 text-center requestViewBox">
-                        <h3>Support @Model.SelectedRequest.Requestor.User.Username</h3>
-                        @if (Model.SelectedRequest.Category == "Monetary") {
-                            <p>This request needs @string.Format("{0:C}", Model.SelectedRequest.AmountRequested - Model.SelectedRequest.AmountRecieved) to reach its goal of @string.Format("{0:C}", Model.SelectedRequest.AmountRequested). Do you want to support this request? You can donate below:</p>
-                            <form asp-page-handler="Donate" method="post">
-                                <input type="hidden" name="requestID" value="@Model.SelectedRequest.RequestID" />
-                                <button type="submit" class="btn smallGreenButton">Donate</button>
-                            </form>
-                        } else if (Model.SelectedRequest.Category == "Item") {
-                            <p>This request is for an item donation. Please visit the nearest donation center to contribute.</p>
-                        } else if (Model.SelectedRequest.Category == "Labor") {
-                            <p>This request requires labor. Please follow the instructions in the description to offer your help.</p>
-                        } else {
-                            <p>This request is for @Model.SelectedRequest.Category. Please follow the instructions in the description.</p>
-                        }
+                    <div class="col-md-8 mx-3 RequestManager">
+                        <h3>Edit Request</h3>
+                        <form method="post" asp-page-handler="Update" asp-route-requestId="@Model.SelectedRequest.RequestID">
+                            <div class="form-group">
+                                <label asp-for="FormRequest.RequestTitle">Title</label>
+                                <input asp-for="FormRequest.RequestTitle" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="FormRequest.RequestDeadline">Expiration Date</label>
+                                <input asp-for="FormRequest.RequestDeadline" class="form-control" type="datetime-local" />
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="FormRequest.RequestDescription">Description</label>
+                                <textarea asp-for="FormRequest.RequestDescription" class="form-control"></textarea>
+                            </div>
+                            <div class="button-container" style="text-align: center;">
+                                <button type="submit" class="btn medGreenButton">Update</button>
+                            </div>
+                        </form>
+                        <form method="post" asp-page-handler="Delete" asp-route-requestId="@Model.SelectedRequest.RequestID" style="display:inline;">
+                            <input type="hidden" name="requestID" value="@Model.SelectedRequest.RequestID" />
+                            <div class="button-container" style="text-align: center;">
+                                <button type="submit" class="btn medBackButton">Delete</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
