@@ -120,6 +120,27 @@ body {
   margin-bottom: 20px;
 }
 
+.medGreenButton {
+  background: #248646;
+  color: #ffffff;
+  border: none;
+  border-radius: 30px;
+  margin-bottom: 20px;
+  font-size: 30px;
+  padding: 10px 20px;
+  margin-top: 25px;
+}
+
+.medBackButton {
+  background: #feaa00;
+  border: none;
+  border-radius: 30px;
+  font-size: 30px;
+  padding: 10px 20px;
+  margin-top: 25px;
+}
+
+
 .requestViewBox {
   background: #0964cf;
   color: #ffffff;

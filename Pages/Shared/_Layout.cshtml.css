@@ -58,3 +58,15 @@ button.accept-policy {
 #blueHead {
   color: #0B64CF;
 }
+
+.employee-actions-select {
+  position: fixed;
+  top: 140px;
+  right: 20px;
+  z-index: 1000; /* To ensure it appears above other elements */
+}
+
+.form-select {
+  width: auto;
+  display: inline-block;
+}
