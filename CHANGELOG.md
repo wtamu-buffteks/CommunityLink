@@ -7,6 +7,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.1] - 2024-7-31
+### Added
+- Location Management Page. Admins can Add, edit, view, and remove locations. Any non-Admin will be redirected to home. Trying to access the page while not signed in will bring you to the sign-in page.
+- Location Management Page to the employee Actions dropdown. It will only appear if the User is an employee that is an admin.
+
+### Changed
+- The middleware now checks if the user is admin
+
 ## [0.3.0] - 2024-7-28
 ### Added
 - The employee actions dropdown

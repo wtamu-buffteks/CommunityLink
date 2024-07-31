@@ -45,6 +45,7 @@ public class SignInModel : PageModel
             HttpContext.Session.SetString("Username", user.Username);
             HttpContext.Session.SetInt32("UserID", user.UserID);
             HttpContext.Session.SetString("IsEmployee", user.Employee != null ? "true" : "false"); //not stored as a cookie for security purposes
+            HttpContext.Session.SetString("IsAdmin", user.Employee != null && user.Employee.Role == "Admin" ? "true" : "false");
 
             //cookie setup. Will last 7 days
             var options = new CookieOptions {Expires = System.DateTime.Now.AddDays(7)};
