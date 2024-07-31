@@ -25,6 +25,7 @@ public class RestoreSessionMiddleware
                 context.Session.SetString("Username", user.Username);
                 context.Session.SetInt32("UserID", user.UserID);
                 context.Session.SetString("IsEmployee", user.Employee != null ? "true" : "false");
+                context.Session.SetString("IsAdmin", user.Employee != null && user.Employee.Role == "Admin" ? "true" : "false");
             }
         }
 
