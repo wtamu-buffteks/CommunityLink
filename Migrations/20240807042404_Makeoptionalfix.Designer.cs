@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CommunityLink.Migrations
 {
     [DbContext(typeof(CommunityLinkDbContext))]
-    [Migration("20240724171057_initialCreate")]
-    partial class initialCreate
+    [Migration("20240807042404_Makeoptionalfix")]
+    partial class Makeoptionalfix
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -162,6 +162,9 @@ namespace CommunityLink.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<bool>("AtLocation")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<string>("Barcode")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -170,7 +173,7 @@ namespace CommunityLink.Migrations
                     b.Property<DateTime>("DateReceived")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int>("EventID")
+                    b.Property<int?>("EventID")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ExpirationDate")
@@ -185,10 +188,13 @@ namespace CommunityLink.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
-                    b.Property<int>("LocationID")
+                    b.Property<int?>("LocationID")
                         .HasColumnType("int");
 
                     b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("RequestID")
                         .HasColumnType("int");
 
                     b.Property<string>("StorageType")
@@ -208,6 +214,8 @@ namespace CommunityLink.Migrations
                     b.HasIndex("EventID");
 
                     b.HasIndex("LocationID");
+
+                    b.HasIndex("RequestID");
 
                     b.ToTable("Inventory");
                 });
@@ -625,18 +633,23 @@ namespace CommunityLink.Migrations
                     b.HasOne("CommunityLink.Models.PlannedEvent", "PlannedEvent")
                         .WithMany("Inventory")
                         .HasForeignKey("EventID")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.HasOne("CommunityLink.Models.InventoryLocation", "InventoryLocation")
                         .WithMany("Inventory")
                         .HasForeignKey("LocationID")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.HasOne("CommunityLink.Models.Request", "Request")
+                        .WithMany("Inventory")
+                        .HasForeignKey("RequestID")
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.Navigation("InventoryLocation");
 
                     b.Navigation("PlannedEvent");
+
+                    b.Navigation("Request");
                 });
 
             modelBuilder.Entity("CommunityLink.Models.InventoryPhone", b =>
@@ -779,6 +792,11 @@ namespace CommunityLink.Migrations
                     b.Navigation("Inventory");
 
                     b.Navigation("UsersAttending");
+                });
+
+            modelBuilder.Entity("CommunityLink.Models.Request", b =>
+                {
+                    b.Navigation("Inventory");
                 });
 
             modelBuilder.Entity("CommunityLink.Models.RequestStat", b =>

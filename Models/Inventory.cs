@@ -24,13 +24,18 @@ namespace CommunityLink.Models {
         public string StorageType { get; set; } = "Standard";
         public DateTime? ExpirationDate { get; set; }
         //located in storage or at an event
-        public int LocationID { get; set; }
+        public int? LocationID { get; set; }
         [ForeignKey("LocationID")]
-        public required InventoryLocation InventoryLocation { get; set;}
+        public InventoryLocation? InventoryLocation { get; set;}
         
-        public int EventID { get; set; }
+        public int? EventID { get; set; }
         [ForeignKey("EventID")]
-        public required PlannedEvent PlannedEvent { get; set;}
+        public PlannedEvent? PlannedEvent { get; set;}
+
+        public bool AtLocation { get; set; } = true; // True if at the stated location, false if on the way
+        public int? RequestID { get; set; }
+        [ForeignKey("RequestID")]
+        public Request? Request { get; set; }
 
         //subclasses
         public Nonedible? Nonedible { get; set; }
