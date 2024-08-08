@@ -7,7 +7,7 @@ using MySql.EntityFrameworkCore.Metadata;
 namespace CommunityLink.Migrations
 {
     /// <inheritdoc />
-    public partial class initialCreate : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -92,42 +92,6 @@ namespace CommunityLink.Migrations
                         principalTable: "InventoryLocations",
                         principalColumn: "LocationID",
                         onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySQL:Charset", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "Inventory",
-                columns: table => new
-                {
-                    InventoryID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
-                    ItemName = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false),
-                    ItemDescription = table.Column<string>(type: "varchar(1000)", maxLength: 1000, nullable: true),
-                    Quantity = table.Column<int>(type: "int", nullable: false),
-                    UnitOfMeasurement = table.Column<string>(type: "varchar(10)", maxLength: 10, nullable: true),
-                    UnitCost = table.Column<float>(type: "float", nullable: false),
-                    DateReceived = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    Barcode = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false),
-                    StorageType = table.Column<string>(type: "varchar(25)", maxLength: 25, nullable: false),
-                    ExpirationDate = table.Column<DateTime>(type: "datetime(6)", nullable: true),
-                    LocationID = table.Column<int>(type: "int", nullable: false),
-                    EventID = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Inventory", x => x.InventoryID);
-                    table.ForeignKey(
-                        name: "FK_Inventory_InventoryLocations_LocationID",
-                        column: x => x.LocationID,
-                        principalTable: "InventoryLocations",
-                        principalColumn: "LocationID",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Inventory_PlannedEvents_EventID",
-                        column: x => x.EventID,
-                        principalTable: "PlannedEvents",
-                        principalColumn: "EventID",
-                        onDelete: ReferentialAction.Restrict);
                 })
                 .Annotation("MySQL:Charset", "utf8mb4");
 
@@ -271,69 +235,6 @@ namespace CommunityLink.Migrations
                 .Annotation("MySQL:Charset", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Animals",
-                columns: table => new
-                {
-                    AnimalID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
-                    InventoryID = table.Column<int>(type: "int", nullable: false),
-                    Edible = table.Column<bool>(type: "tinyint(1)", nullable: false),
-                    Perishable = table.Column<bool>(type: "tinyint(1)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Animals", x => x.AnimalID);
-                    table.ForeignKey(
-                        name: "FK_Animals_Inventory_InventoryID",
-                        column: x => x.InventoryID,
-                        principalTable: "Inventory",
-                        principalColumn: "InventoryID",
-                        onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySQL:Charset", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "Edibles",
-                columns: table => new
-                {
-                    EdibleID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
-                    InventoryID = table.Column<int>(type: "int", nullable: false),
-                    Perishable = table.Column<bool>(type: "tinyint(1)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Edibles", x => x.EdibleID);
-                    table.ForeignKey(
-                        name: "FK_Edibles_Inventory_InventoryID",
-                        column: x => x.InventoryID,
-                        principalTable: "Inventory",
-                        principalColumn: "InventoryID",
-                        onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySQL:Charset", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "Nonedibles",
-                columns: table => new
-                {
-                    NonedibleID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
-                    InventoryID = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Nonedibles", x => x.NonedibleID);
-                    table.ForeignKey(
-                        name: "FK_Nonedibles_Inventory_InventoryID",
-                        column: x => x.InventoryID,
-                        principalTable: "Inventory",
-                        principalColumn: "InventoryID",
-                        onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySQL:Charset", "utf8mb4");
-
-            migrationBuilder.CreateTable(
                 name: "ActionNeededs",
                 columns: table => new
                 {
@@ -416,6 +317,50 @@ namespace CommunityLink.Migrations
                 .Annotation("MySQL:Charset", "utf8mb4");
 
             migrationBuilder.CreateTable(
+                name: "Inventory",
+                columns: table => new
+                {
+                    InventoryID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
+                    ItemName = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false),
+                    ItemDescription = table.Column<string>(type: "varchar(1000)", maxLength: 1000, nullable: true),
+                    Quantity = table.Column<int>(type: "int", nullable: false),
+                    UnitOfMeasurement = table.Column<string>(type: "varchar(10)", maxLength: 10, nullable: true),
+                    UnitCost = table.Column<float>(type: "float", nullable: false),
+                    DateReceived = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    Barcode = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false),
+                    StorageType = table.Column<string>(type: "varchar(25)", maxLength: 25, nullable: false),
+                    ExpirationDate = table.Column<DateTime>(type: "datetime(6)", nullable: true),
+                    LocationID = table.Column<int>(type: "int", nullable: false),
+                    EventID = table.Column<int>(type: "int", nullable: false),
+                    AtLocation = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    RequestID = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Inventory", x => x.InventoryID);
+                    table.ForeignKey(
+                        name: "FK_Inventory_InventoryLocations_LocationID",
+                        column: x => x.LocationID,
+                        principalTable: "InventoryLocations",
+                        principalColumn: "LocationID",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Inventory_PlannedEvents_EventID",
+                        column: x => x.EventID,
+                        principalTable: "PlannedEvents",
+                        principalColumn: "EventID",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Inventory_Requests_RequestID",
+                        column: x => x.RequestID,
+                        principalTable: "Requests",
+                        principalColumn: "RequestID",
+                        onDelete: ReferentialAction.SetNull);
+                })
+                .Annotation("MySQL:Charset", "utf8mb4");
+
+            migrationBuilder.CreateTable(
                 name: "DonationStats",
                 columns: table => new
                 {
@@ -442,6 +387,69 @@ namespace CommunityLink.Migrations
                         column: x => x.StatID,
                         principalTable: "Stats",
                         principalColumn: "StatID",
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySQL:Charset", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "Animals",
+                columns: table => new
+                {
+                    AnimalID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
+                    InventoryID = table.Column<int>(type: "int", nullable: false),
+                    Edible = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    Perishable = table.Column<bool>(type: "tinyint(1)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Animals", x => x.AnimalID);
+                    table.ForeignKey(
+                        name: "FK_Animals_Inventory_InventoryID",
+                        column: x => x.InventoryID,
+                        principalTable: "Inventory",
+                        principalColumn: "InventoryID",
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySQL:Charset", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "Edibles",
+                columns: table => new
+                {
+                    EdibleID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
+                    InventoryID = table.Column<int>(type: "int", nullable: false),
+                    Perishable = table.Column<bool>(type: "tinyint(1)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Edibles", x => x.EdibleID);
+                    table.ForeignKey(
+                        name: "FK_Edibles_Inventory_InventoryID",
+                        column: x => x.InventoryID,
+                        principalTable: "Inventory",
+                        principalColumn: "InventoryID",
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySQL:Charset", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "Nonedibles",
+                columns: table => new
+                {
+                    NonedibleID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
+                    InventoryID = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Nonedibles", x => x.NonedibleID);
+                    table.ForeignKey(
+                        name: "FK_Nonedibles_Inventory_InventoryID",
+                        column: x => x.InventoryID,
+                        principalTable: "Inventory",
+                        principalColumn: "InventoryID",
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySQL:Charset", "utf8mb4");
@@ -493,6 +501,11 @@ namespace CommunityLink.Migrations
                 name: "IX_Inventory_LocationID",
                 table: "Inventory",
                 column: "LocationID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Inventory_RequestID",
+                table: "Inventory",
+                column: "RequestID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_InventoryPhones_LocationID",
@@ -574,9 +587,6 @@ namespace CommunityLink.Migrations
                 name: "Nonedibles");
 
             migrationBuilder.DropTable(
-                name: "Requests");
-
-            migrationBuilder.DropTable(
                 name: "UsersAttending");
 
             migrationBuilder.DropTable(
@@ -592,9 +602,6 @@ namespace CommunityLink.Migrations
                 name: "Inventory");
 
             migrationBuilder.DropTable(
-                name: "Requestors");
-
-            migrationBuilder.DropTable(
                 name: "Stats");
 
             migrationBuilder.DropTable(
@@ -602,6 +609,12 @@ namespace CommunityLink.Migrations
 
             migrationBuilder.DropTable(
                 name: "PlannedEvents");
+
+            migrationBuilder.DropTable(
+                name: "Requests");
+
+            migrationBuilder.DropTable(
+                name: "Requestors");
 
             migrationBuilder.DropTable(
                 name: "Users");

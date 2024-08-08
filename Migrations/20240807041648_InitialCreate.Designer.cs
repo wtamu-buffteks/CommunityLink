@@ -3,6 +3,7 @@ using System;
 using CommunityLink.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CommunityLink.Migrations
 {
     [DbContext(typeof(CommunityLinkDbContext))]
-    partial class CommunityLinkDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240807041648_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -170,7 +173,7 @@ namespace CommunityLink.Migrations
                     b.Property<DateTime>("DateReceived")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int?>("EventID")
+                    b.Property<int>("EventID")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ExpirationDate")
@@ -185,7 +188,7 @@ namespace CommunityLink.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
-                    b.Property<int?>("LocationID")
+                    b.Property<int>("LocationID")
                         .HasColumnType("int");
 
                     b.Property<int>("Quantity")
@@ -630,12 +633,14 @@ namespace CommunityLink.Migrations
                     b.HasOne("CommunityLink.Models.PlannedEvent", "PlannedEvent")
                         .WithMany("Inventory")
                         .HasForeignKey("EventID")
-                        .OnDelete(DeleteBehavior.SetNull);
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.HasOne("CommunityLink.Models.InventoryLocation", "InventoryLocation")
                         .WithMany("Inventory")
                         .HasForeignKey("LocationID")
-                        .OnDelete(DeleteBehavior.SetNull);
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.HasOne("CommunityLink.Models.Request", "Request")
                         .WithMany("Inventory")

@@ -7,6 +7,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.0] - 2024-8-6
+### Added
+- Inventory management page
+- Employees can manage existing inventory such as taking them in and assigning a user, assigning the item to a specific request if necessary, and editing existing requests. Because changing the associated user, request, or location could have destructive affects or cause confusion, I’ll only give this ability to admins down the line. Employees will still be able to assign these values on initial creation. When an item is donated, the user’s stats are also updated to include the donation. 
+
+### Changed
+-  Modified the database setup so that inventory can be associated with a request and Inventory no longer suffers from the oversight that caused inventory to need to exist at a warehouse and event at the same time. 
+
+### Note
+-  When I finished this pull request, I was very tired, so I may have missed a bug or failed to catch a problem in my testing, so don’t be afraid to let me know if you see any problems or mistakes so I can fix them before it’s merged with the development branch.
+
+
 ## [0.3.1] - 2024-7-31
 ### Added
 - Location Management Page. Admins can Add, edit, view, and remove locations. Any non-Admin will be redirected to home. Trying to access the page while not signed in will bring you to the sign-in page.
