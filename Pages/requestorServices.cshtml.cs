@@ -55,9 +55,7 @@ namespace CommunityLink.Pages
                 return RedirectToPage("/Sign-in");
             }
 
-            if (ThisUser == null) return RedirectToPage("/Index");
-
-            if (ThisUser.Requestor == null)
+            if (ThisUser == null || ThisUser.Requestor == null)
             {
                 IsRequestor = false;
                 Requests = new List<Request>();
@@ -155,6 +153,64 @@ namespace CommunityLink.Pages
             return RedirectToPage("/requestorServices", new { pageIndex = CurrentPage });
         }
 
+        public async Task<IActionResult> OnPostAddRequestAsync()
+        {
+            // Re-retrieve ThisUser to ensure it’s populated
+            if (Request.Cookies.TryGetValue("UserID", out string? userIdString) && int.TryParse(userIdString, out int userId))
+            {
+                ThisUser = await _context.Users.Include(u => u.Requestor)
+                                                .FirstOrDefaultAsync(u => u.UserID == userId);
+            }
+            else if (HttpContext.Session.GetInt32("UserID") is int sessionUserId)
+            {
+                ThisUser = await _context.Users.Include(u => u.Requestor)
+                                                .FirstOrDefaultAsync(u => u.UserID == sessionUserId);
+            }
+
+            if (ThisUser == null)
+            {
+                return RedirectToPage("/Sign-in");
+            }
+
+            // Ensure ThisUser is a Requestor
+            if (ThisUser.Requestor == null)
+            {
+                ThisUser.Requestor = new Requestor
+                {
+                    UserID = ThisUser.UserID,
+                    User = ThisUser
+                };
+                _context.Requestors.Add(ThisUser.Requestor);
+                await _context.SaveChangesAsync();  // Ensure Requestor is saved to DB
+            }
+
+            // Create and link the new Request
+            var newRequest = new Request
+            {
+                RequestorID = ThisUser.Requestor.RequestorID,
+                Requestor = ThisUser.Requestor,
+                RequestTitle = FormRequest.RequestTitle,
+                RequestDeadline = FormRequest.RequestDeadline,
+                RequestDescription = FormRequest.RequestDescription,
+                AmountRequested = FormRequest.AmountRequested,
+                Category = FormRequest.Category,
+                RequestStatus = FormRequest.RequestStatus,
+                RequestDate = DateTime.Now
+            };
+
+            // Add the request to the context
+            _context.Requests.Add(newRequest);
+            await _context.SaveChangesAsync();  // Save the new request
+
+            // Optionally, re-query ThisUser to ensure changes are reflected  --Not needed yet--
+            // ThisUser = await _context.Users.Include(u => u.Requestor)
+            //                                 .ThenInclude(r => r.Requests)
+            //                                 .FirstOrDefaultAsync(u => u.UserID == ThisUser.UserID);
+
+            TempData["Message"] = "Request added successfully!";
+            return RedirectToPage("/requestorServices");
+        }
+
 
         public string GetSortOrder(string column)
         {
@@ -174,7 +230,9 @@ namespace CommunityLink.Pages
                 requestToUpdate.RequestTitle = FormRequest.RequestTitle;
                 requestToUpdate.RequestDeadline = FormRequest.RequestDeadline;
                 requestToUpdate.RequestDescription = FormRequest.RequestDescription;
-
+                requestToUpdate.AmountRequested = FormRequest.AmountRequested;
+                requestToUpdate.Category = FormRequest.Category;
+                requestToUpdate.RequestStatus = FormRequest.RequestStatus;
                 await _context.SaveChangesAsync();
                 TempData["Message"] = "Request updated successfully!";
             }
