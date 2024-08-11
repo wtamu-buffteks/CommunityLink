@@ -1,0 +1,242 @@
+@page
+@model CommunityLink.Pages.requestorServicesModel
+@{
+    ViewData["Title"] = "My Requests";
+}
+
+<div class="spacerFromTop"></div>
+
+<div class="container mt-4">
+    <div class="row mt-3">
+        <div class="col-12" id="volunteerTop">
+            <h1>My Requests <br>
+                Welcome @Model.ThisUser?.FullName!</h1>
+            <p>Feel free to Submit a New Request</p>
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addRequestModal">Add New
+                Request</button>
+            <p><br>Below is a list of your Other Requests <br>
+                To edit a request by clicking on the Title of the request</p>
+        </div>
+    </div>
+
+    @if (Model.Requests == null || !Model.Requests.Any() && Model.SelectedRequest == null)
+    {
+        <p>You don't have any requests.</p>
+    }
+    @if (Model.SelectedRequest == null)
+    {
+        <div class="row mt-3">
+            <div class="col-12">
+                <h2 class="text-center">My Requests</h2>
+                <table class="table table-striped" id="volunteerTable">
+                    <thead>
+                        <tr>
+                            <th scope="col">
+                                <a asp-page="/requestorServices" asp-route-pageIndex="@Model.CurrentPage"
+                                    asp-route-sortOrder="@Model.GetSortOrder("title")">Request Title</a>
+                            </th>
+                            <th scope="col">
+                                <a asp-page="/requestorServices" asp-route-pageIndex="@Model.CurrentPage"
+                                    asp-route-sortOrder="@Model.GetSortOrder("date")">Request Date</a>
+                            </th>
+                            <th scope="col">
+                                <a asp-page="/requestorServices" asp-route-pageIndex="@Model.CurrentPage"
+                                    asp-route-sortOrder="@Model.GetSortOrder("date")">Request Description</a>
+                            </th>
+                            <th scope="col">Needed</th>
+                            <th scope="col">
+                                <a asp-page="/requestorServices" asp-route-pageIndex="@Model.CurrentPage"
+                                    asp-route-sortOrder="@Model.GetSortOrder("deadline")">Request Deadline</a>
+                            </th>
+                            <th scope="col">
+                                <a asp-page="/requestorServices" asp-route-pageIndex="@Model.CurrentPage"
+                                    asp-route-sortOrder="@Model.GetSortOrder("status")">Status</a>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var request in Model.Requests)
+                        {
+                            <tr class="text-center">
+                                <td>
+                                    <a asp-page="/requestorServices"
+                                        asp-route-requestId="@request.RequestID">@request.RequestTitle</a>
+                                </td>
+                                <td class="request-date">@request.RequestDate</td>
+                                <td class="request-description">@request.RequestDescription</td>
+                                <td>
+                                    @if (request.Category == "Monetary")
+                                    {
+                                        @string.Format("{0:C}", request.AmountRequested - request.AmountRecieved)
+                                    }
+                                    else
+                                    {
+                                        @request.Category
+                                    }
+                                </td>
+                                <td>@request.RequestDeadline</td>
+                                <td>@request.RequestStatus</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-12 text-center">
+                <nav aria-label="Page navigation">
+                    <ul class="pagination justify-content-center">
+                        @if (Model.CurrentPage > 1)
+                        {
+                            <li class="page-item">
+                                <a class="page-link" asp-page="/requestorServices"
+                                    asp-route-pageIndex="@(Model.CurrentPage - 1)">Previous</a>
+                            </li>
+                        }
+                        @for (int i = 1; i <= Model.TotalPages; i++)
+                        {
+                            <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+                                <a class="page-link" asp-page="/requestorServices" asp-route-pageIndex="@i">@i</a>
+                            </li>
+                        }
+                        @if (Model.CurrentPage < Model.TotalPages)
+                        {
+                            <li class="page-item">
+                                <a class="page-link" asp-page="/requestorServices"
+                                    asp-route-pageIndex="@(Model.CurrentPage + 1)">Next</a>
+                            </li>
+                        }
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    }
+    else
+    {
+        <form asp-page-handler="Back" method="post" asp-route-pageIndex="@Model.CurrentPage">
+            <input type="hidden" name="pageIndex" value="@Model.CurrentPage" />
+            <button type="submit" class="btn mt-3 backButton">Back to Requests</button>
+        </form>
+        <div class="row mt-3">
+            <div class="col-12">
+                <div class="row justify-content-center">
+                    <div class="col-md-8 mx-3 RequestManager">
+                        <h3>Edit Request</h3>
+                        <form method="post" asp-page-handler="Update"
+                            asp-route-requestId="@Model.SelectedRequest.RequestID">
+                            <div class="form-group">
+                                <label asp-for="FormRequest.RequestTitle">Title</label>
+                                <input asp-for="FormRequest.RequestTitle" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="FormRequest.RequestDeadline">Expiration Date</label>
+                                <input asp-for="FormRequest.RequestDeadline" class="form-control" type="datetime-local" />
+                            </div>
+                            <div class="form-group">
+                                <label>Category</label>
+                                <input type="radio" asp-for="FormRequest.Category" value="Monetary" /> Monetary
+                                <input type="radio" asp-for="FormRequest.Category" value="Item" /> Item
+                                <input type="radio" asp-for="FormRequest.Category" value="Labor" /> Labor
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="FormRequest.RequestDescription">Description</label>
+                                <textarea asp-for="FormRequest.RequestDescription" class="form-control"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="FormRequest.AmountRequested">Amount</label>
+                                <input asp-for="FormRequest.AmountRequested" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label>Request Status</label><br />
+                                <input type="radio" asp-for="FormRequest.RequestStatus" value="Active" /> Active<br />
+                                <input type="radio" asp-for="FormRequest.RequestStatus" value="Inactive" /> Inactive<br />
+                                <span asp-validation-for="FormRequest.RequestStatus" class="text-danger"></span>
+                            </div>
+                            <div class="button-container" style="text-align: center;">
+                                <button type="submit" class="btn medGreenButton">Update</button>
+                            </div>
+                        </form>
+                        <form method="post" asp-page-handler="Delete" asp-route-requestId="@Model.SelectedRequest.RequestID"
+                            style="display:inline;">
+                            <input type="hidden" name="requestID" value="@Model.SelectedRequest.RequestID" />
+                            <div class="button-container" style="text-align: center;">
+                                <button type="submit" class="btn medBackButton">Delete</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+
+    <!-- Add Request Modal -->
+    <div class="modal fade" id="addRequestModal" tabindex="-1" role="dialog" aria-labelledby="addRequestModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="height: fit-content; max-height: fit-content;">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addRequestModalLabel">Add New Request</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" asp-page-handler="AddRequest">
+                        <div class="form-group">
+                            <label asp-for="FormRequest.RequestTitle">Title</label>
+                            <input asp-for="FormRequest.RequestTitle" class="form-control" />
+                            <span asp-validation-for="FormRequest.RequestTitle" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="FormRequest.RequestDeadline">Expiration Date</label>
+                            <input asp-for="FormRequest.RequestDeadline" class="form-control" type="datetime-local" />
+                            <span asp-validation-for="FormRequest.RequestDeadline" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>Category</label><br />
+                            <input type="radio" asp-for="FormRequest.Category" value="Monetary" /> Monetary
+                            <input type="radio" asp-for="FormRequest.Category" value="Item" /> Item
+                            <input type="radio" asp-for="FormRequest.Category" value="Labor" /> Labor
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="FormRequest.RequestDescription">Description</label>
+                            <textarea asp-for="FormRequest.RequestDescription" class="form-control"></textarea>
+                            <span asp-validation-for="FormRequest.RequestDescription" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="FormRequest.AmountRequested">Amount (Type a number only, $1 as 1, or 1 units
+                                as 1)</label>
+                            <input asp-for="FormRequest.AmountRequested" class="form-control" />
+                            <span asp-validation-for="FormRequest.AmountRequested" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>Request Status</label><br />
+                            <input type="radio" asp-for="FormRequest.RequestStatus" value="Active" /> Active<br />
+                            <div class="button-container" style="text-align: center; margin: 1%;">
+                                <button type="submit" class="btn btn-primary btn-sm">Add New Request</button>
+                            </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+}
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Message"]
+    </div>
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}

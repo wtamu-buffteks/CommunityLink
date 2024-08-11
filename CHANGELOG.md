@@ -6,6 +6,25 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+Here’s a changelog message for the `requestorServices` page that aligns with your previous entries:
+
+---
+
+## [0.4.1] - 2024-08-08
+### Added
+- requestorServices page now allows requestors to add, update, and inactivate requests directly from their personal dashboard.
+- Implemented modal form for adding new requests, including fields for title, deadline, category, description, amount, and status.
+- Pagination and sorting functionality on requestorServices page to navigate through and sort requests based on title, date, deadline, and status.
+
+### Changed
+- Requests associated with the logged-in requestor are now properly displayed and managed through the requestorServices page.
+- If a user is not a requestor/does not have requests, then adding a request will make them a requestor and display their requests.
+- The database is now correctly updated when a request is added, updated, or inactivated.
+- "Requests" tab in _layout NavBar linked to requestorServices Page
+
+### Note
+- Delete request could be harmful if a user is not a requestor, and adds a request(becomes requestor), then deletes their (only) request. 
+- It can be harmful if a requestor updates their profile to no longer be a requestor as the user would still be associated with requests.
 
 ## [0.4.0] - 2024-8-6
 ### Added
