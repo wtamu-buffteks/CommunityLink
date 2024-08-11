@@ -21,20 +21,23 @@ namespace CommunityLink.Pages
 
         public User? ThisUser { get; set; }
         public Requestor? Requestor { get; set; }
-        public List<Request>? Requests { get; set; }
+        public List<Request>? Requests { get; set; } = new List<Request>();
         public Request? SelectedRequest { get; set; }
         public int CurrentPage { get; set; }
         public int TotalPages { get; set; }
         public string CurrentSortColumn { get; set; }
         public string CurrentSortOrder { get; set; }
-        public bool IsRequestor { get; set; }
 
         [BindProperty]
         public Request FormRequest { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? requestId, int pageIndex = 1, string sortOrder = null)
         {
-            if (pageIndex < 1) pageIndex = 1;
+            // Ensure pageIndex is valid
+            if (pageIndex < 1)
+            {
+                pageIndex = 1;
+            }
 
             if (Request.Cookies.TryGetValue("UserID", out string? userIdString) && int.TryParse(userIdString, out int userId))
             {
@@ -55,14 +58,17 @@ namespace CommunityLink.Pages
                 return RedirectToPage("/Sign-in");
             }
 
-            if (ThisUser == null || ThisUser.Requestor == null)
+            if (ThisUser == null)
             {
-                IsRequestor = false;
+                return RedirectToPage("/Sign-in");
+            }
+            // The Code Below is necessary as it handles if the user has "unchecked" requestor in MyProfile page
+            // If a user has un-deleted requests "unchecking" requestor in MyProfile will delete their requests from the database
+            if (ThisUser.Requestor == null)
+            {
                 Requests = new List<Request>();
                 return Page();
             }
-
-            IsRequestor = true;
 
             if (requestId.HasValue)
             {
@@ -77,7 +83,10 @@ namespace CommunityLink.Pages
                 var totalRequests = await _context.Requests.CountAsync(r => r.RequestorID == ThisUser.Requestor.RequestorID);
                 TotalPages = (int)Math.Ceiling(totalRequests / (double)PageSize);
                 CurrentPage = pageIndex;
-
+                if (TotalPages == 0)
+                {
+                    TotalPages = 1;
+                }
                 if (CurrentPage > TotalPages) CurrentPage = TotalPages;
 
                 IQueryable<Request> requestsQuery = _context.Requests.Where(r => r.RequestorID == ThisUser.Requestor.RequestorID);
@@ -194,7 +203,7 @@ namespace CommunityLink.Pages
                 RequestDescription = FormRequest.RequestDescription,
                 AmountRequested = FormRequest.AmountRequested,
                 Category = FormRequest.Category,
-                RequestStatus = FormRequest.RequestStatus,
+                RequestStatus = "Active",
                 RequestDate = DateTime.Now
             };
 
@@ -230,18 +239,18 @@ namespace CommunityLink.Pages
                 await _context.SaveChangesAsync();
                 TempData["Message"] = "Request updated successfully!";
             }
-            return RedirectToPage(new { requestID });
+            return RedirectToPage("/requestorServices", new { pageIndex = CurrentPage });
         }
 
-        // Make Inactive- Keeps RequestorID and Requests
+
         public IActionResult OnPostDelete(int requestID)
         {
             var request = _context.Requests.Find(requestID);
             if (request != null)
             {
-                request.RequestStatus = "Inactive";
+                _context.Requests.Remove(request);
                 _context.SaveChanges();
-                TempData["Message"] = "Request inactivated successfully!";
+                TempData["Message"] = "Request Deleted successfully!";
             }
             return RedirectToPage();
         }
