@@ -201,12 +201,6 @@ namespace CommunityLink.Pages
             // Add the request to the context
             _context.Requests.Add(newRequest);
             await _context.SaveChangesAsync();  // Save the new request
-
-            // Optionally, re-query ThisUser to ensure changes are reflected  --Not needed yet--
-            // ThisUser = await _context.Users.Include(u => u.Requestor)
-            //                                 .ThenInclude(r => r.Requests)
-            //                                 .FirstOrDefaultAsync(u => u.UserID == ThisUser.UserID);
-
             TempData["Message"] = "Request added successfully!";
             return RedirectToPage("/requestorServices");
         }
@@ -239,14 +233,15 @@ namespace CommunityLink.Pages
             return RedirectToPage(new { requestID });
         }
 
+        // Make Inactive- Keeps RequestorID and Requests
         public IActionResult OnPostDelete(int requestID)
         {
             var request = _context.Requests.Find(requestID);
             if (request != null)
             {
-                _context.Requests.Remove(request);
+                request.RequestStatus = "Inactive";
                 _context.SaveChanges();
-                TempData["Message"] = "Request deleted successfully!";
+                TempData["Message"] = "Request inactivated successfully!";
             }
             return RedirectToPage();
         }
