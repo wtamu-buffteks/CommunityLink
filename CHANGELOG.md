@@ -9,6 +9,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Here’s a changelog message for the `requestorServices` page that aligns with your previous entries:
 
 ---
+## [0.4.2] - 2024-08-13
+### Added
+- html and some css to form an overall layout of the Home Page
+- Used Template (author referenced in index.html)
+    - "carosel" greeting
+    - "Marketing" bubbles
+    - "featurettes" with placeholder images
+- Added CSS required for template 
+- Sign in & Create Account buttons in carosel redirect to Sign-in Page
+
 
 ## [0.4.1] - 2024-08-08
 ### Added
