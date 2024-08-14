@@ -594,17 +594,20 @@ a:hover {
 .carousel-caption {
   bottom: 3rem;
   z-index: 10;
+  background-color: rgba(3, 57, 166, 0.501);
+  text-shadow: 2px 2px 15px black;
+  padding: 20px;
+  border-radius: 10px;
 }
 
 /* Declare heights because of positioning of img element */
 .carousel-item {
   height: 24rem;
-  background-color: #0964cf; /* Blue background color */
+  background-color: rgb(9, 101, 207); /* Blue background color */
   padding: 10px; /* Creates the border effect */
   box-sizing: border-box; /* Ensure padding is included in the width/height */
   position: relative;
 }
-
 .carousel-item>img {
   position: absolute;
   top: 0;
@@ -612,6 +615,7 @@ a:hover {
   min-width: 100%;
   height: 32rem;
 }
+
 
 /* MARKETING CONTENT
 Center align the text within the three columns below the carousel */
@@ -635,10 +639,14 @@ Center align the text within the three columns below the carousel */
 
 /* Featurettes*/
 .featurette-divider {
-  margin: 5rem 0;
+  margin: 3rem 0;
+  color: rgb(3, 57, 166);
   /* Space out the Bootstrap <hr> more */
 }
-
+.featurette{
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1); 
+  padding: 5% 2%;
+}
 /* Thin out the marketing headings */
 .featurette-heading {
   font-weight: 300;
