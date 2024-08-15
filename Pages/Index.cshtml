@@ -14,6 +14,7 @@ Source: https://getbootstrap.com/docs/5.0/examples/carousel/
 
 
 @* <div class="spacerFromTop"></div> *@
+<div style="margin-top: 134px;"></div>
 
 @* <img src=""
     alt="Removed placeholderIndex.svg for now. Please incorporate the design elements into Index.cshtml normally. See [0.2.4] in the Changelog for more"
@@ -33,11 +34,7 @@ Source: https://getbootstrap.com/docs/5.0/examples/carousel/
             <div class="carousel-inner">
                 <!-- Slide 1: Welcome Message -->
                 <div class="carousel-item active" style="background-color: rgba(9, 100, 207, 0.733);">
-                    @* <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
-                        aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
-                        <rect width="100%" height="100%" fill="#777" />
-                    </svg> *@
-                    <img src="~/images/communityLinkLogo.png" class="d-block w-100" alt="Volunteers helping people" style="object-fit: contain; height: 100%; border: 20px; padding: 20px aliceblue;">
+                    <img src="/images/communityLinkLogo.png" class="d-block w-100" alt="Volunteers helping people" style="object-fit: contain; height: 100%;" loading="lazy">
                     
                     <div class="container">
                         <div class="carousel-caption text-start" style="background-color:rgba(255, 255, 255, 0);">
@@ -61,11 +58,7 @@ Source: https://getbootstrap.com/docs/5.0/examples/carousel/
                 </div>
                 <!-- Slide 2 -->
                 <div class="carousel-item">
-                    @* <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
-                        aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
-                        <rect width="100%" height="100%" fill="#777" />
-                    </svg> *@
-                    <img src="~/images/VolunteerPeople.png" class="d-block w-100" alt="Volunteers helping people" style="object-fit: cover; height: 100%;">
+                    <img src="/images/VolunteerPeople.png" class="d-block w-100" alt="A Group of Volunteers Assisting an Elderly Person on a Black Wheelchair For Charity" style="object-fit: cover; height: 100%;" loading="lazy">
 
                     <div class="container">
                         <div class="carousel-caption">
@@ -77,16 +70,12 @@ Source: https://getbootstrap.com/docs/5.0/examples/carousel/
                 </div>
                 <!-- Slide 3 -->
                 <div class="carousel-item">
-                    @* <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
-                        aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
-                        <rect width="100%" height="100%" fill="#777" />
-                    </svg> *@
-                    <img src="/images/VolunteerPeople.png" class="d-block w-100" alt="Volunteers helping people" style="object-fit: cover; height: 100%;">                    
+                    <img src="/images/HelpingEventLine.png" class="d-block w-100" alt="Volunteers formed in a line passing boxes down the line" style="object-fit: cover; height: 100%;" loading="lazy">                    
                     <div class="container">
                         <div class="carousel-caption text-end">
                             <h1>Need Support? We’re Here for You</h1>
                             <p>Whether you need help with a specific request or are looking for resources, our community is ready to assist. Reach out today and find the support you need.</p>
-                            <p><a class="btn btn-lg btn-primary" href="/About">Browse gallery</a></p>
+                            <p><a class="btn btn-lg btn-primary" href="/About">Learn more</a></p>
                         </div>
                     </div>
                 </div>
@@ -113,123 +102,91 @@ Source: https://getbootstrap.com/docs/5.0/examples/carousel/
 
         <!-- Three columns of text below the carousel -->
         <div class="row">
-            <div class="col-lg-4" style="box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);">
+            <div class="col-lg-4">
 
-                @* <svg class="bd-placeholder-img rounded-circle" width="140" height="140"
-                    xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140"
-                    preserveAspectRatio="xMidYMid slice" focusable="false">
-                    <title>Placeholder</title>
-                    <rect width="100%" height="100%" fill="#777" /><text x="50%" y="50%" fill="#777"
-                        dy=".3em">140x140</text>
-                </svg> *@
-                <img src="/images/VolunteerPeople.png" class="rounded-circle" width="140" height="140" alt="Your Image Description" style="object-fit: cover;">
+                <img src="/images/DonateSignFood.png" class="rounded-circle" width="140" height="140" alt="A Cardboard sign amidst pile of food with Donate Inscription " style="object-fit: cover;" loading="lazy">
 
                 <h2>Donate</h2>
                 <p>Your generosity fuels our mission. Every contribution, big or small, helps us provide vital resources and support to those in need. <br>
                 Give today and be the spark that ignites positive change. </p>
-                <p><a class="btn btn-primary" href="#">Learn More</a></p>
+                <p><a class="btn btn-primary" href="/Donate">Learn More</a></p>
+
             </div><!-- /.col-lg-4 -->
-            <div class="col-lg-4" style="box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);">
-                @* <svg class="bd-placeholder-img rounded-circle" width="140" height="140"
-                    xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140"
-                    preserveAspectRatio="xMidYMid slice" focusable="false">
-                    <title>Placeholder</title>
-                    <rect width="100%" height="100%" fill="#777" /><text x="50%" y="50%" fill="#777"
-                        dy=".3em">140x140</text>
-                </svg> *@
-                <img src="/images/DonateLabor.png" class="rounded-circle" width="140" height="140" alt="Your Image Description" style="object-fit: cover;">
+
+            <div class="col-lg-4">
+
+                <img src="/images/DonateLabor.png" class="rounded-circle" width="140" height="140" alt="A Volunteer Cleaning an Elderly Man's Yard" style="object-fit: cover;" loading="lazy">
 
                 <h2>About Us</h2>
                 <p>At Community Link, we believe in the power of connection. Whether it's through volunteering, donating, or simply reaching out, every action you take helps build a stronger, more supportive community. <br>
                 Join us in our mission to make the world a better place, one act of kindness at a time.</p>
-                <p><a class="btn btn-primary" href="#">Learn More</a></p>                
-            </div><!-- /.col-lg-4 -->
-            <div class="col-lg-4" style="box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);">
+                <p><a class="btn btn-primary" href="/About">Learn More</a></p>
 
-                @* <svg class="bd-placeholder-img rounded-circle" width="140" height="140"
-                    xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140"
-                    preserveAspectRatio="xMidYMid slice" focusable="false">
-                    <title>Placeholder</title>
-                    <rect width="100%" height="100%" fill="#777" /><text x="50%" y="50%" fill="#777"
-                        dy=".3em">140x140</text>
-                </svg> *@
-                <img src="/images/HelpingEvent.png" class="rounded-circle" width="140" height="140" alt="Your Image Description" style="object-fit: cover;">
+            </div><!-- /.col-lg-4 -->
+
+            <div class="col-lg-4">
+
+                <img src="/images/HelpingEvent.png" class="rounded-circle" width="140" height="140" alt="Volunteers Talking with People with Down Syndrome" style="object-fit: cover;" loading="lazy">
+
                 <h2>Events</h2>
                 <p>Get involved in our upcoming events! From community clean-ups to charity runs and food banks/drives, there's something for everyone. <br>
                 Mark your calendar and be part of something bigger.</p>
                 <p><a class="btn btn-primary" href="#">Learn More</a></p>
+
             </div><!-- /.col-lg-4 -->
         </div><!-- /.row -->
+
     </div>
 
-        <!-- START THE FEATURETTES -->
+    <!-- START THE FEATURETTES -->
     <div class="container featurette">
+
         <hr class="featurette-divider">
     
         <div class="row">
-            <div class="col-md-7 featurette">
-                <h2 class="featurette-heading">Events: Discover What’s Happening <span class="text-muted">It’ll blow your
-                        mind.</span></h2>
+            <div class="col-md-7">
+                <h2 class="featurette-heading">Events: Discover What’s Happening <span class="text-muted">Help your Community today!</span></h2>
                 <p class="lead">Our community is vibrant, and our events reflect that energy. Whether it’s a local cleanup, a charity run, or a workshop, every event is an opportunity to make a difference. We bring people together to create real, lasting change. Join us and experience the joy of giving back.<br>
                 
                 From neighborhood gatherings to large-scale initiatives, there's something for everyone. Explore our event calendar, sign up, and see how your involvement can shape our community’s future. Get ready to connect, engage, and be inspired by the power of collective action.</p>
             </div>
-            <div class="col-md-5 featurette">
-                <img src="/images/VolunteerPeople.png" class="d-block w-100" alt="Volunteers helping people" style="object-fit: cover; height: 100%;"     
-                  
-             @* <div class="col-md-5">
-                <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
-                    height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500"
-                    preserveAspectRatio="xMidYMid slice" focusable="false">
-                    <title>Placeholder</title>
-                    <rect width="100%" height="100%" fill="#eee" /><text x="50%" y="50%" fill="#aaa"
-                        dy=".3em">500x500</text>
-                </svg> *@
-            </div> 
+
+            <div class="col-md-5 ">
+                <img src="/images/HolidayGivingEvent.png" class="d-block w-100" alt="Volunteer Giving Away Christmas Presents in City" style="object-fit: cover; width: 100%; height: auto;"loading="lazy">
+            </div>
+
         </div>
 
         <hr class="featurette-divider">
 
         <div class="row">
-            <div class="col-md-7 featurette">
+            <div class="col-md-7">
                 <h2 class="featurette-heading">Requesting Assistance: <span class="text-muted">We’re Here for You</span></h2>
                 <p class="lead">At Community Link, we understand that everyone needs a helping hand from time to time. Whether you’re facing a temporary setback or a more long-term challenge, our community is here to support you. We aim to connect you with valuable resources and extend a helping hand within your community. Whether you need support or are ready to offer it, through donating or volunteering, there’s a place for everyone to make a difference.<br>
                 
                 You don’t have to go through it alone. Reach out to us, and we’ll connect you with the resources and support that can make a real difference in your life. Our community is built on compassion, and we’re here to ensure that no one falls through the cracks. Take the first step towards getting the help you need—because at Community Link, we’re stronger together. </p>
             </div>
-            <div class="col-md-5 featurette">
-                <img src="/images/VolunteerPeople.png" class="d-block w-100" alt="Volunteers helping people" style="object-fit: cover; height: 100%;"                     
-                @* <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
-                    height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500"
-                    preserveAspectRatio="xMidYMid slice" focusable="false">
-                    <title>Placeholder</title>
-                    <rect width="100%" height="100%" fill="#eee" /><text x="50%" y="50%" fill="#aaa"
-                        dy=".3em">500x500</text>
-                </svg> *@
 
+            <div class="col-md-5">
+                <img src="/images/DeliveryToElderly.png" class="d-block w-100" alt="A Man Holding a Plastic Crate of Food while Assisting an Elderly Man"style="object-fit: cover; width: 100%; height: auto;"loading="lazy">
             </div>
+
         </div>
 
         <hr class="featurette-divider">
 
         <div class="row">
-            <div class="col-md-7 order-md-2 featurette">
+            <div class="col-md-7 order-md-2">
                 <h2 class="featurette-heading">Volunteering and Donating: <span class="text-muted">Your Impact, Our Mission</span></h2>
                 <p class="lead">Volunteering is at the heart of Community Link. When you donate your time or resources, you’re doing more than just helping out—you’re building a foundation of support that others can rely on. Every hour volunteered, every dollar donated, fuels our mission to support those in need and strengthen our community.<br>
                 
                 Imagine the difference you can make: mentoring a child, assisting at a food bank, or simply lending a listening ear. These are more than just acts of service; they are investments in humanity. And your donations? They directly support the programs and initiatives that change lives every day. See for yourself how your contributions can have a ripple effect across our community by donating or volunteering to a request directly!</p>
             </div>
-            <div class="col-md-5 order-md-1 featurette">
-                <img src="/images/VolunteerPeople.png" class="d-block w-100" alt="Volunteers helping people" style="object-fit: cover; height: 100%;"                     
-                @* <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
-                    height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500"
-                    preserveAspectRatio="xMidYMid slice" focusable="false">
-                    <title>Placeholder</title>
-                    <rect width="100%" height="100%" fill="#eee" /><text x="50%" y="50%" fill="#aaa"
-                        dy=".3em">500x500</text>
-                </svg> *@
 
+            <div class="col-md-5 order-md-1">
+                <img src="/images/SweepingSidewalk.png" class="d-block w-100" alt="Volunteers sweeping the sidewalk" style="object-fit: cover; width: 100%; height: auto;"loading="lazy">
             </div>
+
         </div>
     </div>
     <!-- /END THE FEATURETTES -->

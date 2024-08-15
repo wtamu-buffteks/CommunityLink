@@ -11,14 +11,21 @@ Here’s a changelog message for the `requestorServices` page that aligns with y
 ---
 ## [0.4.2] - 2024-08-13
 ### Added
-- html and some css to form an overall layout of the Home Page
+- Added "Home" to navBar in _layout.cshtml
 - Used Template (author referenced in index.html)
     - "carosel" greeting
     - "Marketing" bubbles
     - "featurettes" with placeholder images
 - Added CSS required for template 
-- Sign in & Create Account buttons in carosel redirect to Sign-in Page
+- Added 9 PNG images including CommunityLink Logo
 
+### Changed
+- #givingFood in site.css to better display on the About page
+
+### Note
+- I tried to implement lazy loading with the images. I also went ahead and made a simple quick png of the logo, really just for seeing how it might look when used on the page.
+- I need to figure out why the featurette images on the Home page do not "zoom-out" with the rest of the page, like in About page and Donate page
+- I also need to figure out why "spacerFromTop" does not work with the carousel template
 
 ## [0.4.1] - 2024-08-08
 ### Added
