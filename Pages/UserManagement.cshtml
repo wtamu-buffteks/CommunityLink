@@ -1,0 +1,155 @@
+@page
+@model CommunityLink.Pages.UserManagementModel
+@{
+    ViewData["Title"] = "User Management";
+}
+
+<div class="spacerFromTop"></div>
+
+<div class="container mt-4">
+    <div class="row mt-3">
+        <div class="col-12" id="volunteerTop">
+            <h1>Welcome @Model.ThisUser?.FullName!</h1>
+            <p>As an admin, you have the ability to modify exsisting users and grant or remove access to different roles!</p>
+        </div>
+    </div>
+
+    @if (Model.SelectedUser == null) {
+        <div class="row mt-3">
+            <div class="col-12">
+                <h2 class="text-center">User Management</h2>
+                <div class="form-group">
+                    <form method="get" asp-page-handler="OnGetAsync">
+                        <label for="userTypeFilter">Filter by User Type:</label>
+                        <select id="userTypeFilter" asp-for="SelectedUserType" class="form-control" onchange="this.form.submit()">
+                            <option value="">All Users</option>
+                            <option value="Employee">Employee</option>
+                            <option value="Volunteer">Volunteer</option>
+                            <option value="Requestor">Requestor</option>
+                        </select>
+                    </form>
+                </div>
+                <table class="table table-striped" id="volunteerTable">
+                      <thead>
+                        <tr>
+                            <th scope="col">
+                                <a asp-page="/UserManagement" asp-route-pageIndex="@Model.CurrentPage" asp-route-sortOrder="@Model.GetSortOrder("username")">Username</a>
+                            </th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Phone Number</th>
+                            <th scope="col">
+                                <a asp-page="/UserManagement" asp-route-pageIndex="@Model.CurrentPage" asp-route-sortOrder="@Model.GetSortOrder("status")">Status</a>
+                            </th>
+                            <th scope="col">Is Employee?</th>
+                            <th scope="col">Is Volunteer?</th>
+                            <th scope="col">Is Requestor?</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var user in Model.Users) {
+                            if (user.UserID != Model.ThisUser.UserID) { <!-- Exclude the current user -->
+                                <tr>
+                                    <td>
+                                        <a asp-page="/UserManagement" asp-route-userId="@user.UserID">@user.Username</a>
+                                    </td>
+                                    <td>@user.Email</td>
+                                    <td>@user.PhoneNumber</td>
+                                    <td>@user.UserStatus</td>
+                                    <td>
+                                        @if (user.Employee != null) {
+                                            <p>@user.Employee.Role</p>
+                                        } else {
+                                            <p>No</p>
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (user.Volunteer != null) {
+                                            <p>Yes</p>
+                                        } else {
+                                            <p>No</p>
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (user.Requestor != null) {
+                                            <p>Yes</p>
+                                        } else {
+                                            <p>No</p>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-12 text-center">
+                <nav aria-label="Page navigation">
+                    <ul class="pagination justify-content-center">
+                        @if (Model.CurrentPage > 1)
+                        {
+                            <li class="page-item">
+                                <a class="page-link" asp-page="/UserManagement" asp-route-pageIndex="@(Model.CurrentPage - 1)">Previous</a>
+                            </li>
+                        }
+                        @for (int i = 1; i <= Model.TotalPages; i++)
+                        {
+                            <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+                                <a class="page-link" asp-page="/UserManagement" asp-route-pageIndex="@i">@i</a>
+                            </li>
+                        }
+                        @if (Model.CurrentPage < Model.TotalPages)
+                        {
+                            <li class="page-item">
+                                <a class="page-link" asp-page="/UserManagement" asp-route-pageIndex="@(Model.CurrentPage + 1)">Next</a>
+                            </li>
+                        }
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    } else {
+        <form asp-page-handler="Back" method="post" asp-route-pageIndex="@Model.CurrentPage">
+            <input type="hidden" name="pageIndex" value="@Model.CurrentPage" />
+            <button type="submit" class="btn mt-3 backButton">Back to Users</button>
+        </form>
+        <div class="row mt-3">
+            <div class="col-12">
+                <div class="row justify-content-center">
+                    <div class="col-md-8 mx-3 UserManager">
+                        <h3>Edit User</h3>
+                        <form method="post" asp-page-handler="Update" asp-route-userId="@Model.SelectedUser.UserID">
+                            <div class="form-group">
+                                <label asp-for="FormUser.Username">Username</label>
+                                <input asp-for="FormUser.Username" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="FormUser.Email">Email</label>
+                                <input asp-for="FormUser.Email" class="form-control" type="email" />
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="FormUser.PhoneNumber">Phone Number</label>
+                                <input asp-for="FormUser.PhoneNumber" class="form-control" type="tel" />
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="FormUser.UserStatus">Status</label>
+                                <input asp-for="FormUser.UserStatus" class="form-control" />
+                            </div>
+                            <div class="button-container" style="text-align: center;">
+                                <button type="submit" class="btn medGreenButton">Update</button>
+                            </div>
+                        </form>
+                        <form method="post" asp-page-handler="Delete" asp-route-userId="@Model.SelectedUser.UserID" style="display:inline;">
+                            <input type="hidden" name="userID" value="@Model.SelectedUser.UserID" />
+                            <div class="button-container" style="text-align: center;">
+                                <button type="submit" class="btn medBackButton">Delete</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
