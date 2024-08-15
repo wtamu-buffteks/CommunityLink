@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.4.2] - 2024-14-24
 ### Added
 - Added admin actions to Inventory management page
+- Added the user management page, only admins have access to it. They can edit or remove users and filter by user types.
 
 ## [0.4.0] - 2024-8-6
 ### Added
