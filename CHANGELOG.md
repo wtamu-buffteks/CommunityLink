@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Here’s a changelog message for the `requestorServices` page that aligns with your previous entries:
 
 ---
-## [0.4.2] - 2024-08-13
+## [0.4.3] - 2024-08-13
 ### Added
 - Added "Home" to navBar in _layout.cshtml
 - Used Template (author referenced in index.html)
@@ -18,6 +18,8 @@ Here’s a changelog message for the `requestorServices` page that aligns with y
     - "featurettes" with placeholder images
 - Added CSS required for template 
 - Added 9 PNG images including CommunityLink Logo
+- Added buttons for if the user is not signed in: SignIn, Create Account, About, Donate, Events(index)
+- Added buttons for if the user is signed in: About, Donate, Events(index) Request, Volunteer
 
 ### Changed
 - #givingFood in site.css to better display on the About page
