@@ -24,8 +24,7 @@ Here’s a changelog message for the `requestorServices` page that aligns with y
 
 ### Note
 - I tried to implement lazy loading with the images. I also went ahead and made a simple quick png of the logo, really just for seeing how it might look when used on the page.
-- I need to figure out why the featurette images on the Home page do not "zoom-out" with the rest of the page, like in About page and Donate page
-- I also need to figure out why "spacerFromTop" does not work with the carousel template
+- Links for "Events" currently redirect to index.html, these will need to be altered after Events page is made
 
 ## [0.4.1] - 2024-08-08
 ### Added

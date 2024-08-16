@@ -638,10 +638,11 @@ Center align the text within the three columns below the carousel */
   margin: 3rem 0;
   color: rgb(3, 57, 166);
   /* Space out the Bootstrap <hr> more */
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.25);
 }
-.featurette{
-  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1); 
-  padding: 5% 2%;
+.featurette .row{
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+  padding: 2%;
 }
 /* Thin out the marketing headings */
 .featurette-heading {
@@ -650,5 +651,17 @@ Center align the text within the three columns below the carousel */
   /* rtl:remove */
   letter-spacing: -.05rem;
 }
-
+.featurette-item {
+  height: 24rem;
+  padding: 1px; /* Creates the border effect */
+  box-sizing: border-box; /* Ensure padding is included in the width/height */
+  position: relative;
+}
+.featurette-item>img {
+  /* position: absolute;
+  top: 0;
+  left: 0; */
+  min-width: 100%;
+  height: auto;
+}
 

@@ -47,10 +47,10 @@ Source: https://getbootstrap.com/docs/5.0/examples/carousel/
                             {
                                 <h1>Welcome to Community Link!</h1>
                                 <p>Your journey starts here. Sign in or Create an account to explore more of our features and discover how you can make a difference today!</p>
-                                <div class="d-flex flex-column align-items-start mt-3">
-                                    <a class="btn btn-lg btn-primary" href="/Sign-in">Create Account</a>
-                                    <br>
-                                    <a class="btn btn-lg btn-primary me-2" href="/Sign-in">Sign In</a>
+                                <div class="d-flex align-items-start mt-3">
+                                    <a class="btn btn-lg btn-primary me-2" href="/Sign-in">Create Account</a>
+                                    
+                                    <a class="btn btn-lg btn-primary" href="/Sign-in">Sign In</a>
                                 </div>
                             }
                         </div>
@@ -149,10 +149,12 @@ Source: https://getbootstrap.com/docs/5.0/examples/carousel/
                 <p class="lead">Our community is vibrant, and our events reflect that energy. Whether it’s a local cleanup, a charity run, or a workshop, every event is an opportunity to make a difference. We bring people together to create real, lasting change. Join us and experience the joy of giving back.<br>
                 
                 From neighborhood gatherings to large-scale initiatives, there's something for everyone. Explore our event calendar, sign up, and see how your involvement can shape our community’s future. Get ready to connect, engage, and be inspired by the power of collective action.</p>
+
+                <a class="btn btn-primary" href="#">Learn More</a>
             </div>
 
-            <div class="col-md-5 ">
-                <img src="/images/HolidayGivingEvent.png" class="d-block w-100" alt="Volunteer Giving Away Christmas Presents in City" style="object-fit: cover; width: 100%; height: auto;"loading="lazy">
+            <div class="col-md-5 featurette-item">
+                <img src="/images/HolidayGivingEvent.png" class="d-block w-100" alt="Volunteer Giving Away Christmas Presents in City" style="object-fit: cover; height: 100%;"loading="lazy">
             </div>
 
         </div>
@@ -165,10 +167,24 @@ Source: https://getbootstrap.com/docs/5.0/examples/carousel/
                 <p class="lead">At Community Link, we understand that everyone needs a helping hand from time to time. Whether you’re facing a temporary setback or a more long-term challenge, our community is here to support you. We aim to connect you with valuable resources and extend a helping hand within your community. Whether you need support or are ready to offer it, through donating or volunteering, there’s a place for everyone to make a difference.<br>
                 
                 You don’t have to go through it alone. Reach out to us, and we’ll connect you with the resources and support that can make a real difference in your life. Our community is built on compassion, and we’re here to ensure that no one falls through the cracks. Take the first step towards getting the help you need—because at Community Link, we’re stronger together. </p>
+
+                @if (!string.IsNullOrEmpty(Model.Username))
+                {
+                    <a class="btn btn-md btn-primary me-2" href="/requestorServices">Request</a>
+                }
+                else
+                {
+                        <a class="btn btn-md btn-primary me-2" href="/Sign-in">Create Account</a>
+                        <a class="btn btn-md btn-primary" href="/Sign-in">Sign In</a>
+                    
+                }
+                <div class="d-flex flex-column align-items-center mt-3">
+                    <a class="btn btn-md btn-primary" href="/About">Learn More</a>
+                </div>            
             </div>
 
-            <div class="col-md-5">
-                <img src="/images/DeliveryToElderly.png" class="d-block w-100" alt="A Man Holding a Plastic Crate of Food while Assisting an Elderly Man"style="object-fit: cover; width: 100%; height: auto;"loading="lazy">
+            <div class="col-md-5 featurette-item">
+                <img src="/images/DeliveryToElderly.png" class="d-block w-100" alt="A Man Holding a Plastic Crate of Food while Assisting an Elderly Man"style="object-fit: cover; height: 100%;"loading="lazy">
             </div>
 
         </div>
@@ -176,17 +192,30 @@ Source: https://getbootstrap.com/docs/5.0/examples/carousel/
         <hr class="featurette-divider">
 
         <div class="row">
-            <div class="col-md-7 order-md-2">
+            <div class="col-md-5 featurette-item">
+                <img src="/images/SweepingSidewalk.png" class="d-block w-100" alt="Volunteers sweeping the sidewalk" style="object-fit: cover; height: 100%;"loading="lazy">
+            </div>
+
+            <div class="col-md-7">
                 <h2 class="featurette-heading">Volunteering and Donating: <span class="text-muted">Your Impact, Our Mission</span></h2>
                 <p class="lead">Volunteering is at the heart of Community Link. When you donate your time or resources, you’re doing more than just helping out—you’re building a foundation of support that others can rely on. Every hour volunteered, every dollar donated, fuels our mission to support those in need and strengthen our community.<br>
                 
                 Imagine the difference you can make: mentoring a child, assisting at a food bank, or simply lending a listening ear. These are more than just acts of service; they are investments in humanity. And your donations? They directly support the programs and initiatives that change lives every day. See for yourself how your contributions can have a ripple effect across our community by donating or volunteering to a request directly!</p>
+                
+                @if (!string.IsNullOrEmpty(Model.Username))
+                {
+                    <a class="btn btn-md btn-primary me-2" href="/Volunteer">Donate/Volunteer</a>
+                }
+                else
+                {
+                        <a class="btn btn-md btn-primary me-2" href="/Sign-in">Create Account</a>
+                        <a class="btn btn-md btn-primary" href="/Sign-in">Sign In</a>
+                    
+                }
+                <div class="d-flex flex-column align-items-center mt-3">
+                    <a class="btn btn-md btn-primary" href="/Donate">Learn More</a>
+                </div>
             </div>
-
-            <div class="col-md-5 order-md-1">
-                <img src="/images/SweepingSidewalk.png" class="d-block w-100" alt="Volunteers sweeping the sidewalk" style="object-fit: cover; width: 100%; height: auto;"loading="lazy">
-            </div>
-
         </div>
     </div>
     <!-- /END THE FEATURETTES -->
