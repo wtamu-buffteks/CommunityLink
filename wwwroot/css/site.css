@@ -317,11 +317,13 @@ a:hover {
 }
 
 #givingFood {
-  background-image: url("/images/GivingFood.png");
+  background-image: url("/images/givingFood.png");
   background-repeat: no-repeat;
   box-sizing: border-box;
-  height: 80.6vw;
+  /* height: auto; */
+  /* object-fit: cover; */
   width: 50vw;
+  /* max-height: 100%; */
 }
 
 #leftImgIndex {
@@ -572,3 +574,94 @@ a:hover {
 #MyProfileForm #enableAuthButton {
   margin-bottom: 10px;
 }
+
+/* CUSTOMIZE THE CAROUSEL
+-------------------------------------------------- */
+
+/* Carousel base class */
+.carousel {
+  margin-bottom: 4rem;
+  /* margin-top: 131px; Adjust this value to align with navbar */
+  
+}
+
+/* Since positioning the image, we need to help out the caption */
+.carousel-caption {
+  bottom: 3rem;
+  z-index: 10;
+  background-color: rgba(3, 57, 166, 0.501);
+  text-shadow: 2px 2px 15px black;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+/* Declare heights because of positioning of img element */
+.carousel-item {
+  height: 24rem;
+  background-color: rgb(9, 101, 207); /* Blue background color */
+  padding: 10px; /* Creates the border effect */
+  box-sizing: border-box; /* Ensure padding is included in the width/height */
+  position: relative;
+}
+.carousel-item>img {
+  /* position: absolute;
+  top: 0;
+  left: 0; */
+  min-width: 100%;
+  height: auto;
+}
+
+
+/* MARKETING CONTENT
+Center align the text within the three columns below the carousel */
+.marketing .col-lg-4 {
+  /* margin-bottom: 1.5rem; */
+  text-align: center;
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+}
+
+.marketing h2 {
+  font-weight: 400;
+}
+
+/* rtl:begin:ignore */
+.marketing .col-lg-4 p {
+  margin-right: .75rem;
+  margin-left: .75rem;
+}
+
+/* rtl:end:ignore */
+
+
+/* Featurettes*/
+.featurette-divider {
+  margin: 3rem 0;
+  color: rgb(3, 57, 166);
+  /* Space out the Bootstrap <hr> more */
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.25);
+}
+.featurette .row{
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+  padding: 2%;
+}
+/* Thin out the marketing headings */
+.featurette-heading {
+  font-weight: 300;
+  line-height: 1;
+  /* rtl:remove */
+  letter-spacing: -.05rem;
+}
+.featurette-item {
+  height: 24rem;
+  padding: 1px; /* Creates the border effect */
+  box-sizing: border-box; /* Ensure padding is included in the width/height */
+  position: relative;
+}
+.featurette-item>img {
+  /* position: absolute;
+  top: 0;
+  left: 0; */
+  min-width: 100%;
+  height: auto;
+}
+
