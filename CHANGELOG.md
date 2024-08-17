@@ -26,6 +26,11 @@ Here’s a changelog message for the `requestorServices` page that aligns with y
 - Delete request could be harmful if a user is not a requestor, and adds a request(becomes requestor), then deletes their (only) request. 
 - It can be harmful if a requestor updates their profile to no longer be a requestor as the user would still be associated with requests.
 
+## [0.4.2] - 2024-14-24
+### Added
+- Added admin actions to Inventory management page
+- Added the user management page, only admins have access to it. They can edit or remove users and filter by user types.
+
 ## [0.4.0] - 2024-8-6
 ### Added
 - Inventory management page

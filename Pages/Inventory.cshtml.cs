@@ -148,6 +148,31 @@ namespace CommunityLink.Pages {
     }
 
     public async Task<IActionResult> OnPostAddAsync() {
+        // Ensure ThisUser is set correctly
+        if (Request.Cookies.TryGetValue("UserID", out string? userIdString) && int.TryParse(userIdString, out int userId)) {
+            // Load user information from database
+            ThisUser = await _context.Users.Include(u => u.Volunteer)
+                                            .Include(u => u.Employee)
+                                            .Include(u => u.Requestor)
+                                            .FirstOrDefaultAsync(u => u.UserID == userId);
+        }
+        else if (HttpContext.Session.GetInt32("UserID") is int sessionUserId) {
+            // Load user information from database
+            ThisUser = await _context.Users.Include(u => u.Volunteer)
+                                            .Include(u => u.Employee)
+                                            .Include(u => u.Requestor)
+                                            .FirstOrDefaultAsync(u => u.UserID == sessionUserId);
+        }
+        else {
+            // Redirect to the sign-in page if the user is not signed in
+            return RedirectToPage("/Sign-in");
+        }
+
+        // Ensure user is an employee
+        if (ThisUser == null || ThisUser.Employee == null) {
+            return RedirectToPage("/Index");
+        }
+
         Requests = await _context.Requests.ToListAsync();
         Users = await _context.Users.ToListAsync();
         InventoryLocations = await _context.InventoryLocations.ToListAsync();
@@ -284,6 +309,32 @@ namespace CommunityLink.Pages {
     }
 
     public async Task<IActionResult> OnPostUpdateAsync(int inventoryID) {
+
+        // Ensure ThisUser is set correctly
+        if (Request.Cookies.TryGetValue("UserID", out string? userIdString) && int.TryParse(userIdString, out int userId)) {
+            // Load user information from database
+            ThisUser = await _context.Users.Include(u => u.Volunteer)
+                                            .Include(u => u.Employee)
+                                            .Include(u => u.Requestor)
+                                            .FirstOrDefaultAsync(u => u.UserID == userId);
+        }
+        else if (HttpContext.Session.GetInt32("UserID") is int sessionUserId) {
+            // Load user information from database
+            ThisUser = await _context.Users.Include(u => u.Volunteer)
+                                            .Include(u => u.Employee)
+                                            .Include(u => u.Requestor)
+                                            .FirstOrDefaultAsync(u => u.UserID == sessionUserId);
+        }
+        else {
+            // Redirect to the sign-in page if the user is not signed in
+            return RedirectToPage("/Sign-in");
+        }
+
+        // Ensure user is an employee
+        if (ThisUser == null || ThisUser.Employee == null) {
+            return RedirectToPage("/Index");
+        }
+        
         var inventoryToUpdate = await _context.Inventory.FindAsync(inventoryID);
 
         if (inventoryToUpdate != null) {
@@ -296,6 +347,12 @@ namespace CommunityLink.Pages {
             inventoryToUpdate.StorageType = FormInventory.StorageType;
             inventoryToUpdate.ExpirationDate = FormInventory.ExpirationDate;
             inventoryToUpdate.AtLocation = FormInventory.AtLocation;
+
+            if (ThisUser.Employee.Role == "Admin") {
+                inventoryToUpdate.UnitCost = FormInventory.UnitCost;
+                inventoryToUpdate.LocationID = FormInventory.LocationID;
+                inventoryToUpdate.RequestID = FormInventory.RequestID;
+            }
 
             await _context.SaveChangesAsync();
             TempData["Message"] = "Inventory updated successfully!";

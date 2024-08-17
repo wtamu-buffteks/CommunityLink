@@ -44,6 +44,12 @@
                                 <label asp-for="FormInventory.UnitOfMeasurement">Unit of Measurement</label>
                                 <input asp-for="FormInventory.UnitOfMeasurement" class="form-control" />
                             </div>
+                            @if (Model.ThisUser.Employee.Role == "Admin") {
+                                <div class="form-group">
+                                    <label asp-formaction="FormInventory.UnitCost">Unit Cost</label>
+                                    <input asp-for="FormInventory.UnitCost" class="form-control" />
+                                </div>
+                            }
                             <div class="form-group">
                                 <label asp-for="FormInventory.DateReceived">Date Received</label>
                                 <input asp-for="FormInventory.DateReceived" class="form-control" type="date" />
@@ -61,8 +67,34 @@
                                 <input asp-for="FormInventory.ExpirationDate" class="form-control" type="date" />
                             </div>
                             <div class="form-group">
+                                <label asp-for="FormInventory.LocationID">Location</label>
+                                @if (Model.ThisUser.Employee.Role == "Admin") {
+                                    <select asp-for="FormInventory.LocationID" class="form-control">
+                                        <option value="">Select a Location</option>
+                                        @foreach (var location in Model.InventoryLocations) {
+                                            <option value="@location.LocationID">@location.LocationName</option>
+                                        }
+                                    </select>
+                                } else {
+                                    <input asp-for="FormInventory.LocationID" class="form-control" readonly />
+                                }
+                            </div>
+                            <div class="form-group">
                                 <label asp-for="FormInventory.AtLocation">At Location</label>
                                 <input asp-for="FormInventory.AtLocation" type="checkbox" />
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="FormInventory.RequestID">Request</label>
+                                @if (Model.ThisUser.Employee.Role == "Admin") {
+                                    <select asp-for="FormInventory.RequestID" class="form-control">
+                                        <option value="">None</option>
+                                        @foreach (var request in Model.Requests) {
+                                            <option value="@request.RequestID">@request.RequestTitle</option>
+                                        }
+                                    </select>
+                                } else {
+                                    <input asp-for="FormInventory.RequestID" class="form-control" readonly />
+                                }
                             </div>
                             <div class="button-container" style="text-align: center;">
                                 <button type="submit" class="btn medGreenButton">Update</button>
@@ -115,6 +147,12 @@
                                 <label asp-for="FormInventory.UnitOfMeasurement">Unit of Measurement</label>
                                 <input asp-for="FormInventory.UnitOfMeasurement" class="form-control" />
                             </div>
+                            @if (Model.ThisUser.Employee.Role == "Admin") {
+                                <div class="form-group">
+                                    <label asp-formaction="FormInventory.UnitCost">Unit Cost</label>
+                                    <input asp-for="FormInventory.UnitCost" class="form-control" />
+                                </div>
+                            }
                             <div class="form-group">
                                 <label asp-for="FormInventory.DateReceived">Date Received</label>
                                 <input asp-for="FormInventory.DateReceived" class="form-control" type="date" />
