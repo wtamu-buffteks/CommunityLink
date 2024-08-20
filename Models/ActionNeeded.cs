@@ -9,7 +9,7 @@ namespace CommunityLink.Models {
         [Required]
         public int UserID { get; set; }
         [ForeignKey("UserID")]
-        public required User User { get; set; }
+        public User? User { get; set; }
         public int? EmployeeID { get; set; }
         [ForeignKey("EmployeeID")]
         public Employee? Employee { get; set; }
