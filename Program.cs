@@ -20,6 +20,9 @@ builder.Services.AddSession(options => {
     options.Cookie.IsEssential = true;
 });
 
+// Register the message service
+builder.Services.AddScoped<IMessageService, MessageService>();
+
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope()){
