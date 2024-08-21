@@ -13,7 +13,7 @@ namespace MyApp.Namespace
 
         private readonly ILogger<DonationModel> _logger;
         private readonly CommunityLinkDbContext _context;
-        // so for now, I'm going to set this up to donate to the first request.
+
         public DonationModel(CommunityLinkDbContext context, ILogger<DonationModel> logger)
         {
             _context = context;

@@ -9,6 +9,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Here’s a changelog message for the `requestorServices` page that aligns with your previous entries:
 
 ---
+
+## [0.4.4] - 2024-8-18
+### Added
+- Messages page where users can send and view messages. Admins can send action needed messages.
+- The messages icon. I initially was going to make the background white when there were no messages, but it blended in with the background so I made it blue. The Icon turns into the back-button color when there is an unread message and it turns red when there is an action needed message. There is also a count on the message that shows how many new messages you have.
+- Made messages service that's injected into the _Layout so that it will run the check on every page.
+
 ## [0.4.3] - 2024-08-13
 ### Added
 - Added "Home" to navBar in _layout.cshtml
@@ -28,6 +35,11 @@ Here’s a changelog message for the `requestorServices` page that aligns with y
 - I tried to implement lazy loading with the images. I also went ahead and made a simple quick png of the logo, really just for seeing how it might look when used on the page.
 - Links for "Events" currently redirect to index.html, these will need to be altered after Events page is made
 
+## [0.4.2] - 2024-14-24
+### Added
+- Added admin actions to Inventory management page
+- Added the user management page, only admins have access to it. They can edit or remove users and filter by user types.
+
 ## [0.4.1] - 2024-08-08
 ### Added
 - requestorServices page now allows requestors to add, update, and inactivate requests directly from their personal dashboard.
@@ -43,11 +55,6 @@ Here’s a changelog message for the `requestorServices` page that aligns with y
 ### Note
 - Delete request could be harmful if a user is not a requestor, and adds a request(becomes requestor), then deletes their (only) request. 
 - It can be harmful if a requestor updates their profile to no longer be a requestor as the user would still be associated with requests.
-
-## [0.4.2] - 2024-14-24
-### Added
-- Added admin actions to Inventory management page
-- Added the user management page, only admins have access to it. They can edit or remove users and filter by user types.
 
 ## [0.4.0] - 2024-8-6
 ### Added
