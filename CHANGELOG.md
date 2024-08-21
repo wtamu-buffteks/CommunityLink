@@ -14,6 +14,7 @@ Here’s a changelog message for the `requestorServices` page that aligns with y
 ### Added
 - Messages page where users can send and view messages. Admins can send action needed messages.
 - The messages icon. I initially was going to make the background white when there were no messages, but it blended in with the background so I made it blue. The Icon turns into the back-button color when there is an unread message and it turns red when there is an action needed message. There is also a count on the message that shows how many new messages you have.
+- Made messages service that's injected into the _Layout so that it will run the check on every page.
 
 ## [0.4.3] - 2024-08-13
 ### Added
