@@ -9,6 +9,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Here’s a changelog message for the `requestorServices` page that aligns with your previous entries:
 
 ---
+## [0.4.5] - 2024-08-21
+### Added
+- **My Stats Page:**
+  - Introduced a new `My Stats` page where users can view their contribution statistics, including total donations, monetary and other as well as some functionality for volunteer hours.
+  - Implemented detailed tables for monetary donations, items donated, and volunteer hours.
+  - Integrated sorting functionality for the statistics, allowing users to sort by Title, Amount Donated, and Donation Date.
+  - Visual charts were added using `Chart.js` to represent monetary and item donations. (Used script src)
+
+### Changed
+- **Navbar:**
+  - Enhanced the navbar to include a dropdown for "My Account" with options for "My Profile" and "My Stats."
+  - Decreased Navbar font size from 24px to 22px to better layout options.
+  - Updated CSS to ensure the dropdown matches the style of other navbar items, removing the border and making the background transparent. (Height/Position may need to be adjusted)
+  - Adjusted the navbar font style and size for consistency and readability.
+
+### Note
+- **UI Enhancements:**
+  - Implemented resizable containers for tables and charts on the `My Stats` page to improve responsiveness for users.
+  - Added scrollable tables with a fixed height to ensure data visibility without disrupting the page layout.
+- Still need to remove unnecessary things like id from showing in tables
 
 ## [0.4.4] - 2024-8-18
 ### Added

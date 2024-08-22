@@ -1,0 +1,387 @@
+@page
+@model CommunityLink.Pages.MyStatisticsModel
+@{
+    ViewData["Title"] = "My Statistics";
+}
+
+<div class="container-fluid spacerFromTop">
+    <div class="container mt-4">
+    <div class="row mt-3">
+        <div class="col-12" id="volunteerTop">
+            <h1>My Statistics <br>
+                Welcome @Model.ThisUser?.FullName!</h1>
+            <p>Below are your Stats!<br>
+            Thank you for all your contributions!</p>
+        </div>
+    </div>
+    <div class="container" style="padding: auto; margin: auto;">
+
+        <div class="row">    
+            <div class="col-12 text-center">
+                <h1>My Stats!</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <!-- Chart Container (Resizable) -->
+                <div class="resizable-container">
+                    <canvas id="moneyDonatedChart" class="resizable-chart"></canvas>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <!-- Chart Container (Resizable) -->
+                <div class="resizable-container">
+                    <canvas id="itemsDonatedChart" class="resizable-chart"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <h2>Overall Statistics</h2>
+                <div class="table-responsive">
+                    <table class="table table-striped table-sm">
+                        <thead>
+                            <tr>
+                                <th scope="col">Stat ID</th>
+                                <th scope="col">Total Money Donated</th>
+                                <th scope="col">Total Items Donated</th>
+                                <th scope="col">Total Hours Volunteered</th>
+                                <th scope="col">Number of Donations Made To CommunityLink</th>
+                                <th scope="col">Number of Donations Made To Individual Requests</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.UserStat != null)
+                            {
+                                var totalMoneyDonated = Model.UserStat.RequestStats
+                                    .Where(rs => rs.OldRequestID != 0)
+                                    .Sum(rs => rs.AmountDonated);
+
+                                var totalItemsDonated = Model.UserStat.DonationStats
+                                    .Sum(ds => ds.Quantity);
+
+                                var totalDonationsToCommunityLink = Model.UserStat.DonationStats
+                                    .Count(ds => ds.RequestStatID == null || ds.RequestStat?.OldRequestID == 0);
+
+                                var totalDonationsToRequests = Model.UserStat.RequestStats
+                                    .Where(rs => rs.OldRequestID != 0)
+                                    .Count();
+
+                                <tr>
+                                    <td>@Model.UserStat.StatID</td>
+                                    <td>@string.Format("{0:C}", totalMoneyDonated)</td>
+                                    <td>@totalItemsDonated</td>
+                                    <td>@(Model.VolunteerData?.HoursWorked ?? 0)</td>
+                                    <td>@totalDonationsToCommunityLink</td>
+                                    <td>@totalDonationsToRequests</td>
+                                </tr>
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="6">No statistics available for this user.</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <h2>Your Monetary Donations</h2>
+                <div class="table-responsive resizable-container" style="max-height: 200px; overflow-y: auto;">
+                    <table class="table table-striped table-sm resizable-table">
+                        <thead class="fixed">
+                            <tr>
+                                <th><a asp-route-requestSortOrder="@Model.RequestIDSort">Request ID</a></th>
+                                <th><a asp-route-requestSortOrder="@Model.RequestTitleSort">Request Title</a></th>
+                                <th scope="col">Requestor Username</th>
+                                <th><a asp-route-requestSortOrder="@Model.RequestAmountSort">Amount Donated</a></th>
+                                <th><a asp-route-requestSortOrder="@Model.RequestDateSort">Donation Date</a></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.UserStat?.RequestStats != null && Model.UserStat.RequestStats.Any())
+                            {
+                                @foreach (var requestStat in Model.UserStat.RequestStats.Where(rs => rs.OldRequestID != 0 && rs.AmountDonated != 0))
+                                {
+                                    <tr>
+                                        <td>@requestStat.OldRequestID</td>
+                                        <td>@requestStat.RequestTitle</td>
+                                        <td>@requestStat.RequestorUsername</td>
+                                        <td>@string.Format("{0:C}", requestStat.AmountDonated)</td>
+                                        <td>@requestStat.DonationDate.ToShortDateString()</td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="5">No monetary donations made.</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <h2>Total Items Donated</h2>
+                <div class="table-responsive">
+                    <table class="table table-striped table-sm">
+                        <thead>
+                            <tr>
+                                <th><a asp-route-donationSortOrder="@Model.DonationItemNameSort">Item Name</a></th>
+                                <th><a asp-route-donationSortOrder="@Model.DonationQuantitySort">Quantity</a></th>
+                                <th><a asp-route-donationSortOrder="@Model.DonationDateSort">Date Donated</a></th>
+                                <th><a asp-route-requestSortOrder="@Model.RequestTitleSort">Request Title</a></th>
+                                <th scope="col">Associated RequestStat ID</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.UserStat?.DonationStats != null && Model.UserStat.DonationStats.Any())
+                            {
+                                @foreach (var donationStat in Model.UserStat.DonationStats.Where(ds => ds.RequestStatID != null))
+                                {
+                                    <tr>
+                                        <td>@donationStat.ItemName</td>
+                                        <td>@donationStat.Quantity</td>
+                                        <td>@donationStat.DateDonated.ToShortDateString()</td>
+                                        <td>@donationStat.RequestStat?.RequestTitle</td>
+                                        <td>@donationStat.RequestStatID</td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="5">No items donated to specific requests.</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <h2>Items Donated to Specific Requests</h2>
+                <div class="table-responsive"></div>
+                    <table class="table table-striped table-sm">
+                        <thead>
+                            <tr>
+                                <th><a asp-route-donationSortOrder="@Model.DonationItemNameSort">Item Name</a></th>
+                                <th><a asp-route-donationSortOrder="@Model.DonationQuantitySort">Quantity</a></th>
+                                <th><a asp-route-donationSortOrder="@Model.DonationDateSort">Date Donated</a></th>
+                                <th><a asp-route-requestSortOrder="@Model.RequestTitleSort">Request Title</a></th>
+                                <th scope="col">Associated RequestStat ID</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.UserStat?.DonationStats != null && Model.UserStat.DonationStats.Any())
+                            {
+                                @foreach (var donationStat in Model.UserStat.DonationStats.Where(ds => ds.RequestStatID != null && ds.RequestStat?.OldRequestID != 0))
+                                {
+                                    <tr>
+                                        <td>@donationStat.ItemName</td>
+                                        <td>@donationStat.Quantity</td>
+                                        <td>@donationStat.DateDonated.ToShortDateString()</td>
+                                        <td>@donationStat.RequestStat?.RequestTitle</td>
+                                        <td>@donationStat.RequestStatID</td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="5">No Items Donated to Requests.</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>  
+        </div>
+        <div class="row">
+            <div class="col-12">    
+                <h2>Items Donated to CommunityLink/No Request Specified</h2>
+                <div class="table-responsive" style="max-height: 200px; overflow-y: auto;">
+                    <table class="table table-striped table-sm">
+                        <thead>
+                            <tr>
+                                <th><a asp-route-donationSortOrder="@Model.DonationItemNameSort">Item Name</a></th>
+                                <th><a asp-route-donationSortOrder="@Model.DonationQuantitySort">Quantity</a></th>
+                                <th><a asp-route-donationSortOrder="@Model.DonationDateSort">Date Donated</a></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.UserStat?.DonationStats != null && Model.UserStat.DonationStats.Any())
+                            {
+                                @foreach (var donationStat in Model.UserStat.DonationStats.Where(ds =>ds.RequestStat?.OldRequestID == 0))
+                                {
+                                    <tr>
+                                        <td>@donationStat.ItemName</td>
+                                        <td>@donationStat.Quantity</td>
+                                        <td>@donationStat.DateDonated.ToShortDateString()</td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="3">No items donated to CommunityLink.</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <h2>Hours Volunteered</h2>
+                <div class="table-responsive" style="max-height: 200px; overflow-y: auto;">
+                    <table class="table table-striped table-sm">
+                        <thead class="fixed">
+                            <tr>
+                                <th scope="col">Volunteer Hours</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.VolunteerData != null)
+                            {
+                                <tr>
+                                    <td>@Model.VolunteerData.HoursWorked</td>
+                                </tr>
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td>No volunteer hours recorded.</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+
+    <script>
+        // Data for Money Donated Chart
+        var labels = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.UserStat?.RequestStats
+            .Where(rs => rs.OldRequestID != 0 && rs.AmountDonated !=0)
+            .GroupBy(rs => rs.RequestTitle)
+            .Select(g => g.Key)));
+
+        var moneyDonatedData = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.UserStat?.RequestStats
+            .Where(rs => rs.OldRequestID != 0 && rs.AmountDonated !=0)
+            .GroupBy(rs => rs.RequestTitle)
+            .Select(g => g.Sum(rs => rs.AmountDonated))));
+
+        var ctx = document.getElementById('moneyDonatedChart').getContext('2d');
+        var moneyDonatedChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Total Money Donated to Request',
+                    data: moneyDonatedData,
+                    backgroundColor: '#007bff',
+                    borderColor: '#007bff',
+                    borderWidth: 2,
+                    fill: false
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Total Amount Donated'
+                        }
+                    }],
+                    xAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Request Titles'
+                        }
+                    }]
+                }
+            }
+        });
+
+        // Data for Items Donated Chart
+        var itemLabels = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.UserStat?.DonationStats
+            .Where(ds => ds.RequestStatID != 0 && ds.RequestStat.AmountDonated ==0)
+            .GroupBy(ds => ds.RequestStat.RequestTitle)
+            .Select(g => g.Key)));
+
+        var itemsDonatedData = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.UserStat?.DonationStats
+            .Where(ds => ds.RequestStatID != 0 && ds.RequestStat.AmountDonated ==0)
+            .GroupBy(ds => ds.RequestStat.RequestTitle)
+            .Select(g => g.Sum(ds => ds.Quantity))));
+
+        // Calculate the max value and add 1
+        var maxItemsDonated = Math.max.apply(null, itemsDonatedData) + 1;        
+
+        var ctx2 = document.getElementById('itemsDonatedChart').getContext('2d');
+        var itemsDonatedChart = new Chart(ctx2, {
+            type: 'bar',
+            data: {
+                labels: itemLabels,
+                datasets: [{
+                    label: 'Total Items Donated to Request',
+                    data: itemsDonatedData,
+                    backgroundColor: '#28a745',
+                    borderColor: '#28a745',
+                    borderWidth: 2,
+                    fill: false
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                            min: 0,
+                            max: maxItemsDonated, // Set max to the calculated value
+                            stepSize: 1,
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Total Items Donated'
+                        }
+                    }],
+                    xAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Request Titles'
+                        }
+                    }]
+                }
+            }
+        });
+
+        // Make tables and charts resizable
+        document.querySelectorAll('.resizable-container').forEach(function(container) {
+            container.style.resize = 'both';
+            container.style.overflow = 'auto';
+            container.style.minWidth = '300px'; // Minimum width for resizing
+            container.style.minHeight = '200px'; // Minimum height for resizing
+        });
+    </script>
+}
