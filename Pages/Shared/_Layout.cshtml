@@ -53,9 +53,13 @@
                         </li>
                         @if (HttpContextAccessor.HttpContext.Request.Cookies.TryGetValue("Username", out string? username) || !string.IsNullOrEmpty(HttpContextAccessor.HttpContext.Session.GetString("Username")))
                         {
-                            <li class="nav-item navbarText">
-                                <a class="nav-link text-dark" asp-area="" asp-page="/MyProfile">My Profile</a>
-                            </li>
+                            <div class="my-account-select nav-item navbarText">
+                                <select class="form-select" id="userAccountSelect" onchange="handleUserAccountOption(this)">
+                                    <option value="">Account</option>
+                                    <option value="/MyProfile">My Profile</option>
+                                    <option value="/MyStatistics">My Stats</option>
+                                </select>
+                            </div>
                             <li class="nav-item navbarText">
                                 <a class="nav-link text-dark" asp-area="" asp-page="/SignOut">Sign Out</a>
                             </li>
@@ -112,6 +116,12 @@
 
     <script>
         function handleEmployeeActionChange(selectElement) {
+            var selectedValue = selectElement.value;
+            if (selectedValue) {
+                window.location.href = selectedValue;
+            }
+        }
+        function handleUserAccountOption(selectElement) {
             var selectedValue = selectElement.value;
             if (selectedValue) {
                 window.location.href = selectedValue;
