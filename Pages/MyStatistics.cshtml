@@ -42,11 +42,10 @@
                     <table class="table table-striped table-sm">
                         <thead>
                             <tr>
-                                <th scope="col">Stat ID</th>
                                 <th scope="col">Total Money Donated</th>
-                                <th scope="col">Total Items Donated</th>
+                                <th scope="col">Total Quantity Items Donated</th>
                                 <th scope="col">Total Hours Volunteered</th>
-                                <th scope="col">Number of Donations Made To CommunityLink</th>
+                                <th scope="col">Number of Donations Made To CommunityLink/No Request Specified</th>
                                 <th scope="col">Number of Donations Made To Individual Requests</th>
                             </tr>
                         </thead>
@@ -68,7 +67,6 @@
                                     .Count();
 
                                 <tr>
-                                    <td>@Model.UserStat.StatID</td>
                                     <td>@string.Format("{0:C}", totalMoneyDonated)</td>
                                     <td>@totalItemsDonated</td>
                                     <td>@(Model.VolunteerData?.HoursWorked ?? 0)</td>
@@ -94,9 +92,7 @@
                     <table class="table table-striped table-sm resizable-table">
                         <thead class="fixed">
                             <tr>
-                                <th><a asp-route-requestSortOrder="@Model.RequestIDSort">Request ID</a></th>
                                 <th><a asp-route-requestSortOrder="@Model.RequestTitleSort">Request Title</a></th>
-                                <th scope="col">Requestor Username</th>
                                 <th><a asp-route-requestSortOrder="@Model.RequestAmountSort">Amount Donated</a></th>
                                 <th><a asp-route-requestSortOrder="@Model.RequestDateSort">Donation Date</a></th>
                             </tr>
@@ -107,9 +103,7 @@
                                 @foreach (var requestStat in Model.UserStat.RequestStats.Where(rs => rs.OldRequestID != 0 && rs.AmountDonated != 0))
                                 {
                                     <tr>
-                                        <td>@requestStat.OldRequestID</td>
                                         <td>@requestStat.RequestTitle</td>
-                                        <td>@requestStat.RequestorUsername</td>
                                         <td>@string.Format("{0:C}", requestStat.AmountDonated)</td>
                                         <td>@requestStat.DonationDate.ToShortDateString()</td>
                                     </tr>
@@ -129,15 +123,14 @@
         <div class="row">
             <div class="col-12">
                 <h2>Total Items Donated</h2>
-                <div class="table-responsive">
-                    <table class="table table-striped table-sm">
+                <div class="table-responsive resizable-container">
+                    <table class="table table-striped table-sm resizeable table">
                         <thead>
                             <tr>
+                                <th><a asp-route-requestSortOrder="@Model.RequestTitleSort">Request Title</a></th>
                                 <th><a asp-route-donationSortOrder="@Model.DonationItemNameSort">Item Name</a></th>
                                 <th><a asp-route-donationSortOrder="@Model.DonationQuantitySort">Quantity</a></th>
                                 <th><a asp-route-donationSortOrder="@Model.DonationDateSort">Date Donated</a></th>
-                                <th><a asp-route-requestSortOrder="@Model.RequestTitleSort">Request Title</a></th>
-                                <th scope="col">Associated RequestStat ID</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -146,11 +139,10 @@
                                 @foreach (var donationStat in Model.UserStat.DonationStats.Where(ds => ds.RequestStatID != null))
                                 {
                                     <tr>
+                                        <td>@donationStat.RequestStat?.RequestTitle</td>
                                         <td>@donationStat.ItemName</td>
                                         <td>@donationStat.Quantity</td>
                                         <td>@donationStat.DateDonated.ToShortDateString()</td>
-                                        <td>@donationStat.RequestStat?.RequestTitle</td>
-                                        <td>@donationStat.RequestStatID</td>
                                     </tr>
                                 }
                             }
@@ -172,11 +164,10 @@
                     <table class="table table-striped table-sm">
                         <thead>
                             <tr>
+                                <th><a asp-route-requestSortOrder="@Model.RequestTitleSort">Request Title</a></th>
                                 <th><a asp-route-donationSortOrder="@Model.DonationItemNameSort">Item Name</a></th>
                                 <th><a asp-route-donationSortOrder="@Model.DonationQuantitySort">Quantity</a></th>
                                 <th><a asp-route-donationSortOrder="@Model.DonationDateSort">Date Donated</a></th>
-                                <th><a asp-route-requestSortOrder="@Model.RequestTitleSort">Request Title</a></th>
-                                <th scope="col">Associated RequestStat ID</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -185,11 +176,10 @@
                                 @foreach (var donationStat in Model.UserStat.DonationStats.Where(ds => ds.RequestStatID != null && ds.RequestStat?.OldRequestID != 0))
                                 {
                                     <tr>
+                                        <td>@donationStat.RequestStat?.RequestTitle</td>
                                         <td>@donationStat.ItemName</td>
                                         <td>@donationStat.Quantity</td>
                                         <td>@donationStat.DateDonated.ToShortDateString()</td>
-                                        <td>@donationStat.RequestStat?.RequestTitle</td>
-                                        <td>@donationStat.RequestStatID</td>
                                     </tr>
                                 }
                             }
@@ -211,6 +201,7 @@
                     <table class="table table-striped table-sm">
                         <thead>
                             <tr>
+                                <th><a asp-route-requestSortOrder="@Model.RequestTitleSort">Request Title</a></th>
                                 <th><a asp-route-donationSortOrder="@Model.DonationItemNameSort">Item Name</a></th>
                                 <th><a asp-route-donationSortOrder="@Model.DonationQuantitySort">Quantity</a></th>
                                 <th><a asp-route-donationSortOrder="@Model.DonationDateSort">Date Donated</a></th>
@@ -222,6 +213,7 @@
                                 @foreach (var donationStat in Model.UserStat.DonationStats.Where(ds =>ds.RequestStat?.OldRequestID == 0))
                                 {
                                     <tr>
+                                        <td>@donationStat.RequestStat?.RequestTitle</td>
                                         <td>@donationStat.ItemName</td>
                                         <td>@donationStat.Quantity</td>
                                         <td>@donationStat.DateDonated.ToShortDateString()</td>
@@ -287,6 +279,9 @@
             .GroupBy(rs => rs.RequestTitle)
             .Select(g => g.Sum(rs => rs.AmountDonated))));
 
+        // Calculate the max value and add 1
+        var maxAmountDonated = Math.max.apply(null, moneyDonatedData) + 20; 
+
         var ctx = document.getElementById('moneyDonatedChart').getContext('2d');
         var moneyDonatedChart = new Chart(ctx, {
             type: 'bar',
@@ -306,7 +301,9 @@
                 scales: {
                     yAxes: [{
                         ticks: {
-                            beginAtZero: true
+                            beginAtZero: true,
+                            min: 0,
+                            max: maxAmountDonated, // Set max to the calculated value
                         },
                         scaleLabel: {
                             display: true,

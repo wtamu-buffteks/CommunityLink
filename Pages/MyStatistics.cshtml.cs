@@ -70,12 +70,6 @@ namespace CommunityLink.Pages
 
             switch (requestSortOrder)
             {
-                case "RequestID":
-                    requestStatsQuery = requestStatsQuery.OrderBy(rs => rs.OldRequestID);
-                    break;
-                case "requestid_desc":
-                    requestStatsQuery = requestStatsQuery.OrderByDescending(rs => rs.OldRequestID);
-                    break;
                 case "RequestTitle":
                     requestStatsQuery = requestStatsQuery.OrderBy(rs => rs.RequestTitle);
                     break;
@@ -95,7 +89,7 @@ namespace CommunityLink.Pages
                     requestStatsQuery = requestStatsQuery.OrderByDescending(rs => rs.DonationDate);
                     break;
                 default:
-                    requestStatsQuery = requestStatsQuery.OrderBy(rs => rs.OldRequestID).ThenBy(rs => rs.DonationDate);
+                    requestStatsQuery = requestStatsQuery.OrderBy(rs => rs.RequestTitle).ThenBy(rs => rs.DonationDate);
                     break;
             }
 
