@@ -82,6 +82,7 @@
                 <option value="">Employee Actions</option>
                 <option value="/RequestManagement">Request Management</option>
                 <option value="/Inventory">Inventory Management</option>
+                <option value="/EventManagement">Event Management</option>
                 @if (!string.IsNullOrEmpty(HttpContextAccessor.HttpContext.Session.GetString("IsAdmin")) && HttpContextAccessor.HttpContext.Session.GetString("IsAdmin") == "true") {
                     <option value="/LocationManagement">Location Management</option>
                     <option value="/UserManagement">User Management</option>
