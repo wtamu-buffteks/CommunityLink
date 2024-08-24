@@ -9,6 +9,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Here’s a changelog message for the `requestorServices` page that aligns with your previous entries:
 
 ---
+## [0.4.7] - 2024-08-23
+### Added
+- New "Events" page accessible from the main navigation bar.
+- Users can view all upcoming events, with the ability to click on event names to see detailed information in a pop up.
+- Users can RSVP to events directly from the event details.
+ - RSVP will count signed-in users only once per event
+ - Non signed-in users can RSVP without limit
+- Introduced the ability for users to view events they have RSVP'd to, with a dedicated "View My RSVP Events" button.
+- Users can sort events by name or date, and navigate through events using pagination controls.
+
+### Changed
+- "Events" tab on nav bar in _layout, making it easier for users to find and engage with upcoming community events.
 
 ## [0.4.6] - 2024-08-23
 ### Added
