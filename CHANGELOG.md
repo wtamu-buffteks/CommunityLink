@@ -16,6 +16,8 @@ Here’s a changelog message for the `requestorServices` page that aligns with y
 - Employees can add new events
 - Once an event is created, they can assign inventory to it provided that the inventory isn't already assigned to a request
 - They can also remove events
+## Changed
+- Added the event management tab to the employee dropdown
 
 ## [0.4.5] - 2024-08-21
 ### Added
