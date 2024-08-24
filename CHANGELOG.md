@@ -9,6 +9,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Here’s a changelog message for the `requestorServices` page that aligns with your previous entries:
 
 ---
+
+## [0.4.6] - 2024-08-23
+### Added
+- New Employee action: Event Management
+- Employees can add new events
+- Once an event is created, they can assign inventory to it provided that the inventory isn't already assigned to a request
+- They can also remove events
+
 ## [0.4.5] - 2024-08-21
 ### Added
 - Introduced a new `My Stats` page where users can view their contribution statistics, including total donations, monetary and other as well as some functionality for volunteer hours.
