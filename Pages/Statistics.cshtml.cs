@@ -54,7 +54,7 @@ namespace CommunityLink.Pages
                 return RedirectToPage("/Sign-in");
             }
 
-            if (ThisUser?.Stat == null || ThisUser?.Employee == null)
+            if (ThisUser == null || ThisUser?.Employee == null)
             {
                 return RedirectToPage("/Index");
             }

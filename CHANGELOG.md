@@ -10,6 +10,10 @@ Here’s a changelog message for the `requestorServices` page that aligns with y
 
 ---
 
+## [0.5.1] - 2024-08-26
+### Fixed
+- Fixed but where employees who don't have stats couldn't access the overall statistics page
+
 ## [0.5.0] - 2024-08-25
 ### Added
 - New Statistics page where employees can view the statistics for the whole organization
