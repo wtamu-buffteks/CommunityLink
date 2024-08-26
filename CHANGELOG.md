@@ -9,6 +9,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Here’s a changelog message for the `requestorServices` page that aligns with your previous entries:
 
 ---
+
+## [0.5.1] - 2024-08-26
+### Fixed
+- Fixed the error where employees who don't have stats couldn't access the overall statistics page
+
+## [0.5.0] - 2024-08-25
+### Added
+- New Statistics page where employees can view the statistics for the whole organization
+- Added an option in the employee dropdown where employees can access the new page
+- Uses the same layout as the MyStats page
+
 ## [0.4.7] - 2024-08-23
 ### Added
 - New "Events" page accessible from the main navigation bar.
