@@ -41,6 +41,7 @@ namespace CommunityLink.Models {
                         new RequestStat{
                             Stat = volunteerUserStats,
                             RequestorUsername = "James43",
+                            OldRequestID = 997,
                             AmountDonated = 50.00f,
                             DonationDate = new DateTime(2024, 6, 10),
                             RequestTitle = "Broken Tire"
@@ -85,16 +86,263 @@ namespace CommunityLink.Models {
                     };
                     requestorUserreq.Requests.Add(
                         new Request {
-                                AmountRequested = 15000,
-                                AmountRecieved = 0,
-                                RequestDate = DateTime.Now,
-                                RequestTitle = "Medical Bill",
-                                RequestDeadline = new DateTime(2024, 8, 1),
-                                RequestDescription = "Desc",
-                                RequestStatus = "Active",
-                                Category = "Monetary",
-                                Requestor = requestorUserreq
-                            }
+                            AmountRequested = 5000,
+                            AmountRecieved = 0,
+                            RequestDate = DateTime.Now,
+                            RequestTitle = "School Supplies",
+                            RequestDeadline = new DateTime(2024, 9, 1),
+                            RequestDescription = "Raising funds to purchase school supplies for underprivileged children.",
+                            RequestStatus = "Active",
+                            Category = "Monetary",
+                            Requestor = requestorUserreq
+                        }
+                    );
+                    requestorUserreq.Requests.Add(
+                        new Request {
+                            AmountRequested = 0,
+                            AmountRecieved = 0,
+                            RequestDate = DateTime.Now,
+                            RequestTitle = "Office Renovation",
+                            RequestDeadline = new DateTime(2024, 10, 1),
+                            RequestDescription = "Volunteers needed to help with office renovation.",
+                            RequestStatus = "Active",
+                            Category = "Labor",
+                            Requestor = requestorUserreq
+                        }
+                    );
+                    requestorUserreq.Requests.Add(
+                        new Request {
+                            AmountRequested = 3000,
+                            AmountRecieved = 0,
+                            RequestDate = DateTime.Now,
+                            RequestTitle = "Community Center Fund",
+                            RequestDeadline = new DateTime(2024, 11, 15),
+                            RequestDescription = "Raising funds for the community center construction.",
+                            RequestStatus = "Active",
+                            Category = "Monetary",
+                            Requestor = requestorUserreq
+                        }
+                    );
+                    requestorUserreq.Requests.Add(
+                        new Request {
+                            AmountRequested = 0,
+                            AmountRecieved = 0,
+                            RequestDate = DateTime.Now,
+                            RequestTitle = "Art Supplies Donation",
+                            RequestDeadline = new DateTime(2024, 7, 25),
+                            RequestDescription = "We need donations of art supplies for the community art classes.",
+                            RequestStatus = "Active",
+                            Category = "Item",
+                            Requestor = requestorUserreq
+                        }
+                    );
+                    requestorUserreq.Requests.Add(
+                        new Request {
+                            AmountRequested = 7000,
+                            AmountRecieved = 0,
+                            RequestDate = DateTime.Now,
+                            RequestTitle = "Library Fund",
+                            RequestDeadline = new DateTime(2024, 8, 20),
+                            RequestDescription = "Raising funds to expand the local library.",
+                            RequestStatus = "Active",
+                            Category = "Monetary",
+                            Requestor = requestorUserreq
+                        }
+                    );
+                    requestorUserreq.Requests.Add(
+                        new Request {
+                            AmountRequested = 0,
+                            AmountRecieved = 0,
+                            RequestDate = DateTime.Now,
+                            RequestTitle = "Park Cleanup Volunteers",
+                            RequestDeadline = new DateTime(2024, 9, 10),
+                            RequestDescription = "Looking for volunteers to help clean up the local park.",
+                            RequestStatus = "Active",
+                            Category = "Labor",
+                            Requestor = requestorUserreq
+                        }
+                    );
+                    requestorUserreq.Requests.Add(
+                        new Request {
+                            AmountRequested = 2000,
+                            AmountRecieved = 0,
+                            RequestDate = DateTime.Now,
+                            RequestTitle = "Sports Equipment",
+                            RequestDeadline = new DateTime(2024, 9, 30),
+                            RequestDescription = "Raising funds to purchase sports equipment for the youth center.",
+                            RequestStatus = "Active",
+                            Category = "Monetary",
+                            Requestor = requestorUserreq
+                        }
+                    );
+                    requestorUserreq.Requests.Add(
+                        new Request {
+                            AmountRequested = 0,
+                            AmountRecieved = 0,
+                            RequestDate = DateTime.Now,
+                            RequestTitle = "Computer Donation",
+                            RequestDeadline = new DateTime(2024, 10, 5),
+                            RequestDescription = "We need donations of computers for the community center.",
+                            RequestStatus = "Active",
+                            Category = "Item",
+                            Requestor = requestorUserreq
+                        }
+                    );
+                    requestorUserreq.Requests.Add(
+                        new Request {
+                            AmountRequested = 4000,
+                            AmountRecieved = 0,
+                            RequestDate = DateTime.Now,
+                            RequestTitle = "Medical Supplies Fund",
+                            RequestDeadline = new DateTime(2024, 8, 15),
+                            RequestDescription = "Raising funds to purchase medical supplies for the health clinic.",
+                            RequestStatus = "Active",
+                            Category = "Monetary",
+                            Requestor = requestorUserreq
+                        }
+                    );
+                    requestorUserreq.Requests.Add(
+                        new Request {
+                            AmountRequested = 0,
+                            AmountRecieved = 0,
+                            RequestDate = DateTime.Now,
+                            RequestTitle = "Furniture Donations",
+                            RequestDeadline = new DateTime(2024, 9, 20),
+                            RequestDescription = "Requesting donations of furniture for the new community hall.",
+                            RequestStatus = "Active",
+                            Category = "Item",
+                            Requestor = requestorUserreq
+                        }
+                    );
+                    requestorUserreq.Requests.Add(
+                        new Request {
+                            AmountRequested = 6000,
+                            AmountRecieved = 0,
+                            RequestDate = DateTime.Now,
+                            RequestTitle = "Scholarship Fund",
+                            RequestDeadline = new DateTime(2024, 12, 1),
+                            RequestDescription = "Raising funds to provide scholarships to deserving students.",
+                            RequestStatus = "Active",
+                            Category = "Monetary",
+                            Requestor = requestorUserreq
+                        }
+                    );
+                    requestorUserreq.Requests.Add(
+                        new Request {
+                            AmountRequested = 0,
+                            AmountRecieved = 0,
+                            RequestDate = DateTime.Now,
+                            RequestTitle = "Community Garden Volunteers",
+                            RequestDeadline = new DateTime(2024, 8, 30),
+                            RequestDescription = "Looking for volunteers to help maintain the community garden.",
+                            RequestStatus = "Active",
+                            Category = "Labor",
+                            Requestor = requestorUserreq
+                        }
+                    );
+                    requestorUserreq.Requests.Add(
+                        new Request {
+                            AmountRequested = 4500,
+                            AmountRecieved = 0,
+                            RequestDate = DateTime.Now,
+                            RequestTitle = "Youth Program Fund",
+                            RequestDeadline = new DateTime(2024, 11, 10),
+                            RequestDescription = "Raising funds to support youth programs in the community.",
+                            RequestStatus = "Active",
+                            Category = "Monetary",
+                            Requestor = requestorUserreq
+                        }
+                    );
+                    requestorUserreq.Requests.Add(
+                        new Request {
+                            AmountRequested = 0,
+                            AmountRecieved = 0,
+                            RequestDate = DateTime.Now,
+                            RequestTitle = "Educational Materials Donation",
+                            RequestDeadline = new DateTime(2024, 9, 5),
+                            RequestDescription = "We need donations of educational materials for the after-school programs.",
+                            RequestStatus = "Active",
+                            Category = "Item",
+                            Requestor = requestorUserreq
+                        }
+                    );
+                    requestorUserreq.Requests.Add(
+                        new Request {
+                            AmountRequested = 3500,
+                            AmountRecieved = 0,
+                            RequestDate = DateTime.Now,
+                            RequestTitle = "Elderly Care Fund",
+                            RequestDeadline = new DateTime(2024, 10, 20),
+                            RequestDescription = "Raising funds to provide better care for the elderly in our community.",
+                            RequestStatus = "Active",
+                            Category = "Monetary",
+                            Requestor = requestorUserreq
+                        }
+                    );
+                    requestorUserreq.Requests.Add(
+                        new Request {
+                            AmountRequested = 0,
+                            AmountRecieved = 0,
+                            RequestDate = DateTime.Now,
+                            RequestTitle = "Volunteer Drivers",
+                            RequestDeadline = new DateTime(2024, 8, 25),
+                            RequestDescription = "Looking for volunteer drivers to help transport community members.",
+                            RequestStatus = "Active",
+                            Category = "Labor",
+                            Requestor = requestorUserreq
+                        }
+                    );
+                    requestorUserreq.Requests.Add(
+                        new Request {
+                            AmountRequested = 10000,
+                            AmountRecieved = 0,
+                            RequestDate = DateTime.Now,
+                            RequestTitle = "Animal Shelter Fund",
+                            RequestDeadline = new DateTime(2024, 9, 15),
+                            RequestDescription = "Raising funds to support the local animal shelter.",
+                            RequestStatus = "Active",
+                            Category = "Monetary",
+                            Requestor = requestorUserreq
+                        }
+                    );
+                    requestorUserreq.Requests.Add(
+                        new Request {
+                            AmountRequested = 0,
+                            AmountRecieved = 0,
+                            RequestDate = DateTime.Now,
+                            RequestTitle = "Cleaning Supplies Donation",
+                            RequestDeadline = new DateTime(2024, 7, 30),
+                            RequestDescription = "We need donations of cleaning supplies for the community center.",
+                            RequestStatus = "Active",
+                            Category = "Item",
+                            Requestor = requestorUserreq
+                        }
+                    );
+                    requestorUserreq.Requests.Add(
+                        new Request {
+                            AmountRequested = 8000,
+                            AmountRecieved = 0,
+                            RequestDate = DateTime.Now,
+                            RequestTitle = "Emergency Relief Fund",
+                            RequestDeadline = new DateTime(2024, 11, 1),
+                            RequestDescription = "Raising funds for emergency relief efforts in the community.",
+                            RequestStatus = "Active",
+                            Category = "Monetary",
+                            Requestor = requestorUserreq
+                        }
+                    );
+                    requestorUserreq.Requests.Add(
+                        new Request {
+                            AmountRequested = 0,
+                            AmountRecieved = 0,
+                            RequestDate = DateTime.Now,
+                            RequestTitle = "Volunteer Coordinators",
+                            RequestDeadline = new DateTime(2024, 9, 25),
+                            RequestDescription = "Looking for volunteer coordinators to help organize community events.",
+                            RequestStatus = "Active",
+                            Category = "Labor",
+                            Requestor = requestorUserreq
+                        }
                     );
                     var requestorUserStats = new Stat {
                         User = requestorUser,
@@ -129,6 +377,7 @@ namespace CommunityLink.Models {
                     var requestStat = new RequestStat {
                             Stat = volunteerEmployeeUserStats,
                             RequestorUsername = "Mark978",
+                            OldRequestID = 998,
                             DonationDate = new DateTime(2022, 6, 10),
                             RequestTitle = "Need shoes",
                             DonationStats = new List<DonationStat>{}
@@ -163,17 +412,200 @@ namespace CommunityLink.Models {
                     };
                     volunteerRequestorUserreq.Requests.Add(
                         new Request {
-                                AmountRequested = 0,
-                                AmountRecieved = 0,
-                                RequestDate = DateTime.Now,
-                                RequestTitle = "Low on dogfood",
-                                RequestDeadline = new DateTime(2024, 6, 20),
-                                RequestDescription = "Our dog shelter is low on dogfood!",
-                                RequestStatus = "Active",
-                                Category = "Item",
-                                Requestor = volunteerRequestorUserreq
-                            }
+                            AmountRequested = 0,
+                            AmountRecieved = 0,
+                            RequestDate = DateTime.Now,
+                            RequestTitle = "Office Cleaning",
+                            RequestDeadline = new DateTime(2024, 8, 1),
+                            RequestDescription = "We need volunteers to help with office cleaning.",
+                            RequestStatus = "Active",
+                            Category = "Labor",
+                            Requestor = volunteerRequestorUserreq
+                        }
                     );
+                    volunteerRequestorUserreq.Requests.Add(
+                        new Request {
+                            AmountRequested = 500,
+                            AmountRecieved = 0,
+                            RequestDate = DateTime.Now,
+                            RequestTitle = "New Computers",
+                            RequestDeadline = new DateTime(2024, 9, 15),
+                            RequestDescription = "Raising funds to purchase new computers for the office.",
+                            RequestStatus = "Active",
+                            Category = "Monetary",
+                            Requestor = volunteerRequestorUserreq
+                        }
+                    );
+                    volunteerRequestorUserreq.Requests.Add(
+                        new Request {
+                            AmountRequested = 0,
+                            AmountRecieved = 0,
+                            RequestDate = DateTime.Now,
+                            RequestTitle = "Printer Paper",
+                            RequestDeadline = new DateTime(2024, 7, 20),
+                            RequestDescription = "We are running low on printer paper and need more supplies.",
+                            RequestStatus = "Active",
+                            Category = "Item",
+                            Requestor = volunteerRequestorUserreq
+                        }
+                    );
+                    volunteerRequestorUserreq.Requests.Add(
+                        new Request {
+                            AmountRequested = 1000,
+                            AmountRecieved = 0,
+                            RequestDate = DateTime.Now,
+                            RequestTitle = "Furniture Upgrade",
+                            RequestDeadline = new DateTime(2024, 10, 5),
+                            RequestDescription = "Raising funds to upgrade office furniture.",
+                            RequestStatus = "Active",
+                            Category = "Monetary",
+                            Requestor = volunteerRequestorUserreq
+                        }
+                    );
+                    volunteerRequestorUserreq.Requests.Add(
+                        new Request {
+                            AmountRequested = 0,
+                            AmountRecieved = 0,
+                            RequestDate = DateTime.Now,
+                            RequestTitle = "Event Planning Volunteers",
+                            RequestDeadline = new DateTime(2024, 8, 30),
+                            RequestDescription = "Looking for volunteers to help plan upcoming events.",
+                            RequestStatus = "Active",
+                            Category = "Labor",
+                            Requestor = volunteerRequestorUserreq
+                        }
+                    );
+                    volunteerRequestorUserreq.Requests.Add(
+                        new Request {
+                            AmountRequested = 750,
+                            AmountRecieved = 0,
+                            RequestDate = DateTime.Now,
+                            RequestTitle = "Office Supplies Fund",
+                            RequestDeadline = new DateTime(2024, 9, 25),
+                            RequestDescription = "Raising funds to purchase general office supplies.",
+                            RequestStatus = "Active",
+                            Category = "Monetary",
+                            Requestor = volunteerRequestorUserreq
+                        }
+                    );
+                    volunteerRequestorUserreq.Requests.Add(
+                        new Request {
+                            AmountRequested = 0,
+                            AmountRecieved = 0,
+                            RequestDate = DateTime.Now,
+                            RequestTitle = "Trash Bags",
+                            RequestDeadline = new DateTime(2024, 7, 25),
+                            RequestDescription = "We need donations of trash bags for the office.",
+                            RequestStatus = "Active",
+                            Category = "Item",
+                            Requestor = volunteerRequestorUserreq
+                        }
+                    );
+                    volunteerRequestorUserreq.Requests.Add(
+                        new Request {
+                            AmountRequested = 300,
+                            AmountRecieved = 0,
+                            RequestDate = DateTime.Now,
+                            RequestTitle = "Break Room Supplies",
+                            RequestDeadline = new DateTime(2024, 8, 15),
+                            RequestDescription = "Funds needed for break room supplies like coffee and snacks.",
+                            RequestStatus = "Active",
+                            Category = "Monetary",
+                            Requestor = volunteerRequestorUserreq
+                        }
+                    );
+                    volunteerRequestorUserreq.Requests.Add(
+                        new Request {
+                            AmountRequested = 0,
+                            AmountRecieved = 0,
+                            RequestDate = DateTime.Now,
+                            RequestTitle = "Meeting Room Setup",
+                            RequestDeadline = new DateTime(2024, 8, 5),
+                            RequestDescription = "Volunteers needed to help set up the meeting room.",
+                            RequestStatus = "Active",
+                            Category = "Labor",
+                            Requestor = volunteerRequestorUserreq
+                        }
+                    );
+                    volunteerRequestorUserreq.Requests.Add(
+                        new Request {
+                            AmountRequested = 1200,
+                            AmountRecieved = 0,
+                            RequestDate = DateTime.Now,
+                            RequestTitle = "Software Licenses",
+                            RequestDeadline = new DateTime(2024, 10, 1),
+                            RequestDescription = "Funds needed to purchase new software licenses.",
+                            RequestStatus = "Active",
+                            Category = "Monetary",
+                            Requestor = volunteerRequestorUserreq
+                        }
+                    );
+                    volunteerRequestorUserreq.Requests.Add(
+                        new Request {
+                            AmountRequested = 0,
+                            AmountRecieved = 0,
+                            RequestDate = DateTime.Now,
+                            RequestTitle = "Bookshelf Donations",
+                            RequestDeadline = new DateTime(2024, 7, 30),
+                            RequestDescription = "We need donations of bookshelves for the office.",
+                            RequestStatus = "Active",
+                            Category = "Item",
+                            Requestor = volunteerRequestorUserreq
+                        }
+                    );
+                    volunteerRequestorUserreq.Requests.Add(
+                        new Request {
+                            AmountRequested = 600,
+                            AmountRecieved = 0,
+                            RequestDate = DateTime.Now,
+                            RequestTitle = "Training Program Fund",
+                            RequestDeadline = new DateTime(2024, 9, 10),
+                            RequestDescription = "Raising funds for employee training programs.",
+                            RequestStatus = "Active",
+                            Category = "Monetary",
+                            Requestor = volunteerRequestorUserreq
+                        }
+                    );
+                    volunteerRequestorUserreq.Requests.Add(
+                        new Request {
+                            AmountRequested = 0,
+                            AmountRecieved = 0,
+                            RequestDate = DateTime.Now,
+                            RequestTitle = "Stationery Supplies",
+                            RequestDeadline = new DateTime(2024, 8, 10),
+                            RequestDescription = "Requesting donations of stationery supplies.",
+                            RequestStatus = "Active",
+                            Category = "Item",
+                            Requestor = volunteerRequestorUserreq
+                        }
+                    );
+                    volunteerRequestorUserreq.Requests.Add(
+                        new Request {
+                            AmountRequested = 2000,
+                            AmountRecieved = 0,
+                            RequestDate = DateTime.Now,
+                            RequestTitle = "Conference Attendance",
+                            RequestDeadline = new DateTime(2024, 9, 20),
+                            RequestDescription = "Funds needed for attending industry conferences.",
+                            RequestStatus = "Active",
+                            Category = "Monetary",
+                            Requestor = volunteerRequestorUserreq
+                        }
+                    );
+                    volunteerRequestorUserreq.Requests.Add(
+                        new Request {
+                            AmountRequested = 0,
+                            AmountRecieved = 0,
+                            RequestDate = DateTime.Now,
+                            RequestTitle = "Kitchen Cleanup Volunteers",
+                            RequestDeadline = new DateTime(2024, 8, 22),
+                            RequestDescription = "Looking for volunteers to help clean up the office kitchen.",
+                            RequestStatus = "Active",
+                            Category = "Labor",
+                            Requestor = volunteerRequestorUserreq
+                        }
+                    );
+
                     var volunteerRequestorUserStats = new Stat {
                         User = volunteerRequestorUser,
                         DonationStats = new List<DonationStat>{},
@@ -183,6 +615,7 @@ namespace CommunityLink.Models {
                         new RequestStat{
                             Stat = volunteerUserStats,
                             RequestorUsername = "Susan777",
+                            OldRequestID = 999,
                             AmountDonated = 5000.00f,
                             DonationDate = new DateTime(2023, 12, 25),
                             RequestTitle = "Broken Tire"
@@ -209,16 +642,133 @@ namespace CommunityLink.Models {
                     };
                     employeeRequestorUserreq.Requests.Add(
                         new Request {
-                                AmountRequested = 9000,
-                                AmountRecieved = 0,
-                                RequestDate = DateTime.Now,
-                                RequestTitle = "Cat Shelter fund",
-                                RequestDeadline = new DateTime(2024, 8, 20),
-                                RequestDescription = "Summer fundrasor for cats! If you'd like to volunteer here, we can be found at the cat shelter on 2394 Dark St. Stimly NY, 94783",
-                                RequestStatus = "Active",
-                                Category = "Ammount",
-                                Requestor = employeeRequestorUserreq
-                            }
+                            AmountRequested = 2000,
+                            AmountRecieved = 0,
+                            RequestDate = DateTime.Now,
+                            RequestTitle = "Cat Food Donation",
+                            RequestDeadline = new DateTime(2024, 9, 1),
+                            RequestDescription = "We are running low on cat food and need donations to keep our cats well-fed.",
+                            RequestStatus = "Active",
+                            Category = "Monetary",
+                            Requestor = employeeRequestorUserreq
+                        }
+                    );
+                    employeeRequestorUserreq.Requests.Add(
+                        new Request {
+                            AmountRequested = 0,
+                            AmountRecieved = 0,
+                            RequestDate = DateTime.Now,
+                            RequestTitle = "Volunteer for Cat Grooming",
+                            RequestDeadline = new DateTime(2024, 8, 25),
+                            RequestDescription = "We need volunteers to help groom the cats. No prior experience needed!",
+                            RequestStatus = "Active",
+                            Category = "Labor",
+                            Requestor = employeeRequestorUserreq
+                        }
+                    );
+                    employeeRequestorUserreq.Requests.Add(
+                        new Request {
+                            AmountRequested = 1500,
+                            AmountRecieved = 0,
+                            RequestDate = DateTime.Now,
+                            RequestTitle = "Cat Medical Supplies",
+                            RequestDeadline = new DateTime(2024, 10, 5),
+                            RequestDescription = "Funds needed to purchase medical supplies for sick and injured cats.",
+                            RequestStatus = "Active",
+                            Category = "Monetary",
+                            Requestor = employeeRequestorUserreq
+                        }
+                    );
+                    employeeRequestorUserreq.Requests.Add(
+                        new Request {
+                            AmountRequested = 0,
+                            AmountRecieved = 0,
+                            RequestDate = DateTime.Now,
+                            RequestTitle = "Cat Adoption Event Volunteers",
+                            RequestDeadline = new DateTime(2024, 8, 30),
+                            RequestDescription = "Looking for volunteers to help out at our cat adoption event.",
+                            RequestStatus = "Active",
+                            Category = "Labor",
+                            Requestor = employeeRequestorUserreq
+                        }
+                    );
+                    employeeRequestorUserreq.Requests.Add(
+                        new Request {
+                            AmountRequested = 3000,
+                            AmountRecieved = 0,
+                            RequestDate = DateTime.Now,
+                            RequestTitle = "Cat Shelter Renovations",
+                            RequestDeadline = new DateTime(2024, 11, 15),
+                            RequestDescription = "Raising funds to renovate and expand our cat shelter.",
+                            RequestStatus = "Active",
+                            Category = "Monetary",
+                            Requestor = employeeRequestorUserreq
+                        }
+                    );
+                    employeeRequestorUserreq.Requests.Add(
+                        new Request {
+                            AmountRequested = 0,
+                            AmountRecieved = 0,
+                            RequestDate = DateTime.Now,
+                            RequestTitle = "Cat Toy Donations",
+                            RequestDeadline = new DateTime(2024, 9, 20),
+                            RequestDescription = "We need donations of cat toys to keep our feline friends entertained.",
+                            RequestStatus = "Active",
+                            Category = "Item",
+                            Requestor = employeeRequestorUserreq
+                        }
+                    );
+                    employeeRequestorUserreq.Requests.Add(
+                        new Request {
+                            AmountRequested = 4000,
+                            AmountRecieved = 0,
+                            RequestDate = DateTime.Now,
+                            RequestTitle = "Winter Heating for Cat Shelter",
+                            RequestDeadline = new DateTime(2024, 12, 1),
+                            RequestDescription = "Funds needed to ensure the shelter stays warm during the winter months.",
+                            RequestStatus = "Active",
+                            Category = "Monetary",
+                            Requestor = employeeRequestorUserreq
+                        }
+                    );
+                    employeeRequestorUserreq.Requests.Add(
+                        new Request {
+                            AmountRequested = 0,
+                            AmountRecieved = 0,
+                            RequestDate = DateTime.Now,
+                            RequestTitle = "Cat Litter Supply",
+                            RequestDeadline = new DateTime(2024, 10, 10),
+                            RequestDescription = "Requesting donations of cat litter for our shelter.",
+                            RequestStatus = "Active",
+                            Category = "Item",
+                            Requestor = employeeRequestorUserreq
+                        }
+                    );
+                    employeeRequestorUserreq.Requests.Add(
+                        new Request {
+                            AmountRequested = 2500,
+                            AmountRecieved = 0,
+                            RequestDate = DateTime.Now,
+                            RequestTitle = "Cat Enrichment Activities",
+                            RequestDeadline = new DateTime(2024, 9, 15),
+                            RequestDescription = "Funds needed for enrichment activities and supplies for the cats.",
+                            RequestStatus = "Active",
+                            Category = "Monetary",
+                            Requestor = employeeRequestorUserreq
+                        }
+                    );
+                    employeeRequestorUserreq.Requests.Add(
+                        new Request {
+                            AmountRequested = 0,
+                            AmountRecieved = 0,
+                            RequestDate = DateTime.Now,
+                            RequestTitle = "Cat Rescue Volunteers",
+                            RequestDeadline = new DateTime(2024, 8, 28),
+                            RequestDescription = "Looking for volunteers to assist in rescuing and transporting cats in need.",
+                            RequestStatus = "Active",
+                            Category = "Labor",
+                            Requestor = employeeRequestorUserreq
+                        }
                     );
                     var employeeRequestorUserStats = new Stat {
                         User = employeeRequestorUser,
@@ -251,16 +801,81 @@ namespace CommunityLink.Models {
                     };
                     allUserreq.Requests.Add(
                         new Request {
-                                AmountRequested = 0,
-                                AmountRecieved = 0,
-                                RequestDate = DateTime.Now,
-                                RequestTitle = "Food Drive",
-                                RequestDeadline = new DateTime(2024, 6, 20),
-                                RequestDescription = "We need aditional hands at the food drive on the 20th, any help is needed!",
-                                RequestStatus = "Active",
-                                Category = "Labor",
-                                Requestor = allUserreq
-                            }
+                            AmountRequested = 0,
+                            AmountRecieved = 0,
+                            RequestDate = DateTime.Now,
+                            RequestTitle = "Food Drive",
+                            RequestDeadline = new DateTime(2024, 6, 20),
+                            RequestDescription = "We need additional hands at the food drive on the 20th, any help is needed!",
+                            RequestStatus = "Active",
+                            Category = "Labor",
+                            Requestor = allUserreq
+                        }
+                    );
+                    allUserreq.Requests.Add(
+                        new Request {
+                            AmountRequested = 0,
+                            AmountRecieved = 0,
+                            RequestDate = DateTime.Now,
+                            RequestTitle = "Office Supplies",
+                            RequestDeadline = new DateTime(2024, 7, 15),
+                            RequestDescription = "We need additional office supplies, including pens, paper, and staplers.",
+                            RequestStatus = "Active",
+                            Category = "Item",
+                            Requestor = allUserreq
+                        }
+                    );
+                    allUserreq.Requests.Add(
+                        new Request {
+                            AmountRequested = 500,
+                            AmountRecieved = 0,
+                            RequestDate = DateTime.Now,
+                            RequestTitle = "Charity Fundraiser",
+                            RequestDeadline = new DateTime(2024, 8, 1),
+                            RequestDescription = "Raising funds for the annual charity event to support local shelters.",
+                            RequestStatus = "Active",
+                            Category = "Monetary",
+                            Requestor = allUserreq
+                        }
+                    );
+                    allUserreq.Requests.Add(
+                        new Request {
+                            AmountRequested = 0,
+                            AmountRecieved = 0,
+                            RequestDate = DateTime.Now,
+                            RequestTitle = "Community Clean-Up",
+                            RequestDeadline = new DateTime(2024, 9, 10),
+                            RequestDescription = "Volunteers needed for a community clean-up event. All help is appreciated.",
+                            RequestStatus = "Active",
+                            Category = "Labor",
+                            Requestor = allUserreq
+                        }
+                    );
+                    allUserreq.Requests.Add(
+                        new Request {
+                            AmountRequested = 1000,
+                            AmountRecieved = 0,
+                            RequestDate = DateTime.Now,
+                            RequestTitle = "Medical Supplies Donation",
+                            RequestDeadline = new DateTime(2024, 7, 30),
+                            RequestDescription = "We are in need of funds to purchase medical supplies for the local clinic.",
+                            RequestStatus = "Active",
+                            Category = "Monetary",
+                            Requestor = allUserreq
+                        }
+                    );
+                    allUserreq.Requests.Add(
+                        new Request {
+                            AmountRequested = 0,
+                            AmountRecieved = 0,
+                            RequestDate = DateTime.Now,
+                            RequestTitle = "Event Setup Crew",
+                            RequestDeadline = new DateTime(2024, 8, 25),
+                            RequestDescription = "Looking for volunteers to help set up for the upcoming event. Any assistance is welcome.",
+                            RequestStatus = "Active",
+                            Category = "Labor",
+                            Requestor = allUserreq
+                        }
                     );
                     var allUserStats = new Stat {
                         User = allUser,

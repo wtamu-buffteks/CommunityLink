@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -25,5 +26,7 @@ namespace CommunityLink.Models {
         public string? RequestStatus { get; set; }
         [StringLength(25)]
         public string? Category { get; set; }
+
+         public List<Inventory> Inventory { get; set; } = new List<Inventory>();
     }
 }

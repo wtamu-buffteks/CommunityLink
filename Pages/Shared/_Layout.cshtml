@@ -1,4 +1,5 @@
 ﻿@using Microsoft.AspNetCore.Http
+@inject IMessageService MessageService
 @inject IHttpContextAccessor HttpContextAccessor
 <!DOCTYPE html>
 <html lang="en">
@@ -33,22 +34,32 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item navbarText">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+                        </li>                        
+                        <li class="nav-item navbarText">
                             <a class="nav-link text-dark" asp-area="" asp-page="/About">About</a>
                         </li>
                         <li class="nav-item navbarText">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Donate">Donate</a>
                         </li>
                         <li class="nav-item navbarText">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Volunteer</a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Volunteer">Volunteer</a>
                         </li>
                         <li class="nav-item navbarText">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Events</a>
-                        </li><!--Will have more appear once sign in is functional-->
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Events">Events</a>
+                        </li>
                         <li class="nav-item navbarText">
-                            <a class="nav-link" asp-area="" asp-page="/Index">Request</a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/requestorServices">Request</a>
                         </li>
                         @if (HttpContextAccessor.HttpContext.Request.Cookies.TryGetValue("Username", out string? username) || !string.IsNullOrEmpty(HttpContextAccessor.HttpContext.Session.GetString("Username")))
                         {
+                            <div class="my-account-select nav-item navbarText">
+                                <select class="form-select" id="userAccountSelect" onchange="handleUserAccountOption(this)">
+                                    <option value="">Account</option>
+                                    <option value="/MyProfile">My Profile</option>
+                                    <option value="/MyStatistics">My Stats</option>
+                                </select>
+                            </div>
                             <li class="nav-item navbarText">
                                 <a class="nav-link text-dark" asp-area="" asp-page="/SignOut">Sign Out</a>
                             </li>
@@ -64,6 +75,31 @@
             </div>
         </nav>
     </header>
+
+    @if (!string.IsNullOrEmpty(HttpContextAccessor.HttpContext.Session.GetString("IsEmployee")) && HttpContextAccessor.HttpContext.Session.GetString("IsEmployee") == "true") {
+        <div class="employee-actions-select">
+            <select class="form-select" id="employeeActionsSelect" onchange="handleEmployeeActionChange(this)">
+                <option value="">Employee Actions</option>
+                <option value="/RequestManagement">Request Management</option>
+                <option value="/Inventory">Inventory Management</option>
+                <option value="/EventManagement">Event Management</option>
+                <option value="/Statistics">Statistics</option>
+                @if (!string.IsNullOrEmpty(HttpContextAccessor.HttpContext.Session.GetString("IsAdmin")) && HttpContextAccessor.HttpContext.Session.GetString("IsAdmin") == "true") {
+                    <option value="/LocationManagement">Location Management</option>
+                    <option value="/UserManagement">User Management</option>
+                    <!-- Add more admin actions here -->
+                }
+            </select>
+        </div>
+    }
+
+    @if (!string.IsNullOrEmpty(HttpContextAccessor.HttpContext.Session.GetString("Username"))){
+        int userId = HttpContextAccessor.HttpContext.Session.GetInt32("UserID") ?? 0;
+        <div class="floating-icon @(MessageService.HasActionNeeded(userId) ? "icon-red" : (MessageService.HasUnreadMessages(userId) ? "icon-yellow" : "icon-white"))" onClick="window.location.href='/Messages'">
+            <p>✉</p>
+            <span class="message-count">@MessageService.TotalMessagesCount(userId)</span>
+        </div>
+    }
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
@@ -79,6 +115,21 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <script>
+        function handleEmployeeActionChange(selectElement) {
+            var selectedValue = selectElement.value;
+            if (selectedValue) {
+                window.location.href = selectedValue;
+            }
+        }
+        function handleUserAccountOption(selectElement) {
+            var selectedValue = selectElement.value;
+            if (selectedValue) {
+                window.location.href = selectedValue;
+            }
+        }
+    </script>
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>

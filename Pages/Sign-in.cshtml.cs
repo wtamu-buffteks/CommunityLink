@@ -31,23 +31,28 @@ public class SignInModel : PageModel
 
     [BindProperty]
     public string Email { get; set; } = string.Empty;
+    [BindProperty]
     public string PhoneNumber { get; set; } = string.Empty;
 
     public IActionResult OnPostSignIn()
     {
-        var user = _context.Users.SingleOrDefault(u => u.Username == Username);
+        var user = _context.Users
+                            .Include(u => u.Employee) // Ensure Employee is eagerly loaded
+                            .SingleOrDefault(u => u.Username == Username);
         if (user != null && user.ValidatePassword(Password))
         {
             // Set session variables If the user blocks the cookie, the program will use this
             HttpContext.Session.SetString("Username", user.Username);
             HttpContext.Session.SetInt32("UserID", user.UserID);
+            HttpContext.Session.SetString("IsEmployee", user.Employee != null ? "true" : "false"); //not stored as a cookie for security purposes
+            HttpContext.Session.SetString("IsAdmin", user.Employee != null && user.Employee.Role == "Admin" ? "true" : "false");
 
             //cookie setup. Will last 7 days
             var options = new CookieOptions {Expires = System.DateTime.Now.AddDays(7)};
             Response.Cookies.Append("Username", user.Username, options);
             Response.Cookies.Append("UserID", user.UserID.ToString(), options);
 
-            // Handle successful sign-in
+            // Handle successful sign-in 
             return RedirectToPage("/Index");
         }
 
@@ -70,12 +75,27 @@ public class SignInModel : PageModel
             Email = Email,
             PhoneNumber = PhoneNumber
         };
+        Console.WriteLine(newUser.PhoneNumber);
         newUser.SetPassword(NewPassword);
         _context.Users.Add(newUser);
         _context.SaveChanges();
 
-        // Handle successful registration
-        return RedirectToPage("/Index");
+        var user = _context.Users.SingleOrDefault(u => u.Username == NewUsername);
+        if (user != null) {
+            // Set session variables If the user blocks the cookie, the program will use this
+            HttpContext.Session.SetString("Username", user.Username);
+            HttpContext.Session.SetInt32("UserID", user.UserID);
+
+            //cookie setup. Will last 7 days
+            var options = new CookieOptions {Expires = System.DateTime.Now.AddDays(7)};
+            Response.Cookies.Append("Username", user.Username, options);
+            Response.Cookies.Append("UserID", user.UserID.ToString(), options);
+
+            // Handle successful sign-in
+            return RedirectToPage("/Index");
+        }
+        // return to the login page if all fails
+        return Page();
     }
 
     public void OnGet() {

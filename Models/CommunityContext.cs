@@ -135,19 +135,25 @@ namespace CommunityLink.Models {
                 .HasMany(il => il.Inventory)
                 .WithOne(i => i.InventoryLocation)
                 .HasForeignKey(i => i.LocationID)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.SetNull);
             // PlannedEvent to Inventory relationship
             modelBuilder.Entity<PlannedEvent>()
                 .HasMany(pe => pe.Inventory)
                 .WithOne(i => i.PlannedEvent)
                 .HasForeignKey(i => i.EventID)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.SetNull);
             // InventoryLocation to InventoryPhone relationship
             modelBuilder.Entity<InventoryLocation>()
                 .HasMany(il => il.InventoryPhone)
                 .WithOne(ip => ip.InventoryLocation)
                 .HasForeignKey(ip => ip.LocationID)
                 .OnDelete(DeleteBehavior.Cascade);
+            // Request to Inventory relationship
+            modelBuilder.Entity<Request>()
+                .HasMany(r => r.Inventory)
+                .WithOne(i => i.Request)
+                .HasForeignKey(i => i.RequestID)
+                .OnDelete(DeleteBehavior.SetNull);
         }
     }
 }

@@ -1,6 +1,110 @@
-﻿@page
+﻿@page "requestId:int"
 @model MyApp.Namespace.DonationModel
 @{
     ViewData["Title"] = "Monetary Donation Page";
-
 }
+
+<div class="spacerFromTop">
+</div>
+
+<div>
+    <h1 id="yourDonation">Your Donation</h1>
+    <p class="BodyBlack alignTextCenter">Thank you for your donation!</p>
+</div>
+
+<hr>
+
+<form method="post">
+    <input type="hidden" asp-for="ThisRequest.RequestID" value="@Model.ThisRequest?.RequestID" />
+        <div id="iWantToGive">
+            <p class="donationH1">I Want to Give</p>
+            <div class="radio-group">
+                <label asp-for="GiveAmount" class="radio-button" id="Ten">
+                    <input type="radio" name="giveAmount" value="10">
+                    <span class="radio-text">$10</span>
+                </label>
+                <label asp-for="GiveAmount" class="radio-button" id="Twenty">
+                    <input type="radio" name="giveAmount" value="20">
+                    <span class="radio-text">$20</span>
+                </label>
+                <label asp-for="GiveAmount" class="radio-button" id="TwoFive">
+                    <input type="radio" name="giveAmount" value="25">
+                    <span class="radio-text">$25</span>
+                </label>
+                <label asp-for="GiveAmount" class="radio-button" id="ThreeFive">
+                    <input type="radio" name="giveAmount" value="35">
+                    <span class="radio-text">$35</span>
+                </label>
+                <label asp-for="GiveAmount" class="radio-button" id="Fifty">
+                    <input type="radio" name="giveAmount" value="50">
+                    <span class="radio-text">$50</span>
+                </label>
+                <hr>
+            </div>
+        </div>
+        <div id="otherAmountDiv">
+            <label asp-for="GiveAmount" class="radio-button" id="otherDollarAmount">
+                <input type="radio" name="giveAmount" value="Other">
+                <span class="radio-text">Other</span>
+            </label>
+            <div id="OtherAmount">
+                <label for="otherAmountInput" class="form-label"></label>
+                <input class="form-control form-control-lg" type="text" placeholder="other donation amount"
+                    aria-label=".form-control-lg otherAmount">
+                <div id="otherDonationHelpBlock" class="form-text">
+                    $10 is the minimum online donation. All donations are tax deductible.
+                </div>
+            </div>
+        </div>
+        <hr>
+        <h1 class="donationH1">Request:</h1>
+        <div>
+            <p><strong>Request Title:</strong> @Model.ThisRequest?.RequestTitle</p>
+            <p><strong>Request Description:</strong> @Model.ThisRequest?.RequestDescription</p>
+            <p><strong>Requested Amount:</strong> @Model.ThisRequest?.AmountRequested.ToString("c")</p>
+            <p><strong>Amount Received:</strong> @Model.ThisRequest?.AmountRecieved.ToString("c")</p>
+        </div>
+        <hr>
+        <h1 class="donationH1">Donor:</h1>
+        <div>
+            <p><strong>Username:</strong> @Model.ThisUser?.Username</p>
+        </div>
+        <hr>
+        <h2 class="donationH2">Payment Details</h2>
+        <div class="form-group">
+            <label asp-for="CardNumber">Card Number</label>
+            <input asp-for="CardNumber" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="CardHolderName">Cardholder Name</label>
+            <input asp-for="CardHolderName" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="ExpiryDate">Expiry Date</label>
+            <input asp-for="ExpiryDate" class="form-control" placeholder="MM/YY" />
+        </div>
+        <div class="form-group">
+            <label asp-for="CVC">CVC</label>
+            <input asp-for="CVC" class="form-control" />
+        </div>
+        <div id="buttonCenter">
+            <button class="rightLeftMargin BodyBlack" id="submitDonationButton" type="submit">Submit Donation</button>
+        </div>
+    @* <div>
+    <p>Selected Frequency: @Model.DonationFrequency</p>
+    <p>Selected Amount: @Model.GiveAmount</p>
+    </div> *@
+    <script>
+        document.getElementById("otherDollarAmount").addEventListener("click", function () { document.getElementById("OtherAmount").style.display = "flex" });
+
+        function hideOtherBox() {
+            document.getElementById("OtherAmount").style.display = "none"
+        }
+        document.getElementById("Ten").addEventListener("click", hideOtherBox);
+        document.getElementById("Twenty").addEventListener("click", hideOtherBox);
+        document.getElementById("TwoFive").addEventListener("click", hideOtherBox);
+        document.getElementById("ThreeFive").addEventListener("click", hideOtherBox);
+        document.getElementById("Fifty").addEventListener("click", hideOtherBox);
+    </script>
+
+</form>

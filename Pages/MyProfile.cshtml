@@ -1,0 +1,79 @@
+@page
+@model CommunityLink.Pages.MyPageModel
+@{
+    ViewData["Title"] = "My Profile";
+}
+
+<div class="spacerFromTop"></div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="text-center">
+                <h1 class="display-4">My Profile</h1>
+                <div id="welcomeInfo"></div>
+            </div>
+
+            <form method="post">
+                <div class="form-row">
+                    <div>
+                        <label asp-for="Username"></label>
+                        <input asp-for="Username" class="form-control" required />
+                    </div>
+                    <div>
+                        <label asp-for="Email"></label>
+                        <input asp-for="Email" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div>
+                        <label asp-for="CurrentPassword">Confirm Password</label>
+                        <input asp-for="CurrentPassword" class="form-control" type="password" />
+                    </div>
+                    <div>
+                        <label asp-for="NewPassword">New Password</label>
+                        <input asp-for="NewPassword" class="form-control" type="password" />
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div>
+                        <label asp-for="PhoneNumber">Phone Number</label>
+                        <input asp-for="PhoneNumber" class="form-control" />
+                    </div>
+                    <div>
+                        <label asp-for="FullName">Full Name</label>
+                        <input asp-for="FullName" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div>
+                        <label asp-for="UserLocation">Address</label>
+                        <input asp-for="UserLocation" class="form-control" />
+                    </div>
+                    <div>
+                        <label for="Role">Employee Role</label>
+                        <input type="text" class="form-control" id="Role" name="Role" value="@(Model.ThisUser?.Employee?.Role ?? "N/A")" readonly />
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div>
+                        <input asp-for="IsVolunteer" class="form-check-input" />
+                        <label asp-for="IsVolunteer" class="form-check-label"></label>
+                    </div>
+                    <div>
+                        <input asp-for="IsRequestor" class="form-check-input" />
+                        <label asp-for="IsRequestor" class="form-check-label"></label>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary mt-3">Update</button>
+            </form>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>

@@ -3,43 +3,220 @@
 @{
     ViewData["Title"] = "Home page";
 }
-<div class="spacerFromTop">
-</div>
 
-<img src="" alt="Removed placeholderIndex.svg for now. Please incorporate the design elements into Index.cshtml normally. See [0.2.4] in the Changelog for more" loading="lazy"> <!--/images/placeholderIndex.svg really hurts loading time and would destroy the SEO of any website that uses it-->
+@* 
+Template adapted from Bootstrap Carousel Template
+Original Author: Mark Otto, Jacob Thornton, and Bootstrap contributors
+Bootstrap Version: v5.0
+Source: https://getbootstrap.com/docs/5.0/examples/carousel/
+*@
+
+
+
+@* <div class="spacerFromTop"></div> *@
+<div style="margin-top: 134px;"></div>
+
+@* <img src=""
+    alt="Removed placeholderIndex.svg for now. Please incorporate the design elements into Index.cshtml normally. See [0.2.4] in the Changelog for more"
+    loading="lazy"> *@
+<!--/images/placeholderIndex.svg really hurts loading time and would destroy the SEO of any website that uses it-->
 
 <!--Temporary placeholder to show that you are signed in-->
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
     <div id="welcomeInfo">
-        @if (!string.IsNullOrEmpty(Model.Username))
-        {
-            <p>Welcome, @Model.Username!</p>
-        }
-        else
-        {
-            <p>Welcome to Community Link!</p>
-        }
+        <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <!-- Slide 1: Welcome Message -->
+                <div class="carousel-item active" style="background-color: rgba(9, 100, 207, 0.733);">
+                    <img src="/images/communityLinkLogo.png" class="d-block w-100" alt="Volunteers helping people" style="object-fit: contain; height: 100%;" loading="lazy">
+                    
+                    <div class="container">
+                        <div class="carousel-caption text-start" style="background-color:rgba(255, 255, 255, 0);">
+                            @if (!string.IsNullOrEmpty(Model.Username))
+                            {
+                                <h1>Welcome, @Model.Username!</h1>
+                                <p>Your journey starts here. Explore more of our features and discover how you can make a difference today!</p>
+                            }
+                            else
+                            {
+                                <h1>Welcome to Community Link!</h1>
+                                <p>Your journey starts here. Sign in or Create an account to explore more of our features and discover how you can make a difference today!</p>
+                                <div class="d-flex align-items-start mt-3">
+                                    <a class="btn btn-lg btn-primary me-2" href="/Sign-in">Create Account</a>
+                                    
+                                    <a class="btn btn-lg btn-primary" href="/Sign-in">Sign In</a>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <!-- Slide 2 -->
+                <div class="carousel-item">
+                    <img src="/images/VolunteerPeople.png" class="d-block w-100" alt="A Group of Volunteers Assisting an Elderly Person on a Black Wheelchair For Charity" style="object-fit: cover; height: 100%;" loading="lazy">
+
+                    <div class="container">
+                        <div class="carousel-caption">
+                            <h1>Get Involved!</h1>
+                            <p>At Community Link, every contribution counts. Whether you’re volunteering your time, donating goods, or fulfilling a request, your involvement makes a real difference.</p>
+                            <p><a class="btn btn-lg btn-primary" href="/Donate">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Slide 3 -->
+                <div class="carousel-item">
+                    <img src="/images/HelpingEventLine.png" class="d-block w-100" alt="Volunteers formed in a line passing boxes down the line" style="object-fit: cover; height: 100%;" loading="lazy">                    
+                    <div class="container">
+                        <div class="carousel-caption text-end">
+                            <h1>Need Support? We’re Here for You</h1>
+                            <p>Whether you need help with a specific request or are looking for resources, our community is ready to assist. Reach out today and find the support you need.</p>
+                            <p><a class="btn btn-lg btn-primary" href="/About">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
     </div>
-</div>
 
-@* <div class="flexContainer">
-<div class="indexBlueBox">
-<div class="inside-full-height" style="background-image: url(/images/donationbins.png);" id="leftImgIndex" loading="lazy">
-</div>
 
-<p id="centerIndexText" class="bodyWhite">
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-ex
-ea commodo consequat.
-</p>
-<div class="emptyFlexRight"></div>
-</div>
 
-</div>
 
-<div class="imageContainer">
-<img src="/images/verticalDonationBins.png" alt="vertical image of volunteers sorting donation bins"
-class="indexImage" id="rightImgIndex" loading="lazy">
-</div> *@
+    <!-- Marketing messaging and featurettes
+  ================================================== -->
+    <!-- Wrap the rest of the page in another container to center all the content. -->
+
+    <div class="container marketing">
+
+        <!-- Three columns of text below the carousel -->
+        <div class="row">
+            <div class="col-lg-4">
+
+                <img src="/images/DonateSignFood.png" class="rounded-circle" width="140" height="140" alt="A Cardboard sign amidst pile of food with Donate Inscription " style="object-fit: cover;" loading="lazy">
+
+                <h2>Donate</h2>
+                <p>Your generosity fuels our mission. Every contribution, big or small, helps us provide vital resources and support to those in need. <br>
+                Give today and be the spark that ignites positive change. </p>
+                <p><a class="btn btn-primary" href="/Donate">Learn More</a></p>
+
+            </div><!-- /.col-lg-4 -->
+
+            <div class="col-lg-4">
+
+                <img src="/images/DonateLabor.png" class="rounded-circle" width="140" height="140" alt="A Volunteer Cleaning an Elderly Man's Yard" style="object-fit: cover;" loading="lazy">
+
+                <h2>About Us</h2>
+                <p>At Community Link, we believe in the power of connection. Whether it's through volunteering, donating, or simply reaching out, every action you take helps build a stronger, more supportive community. <br>
+                Join us in our mission to make the world a better place, one act of kindness at a time.</p>
+                <p><a class="btn btn-primary" href="/About">Learn More</a></p>
+
+            </div><!-- /.col-lg-4 -->
+
+            <div class="col-lg-4">
+
+                <img src="/images/HelpingEvent.png" class="rounded-circle" width="140" height="140" alt="Volunteers Talking with People with Down Syndrome" style="object-fit: cover;" loading="lazy">
+
+                <h2>Events</h2>
+                <p>Get involved in our upcoming events! From community clean-ups to charity runs and food banks/drives, there's something for everyone. <br>
+                Mark your calendar and be part of something bigger.</p>
+                <p><a class="btn btn-primary" href="#">Learn More</a></p>
+
+            </div><!-- /.col-lg-4 -->
+        </div><!-- /.row -->
+
+    </div>
+
+    <!-- START THE FEATURETTES -->
+    <div class="container featurette">
+
+        <hr class="featurette-divider">
+    
+        <div class="row">
+            <div class="col-md-7">
+                <h2 class="featurette-heading">Events: Discover What’s Happening <span class="text-muted">Help your Community today!</span></h2>
+                <p class="lead">Our community is vibrant, and our events reflect that energy. Whether it’s a local cleanup, a charity run, or a workshop, every event is an opportunity to make a difference. We bring people together to create real, lasting change. Join us and experience the joy of giving back.<br>
+                
+                From neighborhood gatherings to large-scale initiatives, there's something for everyone. Explore our event calendar, sign up, and see how your involvement can shape our community’s future. Get ready to connect, engage, and be inspired by the power of collective action.</p>
+
+                <a class="btn btn-primary" href="#">Learn More</a>
+            </div>
+
+            <div class="col-md-5 featurette-item">
+                <img src="/images/HolidayGivingEvent.png" class="d-block w-100" alt="Volunteer Giving Away Christmas Presents in City" style="object-fit: cover; height: 100%;"loading="lazy">
+            </div>
+
+        </div>
+
+        <hr class="featurette-divider">
+
+        <div class="row">
+            <div class="col-md-7">
+                <h2 class="featurette-heading">Requesting Assistance: <span class="text-muted">We’re Here for You</span></h2>
+                <p class="lead">At Community Link, we understand that everyone needs a helping hand from time to time. Whether you’re facing a temporary setback or a more long-term challenge, our community is here to support you. We aim to connect you with valuable resources and extend a helping hand within your community. Whether you need support or are ready to offer it, through donating or volunteering, there’s a place for everyone to make a difference.<br>
+                
+                You don’t have to go through it alone. Reach out to us, and we’ll connect you with the resources and support that can make a real difference in your life. Our community is built on compassion, and we’re here to ensure that no one falls through the cracks. Take the first step towards getting the help you need—because at Community Link, we’re stronger together. </p>
+
+                @if (!string.IsNullOrEmpty(Model.Username))
+                {
+                    <a class="btn btn-md btn-primary me-2" href="/requestorServices">Request</a>
+                }
+                else
+                {
+                        <a class="btn btn-md btn-primary me-2" href="/Sign-in">Create Account</a>
+                        <a class="btn btn-md btn-primary" href="/Sign-in">Sign In</a>
+                    
+                }
+                <div class="d-flex flex-column align-items-center mt-3">
+                    <a class="btn btn-md btn-primary" href="/About">Learn More</a>
+                </div>            
+            </div>
+
+            <div class="col-md-5 featurette-item">
+                <img src="/images/DeliveryToElderly.png" class="d-block w-100" alt="A Man Holding a Plastic Crate of Food while Assisting an Elderly Man"style="object-fit: cover; height: 100%;"loading="lazy">
+            </div>
+
+        </div>
+
+        <hr class="featurette-divider">
+
+        <div class="row">
+            <div class="col-md-5 featurette-item">
+                <img src="/images/SweepingSidewalk.png" class="d-block w-100" alt="Volunteers sweeping the sidewalk" style="object-fit: cover; height: 100%;"loading="lazy">
+            </div>
+
+            <div class="col-md-7">
+                <h2 class="featurette-heading">Volunteering and Donating: <span class="text-muted">Your Impact, Our Mission</span></h2>
+                <p class="lead">Volunteering is at the heart of Community Link. When you donate your time or resources, you’re doing more than just helping out—you’re building a foundation of support that others can rely on. Every hour volunteered, every dollar donated, fuels our mission to support those in need and strengthen our community.<br>
+                
+                Imagine the difference you can make: mentoring a child, assisting at a food bank, or simply lending a listening ear. These are more than just acts of service; they are investments in humanity. And your donations? They directly support the programs and initiatives that change lives every day. See for yourself how your contributions can have a ripple effect across our community by donating or volunteering to a request directly!</p>
+                
+                @if (!string.IsNullOrEmpty(Model.Username))
+                {
+                    <a class="btn btn-md btn-primary me-2" href="/Volunteer">Donate/Volunteer</a>
+                }
+                else
+                {
+                        <a class="btn btn-md btn-primary me-2" href="/Sign-in">Create Account</a>
+                        <a class="btn btn-md btn-primary" href="/Sign-in">Sign In</a>
+                    
+                }
+                <div class="d-flex flex-column align-items-center mt-3">
+                    <a class="btn btn-md btn-primary" href="/Donate">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /END THE FEATURETTES -->
+</div>

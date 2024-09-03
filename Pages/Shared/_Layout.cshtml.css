@@ -2,7 +2,7 @@
 for details on configuring this project to bundle and minify static web assets. */
 .navbar {
   font-family: "Bricolage Grotesque", 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  font-size: 24px;
+  font-size: 22px;
 }
 
 a.navbar-brand {
@@ -57,4 +57,71 @@ button.accept-policy {
 
 #blueHead {
   color: #0B64CF;
+}
+
+.employee-actions-select {
+  position: fixed;
+  top: 140px;
+  right: 20px;
+  z-index: 1000; /* To ensure it appears above other elements */
+}
+
+.form-select {
+  width: auto;
+  display: inline-block;
+}
+
+.floating-icon {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #1b6ec2;
+  padding: 10px;
+  border-radius: 50%;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  font-size: 20px;
+  cursor: pointer; /* This makes the pointer appear */
+  z-index: 1000; /* Ensures the icon stays on top */
+}
+
+.floating-icon p {
+  margin: 0px;
+}
+
+.icon-white {
+  background-color: #1b6ec2;
+  color: white;
+}
+
+.icon-yellow {
+  background-color: #feaa00;
+  color: black;
+}
+
+.icon-red {
+  background-color: red;
+  color: white;
+}
+
+.message-count {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: black;
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+}
+
+.my-account-select .form-select {
+  width: auto;
+  display: inline-block;
+  border: none; /* Remove border */
+  background-color: transparent; /* Make background transparent */
+  font-size: inherit; /* Ensure the font size is consistent with the navbar */
 }

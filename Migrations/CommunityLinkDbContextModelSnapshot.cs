@@ -19,7 +19,7 @@ namespace CommunityLink.Migrations
                 .HasAnnotation("ProductVersion", "8.0.6")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("CharityLink.Models.ActionNeeded", b =>
+            modelBuilder.Entity("CommunityLink.Models.ActionNeeded", b =>
                 {
                     b.Property<int>("ActionNeededId")
                         .ValueGeneratedOnAdd()
@@ -50,7 +50,7 @@ namespace CommunityLink.Migrations
                     b.ToTable("ActionNeededs");
                 });
 
-            modelBuilder.Entity("CharityLink.Models.Animal", b =>
+            modelBuilder.Entity("CommunityLink.Models.Animal", b =>
                 {
                     b.Property<int>("AnimalID")
                         .ValueGeneratedOnAdd()
@@ -73,7 +73,7 @@ namespace CommunityLink.Migrations
                     b.ToTable("Animals");
                 });
 
-            modelBuilder.Entity("CharityLink.Models.DonationStat", b =>
+            modelBuilder.Entity("CommunityLink.Models.DonationStat", b =>
                 {
                     b.Property<int>("DonationStatID")
                         .ValueGeneratedOnAdd()
@@ -108,7 +108,7 @@ namespace CommunityLink.Migrations
                     b.ToTable("DonationStats");
                 });
 
-            modelBuilder.Entity("CharityLink.Models.Edible", b =>
+            modelBuilder.Entity("CommunityLink.Models.Edible", b =>
                 {
                     b.Property<int>("EdibleID")
                         .ValueGeneratedOnAdd()
@@ -128,7 +128,7 @@ namespace CommunityLink.Migrations
                     b.ToTable("Edibles");
                 });
 
-            modelBuilder.Entity("CharityLink.Models.Employee", b =>
+            modelBuilder.Entity("CommunityLink.Models.Employee", b =>
                 {
                     b.Property<int>("EmployeeID")
                         .ValueGeneratedOnAdd()
@@ -153,11 +153,14 @@ namespace CommunityLink.Migrations
                     b.ToTable("Employees");
                 });
 
-            modelBuilder.Entity("CharityLink.Models.Inventory", b =>
+            modelBuilder.Entity("CommunityLink.Models.Inventory", b =>
                 {
                     b.Property<int>("InventoryID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    b.Property<bool>("AtLocation")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Barcode")
                         .IsRequired()
@@ -167,7 +170,7 @@ namespace CommunityLink.Migrations
                     b.Property<DateTime>("DateReceived")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int>("EventID")
+                    b.Property<int?>("EventID")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ExpirationDate")
@@ -182,10 +185,13 @@ namespace CommunityLink.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
-                    b.Property<int>("LocationID")
+                    b.Property<int?>("LocationID")
                         .HasColumnType("int");
 
                     b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("RequestID")
                         .HasColumnType("int");
 
                     b.Property<string>("StorageType")
@@ -206,10 +212,12 @@ namespace CommunityLink.Migrations
 
                     b.HasIndex("LocationID");
 
+                    b.HasIndex("RequestID");
+
                     b.ToTable("Inventory");
                 });
 
-            modelBuilder.Entity("CharityLink.Models.InventoryLocation", b =>
+            modelBuilder.Entity("CommunityLink.Models.InventoryLocation", b =>
                 {
                     b.Property<int>("LocationID")
                         .ValueGeneratedOnAdd()
@@ -239,7 +247,7 @@ namespace CommunityLink.Migrations
                     b.ToTable("InventoryLocations");
                 });
 
-            modelBuilder.Entity("CharityLink.Models.InventoryPhone", b =>
+            modelBuilder.Entity("CommunityLink.Models.InventoryPhone", b =>
                 {
                     b.Property<int>("PhoneID")
                         .ValueGeneratedOnAdd()
@@ -264,7 +272,7 @@ namespace CommunityLink.Migrations
                     b.ToTable("InventoryPhones");
                 });
 
-            modelBuilder.Entity("CharityLink.Models.Message", b =>
+            modelBuilder.Entity("CommunityLink.Models.Message", b =>
                 {
                     b.Property<int>("MessageID")
                         .ValueGeneratedOnAdd()
@@ -298,7 +306,7 @@ namespace CommunityLink.Migrations
                     b.ToTable("Messages");
                 });
 
-            modelBuilder.Entity("CharityLink.Models.Nonedible", b =>
+            modelBuilder.Entity("CommunityLink.Models.Nonedible", b =>
                 {
                     b.Property<int>("NonedibleID")
                         .ValueGeneratedOnAdd()
@@ -315,7 +323,7 @@ namespace CommunityLink.Migrations
                     b.ToTable("Nonedibles");
                 });
 
-            modelBuilder.Entity("CharityLink.Models.PlannedEvent", b =>
+            modelBuilder.Entity("CommunityLink.Models.PlannedEvent", b =>
                 {
                     b.Property<int>("EventID")
                         .ValueGeneratedOnAdd()
@@ -346,7 +354,7 @@ namespace CommunityLink.Migrations
                     b.ToTable("PlannedEvents");
                 });
 
-            modelBuilder.Entity("CharityLink.Models.Request", b =>
+            modelBuilder.Entity("CommunityLink.Models.Request", b =>
                 {
                     b.Property<int>("RequestID")
                         .ValueGeneratedOnAdd()
@@ -391,7 +399,7 @@ namespace CommunityLink.Migrations
                     b.ToTable("Requests");
                 });
 
-            modelBuilder.Entity("CharityLink.Models.RequestStat", b =>
+            modelBuilder.Entity("CommunityLink.Models.RequestStat", b =>
                 {
                     b.Property<int>("RequestStatID")
                         .ValueGeneratedOnAdd()
@@ -402,6 +410,9 @@ namespace CommunityLink.Migrations
 
                     b.Property<DateTime>("DonationDate")
                         .HasColumnType("datetime(6)");
+
+                    b.Property<int>("OldRequestID")
+                        .HasColumnType("int");
 
                     b.Property<string>("RequestTitle")
                         .IsRequired()
@@ -423,7 +434,7 @@ namespace CommunityLink.Migrations
                     b.ToTable("RequestStats");
                 });
 
-            modelBuilder.Entity("CharityLink.Models.Requestor", b =>
+            modelBuilder.Entity("CommunityLink.Models.Requestor", b =>
                 {
                     b.Property<int>("RequestorID")
                         .ValueGeneratedOnAdd()
@@ -440,7 +451,7 @@ namespace CommunityLink.Migrations
                     b.ToTable("Requestors");
                 });
 
-            modelBuilder.Entity("CharityLink.Models.Stat", b =>
+            modelBuilder.Entity("CommunityLink.Models.Stat", b =>
                 {
                     b.Property<int>("StatID")
                         .ValueGeneratedOnAdd()
@@ -460,7 +471,7 @@ namespace CommunityLink.Migrations
                     b.ToTable("Stats");
                 });
 
-            modelBuilder.Entity("CharityLink.Models.User", b =>
+            modelBuilder.Entity("CommunityLink.Models.User", b =>
                 {
                     b.Property<int>("UserID")
                         .ValueGeneratedOnAdd()
@@ -507,7 +518,7 @@ namespace CommunityLink.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("CharityLink.Models.UsersAttending", b =>
+            modelBuilder.Entity("CommunityLink.Models.UsersAttending", b =>
                 {
                     b.Property<int>("UserID")
                         .HasColumnType("int")
@@ -524,7 +535,7 @@ namespace CommunityLink.Migrations
                     b.ToTable("UsersAttending");
                 });
 
-            modelBuilder.Entity("CharityLink.Models.Volunteer", b =>
+            modelBuilder.Entity("CommunityLink.Models.Volunteer", b =>
                 {
                     b.Property<int>("VolunteerID")
                         .ValueGeneratedOnAdd()
@@ -544,14 +555,14 @@ namespace CommunityLink.Migrations
                     b.ToTable("Volunteers");
                 });
 
-            modelBuilder.Entity("CharityLink.Models.ActionNeeded", b =>
+            modelBuilder.Entity("CommunityLink.Models.ActionNeeded", b =>
                 {
-                    b.HasOne("CharityLink.Models.Employee", "Employee")
+                    b.HasOne("CommunityLink.Models.Employee", "Employee")
                         .WithMany("ActionNeededs")
                         .HasForeignKey("EmployeeID")
                         .OnDelete(DeleteBehavior.SetNull);
 
-                    b.HasOne("CharityLink.Models.User", "User")
+                    b.HasOne("CommunityLink.Models.User", "User")
                         .WithMany("ActionNeededs")
                         .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -562,26 +573,26 @@ namespace CommunityLink.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("CharityLink.Models.Animal", b =>
+            modelBuilder.Entity("CommunityLink.Models.Animal", b =>
                 {
-                    b.HasOne("CharityLink.Models.Inventory", "Inventory")
+                    b.HasOne("CommunityLink.Models.Inventory", "Inventory")
                         .WithOne("Animal")
-                        .HasForeignKey("CharityLink.Models.Animal", "InventoryID")
+                        .HasForeignKey("CommunityLink.Models.Animal", "InventoryID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Inventory");
                 });
 
-            modelBuilder.Entity("CharityLink.Models.DonationStat", b =>
+            modelBuilder.Entity("CommunityLink.Models.DonationStat", b =>
                 {
-                    b.HasOne("CharityLink.Models.RequestStat", "RequestStat")
+                    b.HasOne("CommunityLink.Models.RequestStat", "RequestStat")
                         .WithMany("DonationStats")
                         .HasForeignKey("RequestStatID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("CharityLink.Models.Stat", "Stat")
+                    b.HasOne("CommunityLink.Models.Stat", "Stat")
                         .WithMany("DonationStats")
                         .HasForeignKey("StatID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -592,50 +603,55 @@ namespace CommunityLink.Migrations
                     b.Navigation("Stat");
                 });
 
-            modelBuilder.Entity("CharityLink.Models.Edible", b =>
+            modelBuilder.Entity("CommunityLink.Models.Edible", b =>
                 {
-                    b.HasOne("CharityLink.Models.Inventory", "Inventory")
+                    b.HasOne("CommunityLink.Models.Inventory", "Inventory")
                         .WithOne("Edible")
-                        .HasForeignKey("CharityLink.Models.Edible", "InventoryID")
+                        .HasForeignKey("CommunityLink.Models.Edible", "InventoryID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Inventory");
                 });
 
-            modelBuilder.Entity("CharityLink.Models.Employee", b =>
+            modelBuilder.Entity("CommunityLink.Models.Employee", b =>
                 {
-                    b.HasOne("CharityLink.Models.User", "User")
+                    b.HasOne("CommunityLink.Models.User", "User")
                         .WithOne("Employee")
-                        .HasForeignKey("CharityLink.Models.Employee", "UserID")
+                        .HasForeignKey("CommunityLink.Models.Employee", "UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("CharityLink.Models.Inventory", b =>
+            modelBuilder.Entity("CommunityLink.Models.Inventory", b =>
                 {
-                    b.HasOne("CharityLink.Models.PlannedEvent", "PlannedEvent")
+                    b.HasOne("CommunityLink.Models.PlannedEvent", "PlannedEvent")
                         .WithMany("Inventory")
                         .HasForeignKey("EventID")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.SetNull);
 
-                    b.HasOne("CharityLink.Models.InventoryLocation", "InventoryLocation")
+                    b.HasOne("CommunityLink.Models.InventoryLocation", "InventoryLocation")
                         .WithMany("Inventory")
                         .HasForeignKey("LocationID")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.HasOne("CommunityLink.Models.Request", "Request")
+                        .WithMany("Inventory")
+                        .HasForeignKey("RequestID")
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.Navigation("InventoryLocation");
 
                     b.Navigation("PlannedEvent");
+
+                    b.Navigation("Request");
                 });
 
-            modelBuilder.Entity("CharityLink.Models.InventoryPhone", b =>
+            modelBuilder.Entity("CommunityLink.Models.InventoryPhone", b =>
                 {
-                    b.HasOne("CharityLink.Models.InventoryLocation", "InventoryLocation")
+                    b.HasOne("CommunityLink.Models.InventoryLocation", "InventoryLocation")
                         .WithMany("InventoryPhone")
                         .HasForeignKey("LocationID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -644,15 +660,15 @@ namespace CommunityLink.Migrations
                     b.Navigation("InventoryLocation");
                 });
 
-            modelBuilder.Entity("CharityLink.Models.Message", b =>
+            modelBuilder.Entity("CommunityLink.Models.Message", b =>
                 {
-                    b.HasOne("CharityLink.Models.User", "Receiver")
+                    b.HasOne("CommunityLink.Models.User", "Receiver")
                         .WithMany("MessagesReceived")
                         .HasForeignKey("ReceiverID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("CharityLink.Models.User", "Sender")
+                    b.HasOne("CommunityLink.Models.User", "Sender")
                         .WithMany("MessagesSent")
                         .HasForeignKey("SenderID")
                         .OnDelete(DeleteBehavior.SetNull);
@@ -662,20 +678,20 @@ namespace CommunityLink.Migrations
                     b.Navigation("Sender");
                 });
 
-            modelBuilder.Entity("CharityLink.Models.Nonedible", b =>
+            modelBuilder.Entity("CommunityLink.Models.Nonedible", b =>
                 {
-                    b.HasOne("CharityLink.Models.Inventory", "Inventory")
+                    b.HasOne("CommunityLink.Models.Inventory", "Inventory")
                         .WithOne("Nonedible")
-                        .HasForeignKey("CharityLink.Models.Nonedible", "InventoryID")
+                        .HasForeignKey("CommunityLink.Models.Nonedible", "InventoryID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Inventory");
                 });
 
-            modelBuilder.Entity("CharityLink.Models.Request", b =>
+            modelBuilder.Entity("CommunityLink.Models.Request", b =>
                 {
-                    b.HasOne("CharityLink.Models.Requestor", "Requestor")
+                    b.HasOne("CommunityLink.Models.Requestor", "Requestor")
                         .WithMany("Requests")
                         .HasForeignKey("RequestorID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -684,9 +700,9 @@ namespace CommunityLink.Migrations
                     b.Navigation("Requestor");
                 });
 
-            modelBuilder.Entity("CharityLink.Models.RequestStat", b =>
+            modelBuilder.Entity("CommunityLink.Models.RequestStat", b =>
                 {
-                    b.HasOne("CharityLink.Models.Stat", "Stat")
+                    b.HasOne("CommunityLink.Models.Stat", "Stat")
                         .WithMany("RequestStats")
                         .HasForeignKey("StatID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -695,37 +711,37 @@ namespace CommunityLink.Migrations
                     b.Navigation("Stat");
                 });
 
-            modelBuilder.Entity("CharityLink.Models.Requestor", b =>
+            modelBuilder.Entity("CommunityLink.Models.Requestor", b =>
                 {
-                    b.HasOne("CharityLink.Models.User", "User")
+                    b.HasOne("CommunityLink.Models.User", "User")
                         .WithOne("Requestor")
-                        .HasForeignKey("CharityLink.Models.Requestor", "UserID")
+                        .HasForeignKey("CommunityLink.Models.Requestor", "UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("CharityLink.Models.Stat", b =>
+            modelBuilder.Entity("CommunityLink.Models.Stat", b =>
                 {
-                    b.HasOne("CharityLink.Models.User", "User")
+                    b.HasOne("CommunityLink.Models.User", "User")
                         .WithOne("Stat")
-                        .HasForeignKey("CharityLink.Models.Stat", "UserID")
+                        .HasForeignKey("CommunityLink.Models.Stat", "UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("CharityLink.Models.UsersAttending", b =>
+            modelBuilder.Entity("CommunityLink.Models.UsersAttending", b =>
                 {
-                    b.HasOne("CharityLink.Models.PlannedEvent", "PlannedEvent")
+                    b.HasOne("CommunityLink.Models.PlannedEvent", "PlannedEvent")
                         .WithMany("UsersAttending")
                         .HasForeignKey("EventID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("CharityLink.Models.User", "User")
+                    b.HasOne("CommunityLink.Models.User", "User")
                         .WithMany("UsersAttending")
                         .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -736,23 +752,23 @@ namespace CommunityLink.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("CharityLink.Models.Volunteer", b =>
+            modelBuilder.Entity("CommunityLink.Models.Volunteer", b =>
                 {
-                    b.HasOne("CharityLink.Models.User", "User")
+                    b.HasOne("CommunityLink.Models.User", "User")
                         .WithOne("Volunteer")
-                        .HasForeignKey("CharityLink.Models.Volunteer", "UserID")
+                        .HasForeignKey("CommunityLink.Models.Volunteer", "UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("CharityLink.Models.Employee", b =>
+            modelBuilder.Entity("CommunityLink.Models.Employee", b =>
                 {
                     b.Navigation("ActionNeededs");
                 });
 
-            modelBuilder.Entity("CharityLink.Models.Inventory", b =>
+            modelBuilder.Entity("CommunityLink.Models.Inventory", b =>
                 {
                     b.Navigation("Animal");
 
@@ -761,38 +777,43 @@ namespace CommunityLink.Migrations
                     b.Navigation("Nonedible");
                 });
 
-            modelBuilder.Entity("CharityLink.Models.InventoryLocation", b =>
+            modelBuilder.Entity("CommunityLink.Models.InventoryLocation", b =>
                 {
                     b.Navigation("Inventory");
 
                     b.Navigation("InventoryPhone");
                 });
 
-            modelBuilder.Entity("CharityLink.Models.PlannedEvent", b =>
+            modelBuilder.Entity("CommunityLink.Models.PlannedEvent", b =>
                 {
                     b.Navigation("Inventory");
 
                     b.Navigation("UsersAttending");
                 });
 
-            modelBuilder.Entity("CharityLink.Models.RequestStat", b =>
+            modelBuilder.Entity("CommunityLink.Models.Request", b =>
+                {
+                    b.Navigation("Inventory");
+                });
+
+            modelBuilder.Entity("CommunityLink.Models.RequestStat", b =>
                 {
                     b.Navigation("DonationStats");
                 });
 
-            modelBuilder.Entity("CharityLink.Models.Requestor", b =>
+            modelBuilder.Entity("CommunityLink.Models.Requestor", b =>
                 {
                     b.Navigation("Requests");
                 });
 
-            modelBuilder.Entity("CharityLink.Models.Stat", b =>
+            modelBuilder.Entity("CommunityLink.Models.Stat", b =>
                 {
                     b.Navigation("DonationStats");
 
                     b.Navigation("RequestStats");
                 });
 
-            modelBuilder.Entity("CharityLink.Models.User", b =>
+            modelBuilder.Entity("CommunityLink.Models.User", b =>
                 {
                     b.Navigation("ActionNeededs");
 

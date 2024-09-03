@@ -12,7 +12,7 @@ namespace CommunityLink.Models {
         [Required]
         public int ReceiverID { get; set; }
         [ForeignKey("ReceiverID")]
-        public required User Receiver { get; set; }
+        public User? Receiver { get; set; }
         [Required]
         [StringLength(50)]
         public required string Title { get; set; }

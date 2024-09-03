@@ -25,7 +25,6 @@ body {
   margin-bottom: 60px;
 }
 
-
 .navbar {
   overflow: hidden;
   position: fixed;
@@ -55,47 +54,136 @@ body {
 .navbar a:hover {
   /* border-radius: 1000px;   */
   z-index: 2;
-
 }
 
 .navbar-light .navbar-nav .nav-link {
   color: #0d6efd;
 }
 
-.donationBlueBox, .aboutBlueBox, .indexBlueBox {
+.donationBlueBox,
+.aboutBlueBox,
+.indexBlueBox {
   position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
-  top: 178px;
+  top: 131px;
   left: 0px;
   width: 100%;
   height: 457px;
   opacity: 1;
   text-align: center;
   /* UI Properties */
-  background: #0B64CF 0% 0% no-repeat padding-box;
+  background: #0b64cf 0% 0% no-repeat padding-box;
   z-index: 0;
 }
 
-#DonationTitle, #AboutTitle {
+/*Volunteer-Services page*/
+#volunteerTop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: #0964cf;
+  color: #ffffff;
+  height: 300px;
+}
+
+#volunteerTable th a{
+  text-decoration: none;
+  color: inherit;
+}
+
+#volunteerTable th a:hover {
+  text-decoration: underline;
+  color: #248646;
+}
+
+#volunteerTable thead {
+  background: #0339a6;
+  text-align: center;
+  color: #ffffff;
+}
+
+.backButton {
+  background: #feaa00;
+  border: none;
+  border-radius: 30px;
+}
+
+.smallGreenButton {
+  background: #248646;
+  color: #ffffff;
+  border: none;
+  border-radius: 30px;
+  margin-bottom: 20px;
+}
+
+.medGreenButton {
+  background: #248646;
+  color: #ffffff;
+  border: none;
+  border-radius: 30px;
+  margin-bottom: 20px;
+  font-size: 30px;
+  padding: 10px 20px;
+  margin-top: 25px;
+}
+
+.medBackButton {
+  background: #feaa00;
+  border: none;
+  border-radius: 30px;
+  font-size: 30px;
+  padding: 10px 20px;
+  margin-top: 25px;
+}
+
+
+.requestViewBox {
+  background: #0964cf;
+  color: #ffffff;
+  padding: 0;
+  margin: 10px 0;
+  box-sizing: border-box;
+}
+
+.requestViewBox h3 {
+  text-align: center;
+  background: #0339a6;
+  padding: 0;
+  border: 0;
+  margin: 0;
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  width: 100%;
+}
+
+#DonationTitle,
+#AboutTitle {
   text-align: center !important;
   font-family: "Vista Sans OTCE Black", Arial, Helvetica, sans-serif;
   font-size: 3.6em;
   letter-spacing: 0.8px;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .BlueTitleH1 {
-  font-family: "Bricolage Grotesque", 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-family: "Bricolage Grotesque", "Trebuchet MS", "Lucida Sans Unicode",
+    "Lucida Grande", "Lucida Sans", Arial, sans-serif;
   font-size: 2.4em;
   font-weight: bold;
-  color: #102E68;
-
+  color: #102e68;
 }
 
 .BodyBlack {
-  font-family: "Bricolage Grotesque", 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-family: "Bricolage Grotesque", "Trebuchet MS", "Lucida Sans Unicode",
+    "Lucida Grande", "Lucida Sans", Arial, sans-serif;
   font-size: 1.3em;
   font-weight: bold;
   padding-top: 12px;
@@ -103,9 +191,8 @@ body {
 }
 
 .section1 {
-  padding-top: 700px;
+  padding-top: 650px;
 }
-
 
 .greenButton {
   /* Layout Properties */
@@ -116,7 +203,8 @@ body {
   height: 106px;
   font-size: 2em;
   color: white;
-  font-family: "Bricolage Grotesque Bold", 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-family: "Bricolage Grotesque Bold", "Trebuchet MS", "Lucida Sans Unicode",
+    "Lucida Grande", "Lucida Sans", Arial, sans-serif;
   text-decoration: none;
 
   /* UI Properties */
@@ -174,7 +262,7 @@ body {
 }
 
 #wallet {
-  background-image: url('/images/Wallet.png');
+  background-image: url("/images/Wallet.png");
   background-repeat: no-repeat;
   box-sizing: border-box;
   /* height: auto; */
@@ -186,10 +274,16 @@ body {
 #monetaryDonations {
   width: 50vw;
   height: 100%;
-  background: #B9D1F0 0% 0% no-repeat padding-box;
+  background: #b9d1f0 0% 0% no-repeat padding-box;
   opacity: 1;
 }
 
+#itemDonations {
+  width: 50vw;
+  height: 100%;
+  background: #b9d1f0 0% 0% no-repeat padding-box;
+  opacity: 1;
+}
 
 .container {
   margin: 0px;
@@ -203,9 +297,9 @@ body {
 
 /* .row > * {
   padding: 0px;
-} */
+ } */
 
-.row.splitscreen>* {
+.row.splitscreen > * {
   padding: 0px;
 }
 
@@ -215,23 +309,24 @@ body {
 
 a:hover {
   color: white;
-
 }
 
 .bg-white {
-  --bs-bg-opacity: .5;
+  --bs-bg-opacity: 0.5;
   background-color: rgba(var(--bs-white-rgb), var(--bs-bg-opacity)) !important;
 }
 
 #givingFood {
-  background-image: url('/images/GivingFood.png');
+  background-image: url("/images/givingFood.png");
   background-repeat: no-repeat;
   box-sizing: border-box;
-  height: 80.6vw;
+  /* height: auto; */
+  /* object-fit: cover; */
   width: 50vw;
+  /* max-height: 100%; */
 }
 
-#leftImgIndex{
+#leftImgIndex {
   display: flex;
   flex: auto;
   justify-content: flex-start;
@@ -242,7 +337,7 @@ a:hover {
   max-width: 335px;
 }
 
-#centerIndexText{
+#centerIndexText {
   display: flex;
   width: 35%;
   justify-content: center;
@@ -254,17 +349,16 @@ a:hover {
   padding-right: 2em;
 }
 
-.emptyFlexRight{
+.emptyFlexRight {
   display: flex;
   width: 35%;
   flex: auto;
   justify-content: flex-end;
   flex-direction: row;
   order: 3;
-
 }
 
-#rightImgIndex{
+#rightImgIndex {
   display: flex;
   flex: auto;
   z-index: 1;
@@ -274,19 +368,19 @@ a:hover {
   display: none;
 }
 
-
-.bodyWhite{
-  font-family: "Bricolage Grotesque", 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+.bodyWhite {
+  font-family: "Bricolage Grotesque", "Trebuchet MS", "Lucida Sans Unicode",
+    "Lucida Grande", "Lucida Sans", Arial, sans-serif;
   font-size: 1.3em;
   font-weight: bold;
   padding-top: 12px;
   padding-bottom: 12px;
-  color:white;
+  color: white;
   z-index: 1;
 }
 
 .indexBlueBox {
-  background-color:#0B64CF;
+  background-color: #0b64cf;
   padding: 20px;
   margin-bottom: 20px;
   text-align: center;
@@ -304,5 +398,270 @@ a:hover {
   display: flex;
   flex-direction: row;
   align-items: center;
+}
+
+#yourDonation {
+  text-align: center !important;
+  font-family: "Vista Sans OTCE Black", Arial, Helvetica, sans-serif;
+  font-size: 3.6em;
+  letter-spacing: 0.8px;
+  color: #000000;
+}
+
+.alignTextCenter {
+  text-align: center;
+}
+
+.flexCenter {
+  display: flex;
+  justify-content: center;
+  text-align: left;
+}
+
+.donationH1 {
+  font: "Bricolage Grotesque", "Trebuchet MS", "Lucida Sans Unicode",
+    "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+  font-size: 1.5rem;
+}
+
+.radio-group {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.radio-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.radio-button input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  cursor: pointer;
+}
+.radio-text {
+  display: inline-block;
+  padding: 10px 20px;
+  border: 2px solid #0964cf;
+  border-radius: 20px;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.radio-button input[type="radio"]:checked + .radio-text {
+  background-color: #0964cf;
+  border-color: #0964cf;
+  color: white;
+}
+
+.radio-button input[type="radio"]:focus + .radio-text {
+  border-color: #0964cf;
+}
+
+.iWantToGive {
+}
+
+#otherDollarAmount {
+  display: flex;
+  flex: 0 1 100%;
+  padding-top: 20px;
+}
+
+#buttonCenter {
+  display: flex;
+  justify-content: center;
+}
+
+#submitDonationButton {
+  background-color: #248646;
+  display: flex;
+  justify-content: center;
+  padding: 10px 20px;
+  border: 2px solid #248646;
+  color: white;
+  border-radius: 20px;
+  cursor: pointer;
+  user-select: none;
+  font-size: 1.35em;
+  font-weight: bold;
+}
+
+#otherDonationHelpBlock {
+  color: #0339a6;
+  font-size: 1em;
+  padding-right: 1em;
+  padding-left: 1em;
+}
+
+#otherAmountDiv {
+  display: flex;
+  justify-content: flex-start;
+}
+
+#OtherAmount {
+  display: none;
+  padding: 1em;
+  flex-basis: 2000em;
+}
+
+.donationH2 {
+  font-size: 1.25rem;
+}
+.donationH3 {
+  font-size: 1.2rem;
+}
+
+#modalButton {
+  width: auto;
+  height: auto;
+  border: none;
+}
+
+#donationLocationModal {
+  display: none;
+  position: fixed;
+  z-index: 999999;
+  top: 0;
+  justify-content: center;
+}
+
+#closeModal {
+  font-size: larger;
+  display: flex;
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 1em;
+}
+
+#donationModal {
+  display: none;
+}
+
+.modal-content {
+  height: 85%;
+  width: 85%;
+  background-color: white;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 2em;
+}
+
+.fadeBack {
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 500;
+}
+
+#enableAuthButton {
+  font-size: 1.5em;
+}
+
+#MyProfileForm .form-control,
+#MyProfileForm .form-check-label,
+#MyProfileForm #enableAuthButton {
+  margin-bottom: 10px;
+}
+
+/* CUSTOMIZE THE CAROUSEL
+-------------------------------------------------- */
+
+/* Carousel base class */
+.carousel {
+  margin-bottom: 4rem;
+  /* margin-top: 131px; Adjust this value to align with navbar */
+  
+}
+
+/* Since positioning the image, we need to help out the caption */
+.carousel-caption {
+  bottom: 3rem;
+  z-index: 10;
+  background-color: rgba(3, 57, 166, 0.501);
+  text-shadow: 2px 2px 15px black;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+/* Declare heights because of positioning of img element */
+.carousel-item {
+  height: 24rem;
+  background-color: rgb(9, 101, 207); /* Blue background color */
+  padding: 10px; /* Creates the border effect */
+  box-sizing: border-box; /* Ensure padding is included in the width/height */
+  position: relative;
+}
+.carousel-item>img {
+  /* position: absolute;
+  top: 0;
+  left: 0; */
+  min-width: 100%;
+  height: auto;
+}
+
+
+/* MARKETING CONTENT
+Center align the text within the three columns below the carousel */
+.marketing .col-lg-4 {
+  /* margin-bottom: 1.5rem; */
+  text-align: center;
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+}
+
+.marketing h2 {
+  font-weight: 400;
+}
+
+/* rtl:begin:ignore */
+.marketing .col-lg-4 p {
+  margin-right: .75rem;
+  margin-left: .75rem;
+}
+
+/* rtl:end:ignore */
+
+
+/* Featurettes*/
+.featurette-divider {
+  margin: 3rem 0;
+  color: rgb(3, 57, 166);
+  /* Space out the Bootstrap <hr> more */
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.25);
+}
+.featurette .row{
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+  padding: 2%;
+}
+/* Thin out the marketing headings */
+.featurette-heading {
+  font-weight: 300;
+  line-height: 1;
+  /* rtl:remove */
+  letter-spacing: -.05rem;
+}
+.featurette-item {
+  height: 24rem;
+  padding: 1px; /* Creates the border effect */
+  box-sizing: border-box; /* Ensure padding is included in the width/height */
+  position: relative;
+}
+.featurette-item>img {
+  /* position: absolute;
+  top: 0;
+  left: 0; */
+  min-width: 100%;
+  height: auto;
 }
 
