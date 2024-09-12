@@ -9,10 +9,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Here’s a changelog message for the `requestorServices` page that aligns with your previous entries:
 
 ---
+
 ## [0.5.2] - 2024-09-11
 ### Fixed
-- Fixed Event page links on the home page (Index.cshtml)
-
+- Fixed links from "#" to "/Events" (Index Page).
+- Fixed request and volunteer pages for non-signed-in users (requestorServices Page & Volunteer Page).
+    - Request Page displays information for non-signed in users directing them to sign in (requestorServices.cshtml & requestorServices.cshtml.cs)
+    - Volunteer Page displays all Requests(to donate to) for non-signed in users and redirects to Sign in if they try to "donate" to a request. (Volunteer.csthml & Volunteer.cshtml.cs)
+- Removed unnecessary count from myStat Page (MyStatistics.cshtml)
+- Replaced lorem ipsum text with relevant content (About.cshtml & Donate.cshtml)
 
 ## [0.5.1] - 2024-08-26
 ### Fixed

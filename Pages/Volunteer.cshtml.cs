@@ -6,12 +6,15 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CommunityLink.Pages {
-    public class VolunteerModel : PageModel {
+namespace CommunityLink.Pages
+{
+    public class VolunteerModel : PageModel
+    {
         private readonly CommunityLinkDbContext _context;
         private const int PageSize = 25;
 
-        public VolunteerModel(CommunityLinkDbContext context) {
+        public VolunteerModel(CommunityLinkDbContext context)
+        {
             _context = context;
         }
 
@@ -23,109 +26,100 @@ namespace CommunityLink.Pages {
         public string CurrentSortColumn { get; set; }
         public string CurrentSortOrder { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int? requestId, int pageIndex = 1, string sortOrder = null) {
+        public async Task<IActionResult> OnGetAsync(int? requestId, int pageIndex = 1, string sortOrder = null)
+        {
             // Ensure pageIndex is valid
-            if (pageIndex < 1){
+            if (pageIndex < 1)
+            {
                 pageIndex = 1;
             }
 
-            // Check if the UserID cookie exists
-            if (Request.Cookies.TryGetValue("UserID", out string? userIdString) && int.TryParse(userIdString, out int userId)) {
-                // Load user information from database
+            // Load user if signed in (but no redirect if not)
+            if (Request.Cookies.TryGetValue("UserID", out string? userIdString) && int.TryParse(userIdString, out int userId))
+            {
                 ThisUser = await _context.Users.Include(u => u.Volunteer)
-                                                .Include(u => u.Employee)
-                                                .Include(u => u.Requestor)
-                                                .FirstOrDefaultAsync(u => u.UserID == userId);
+                                               .Include(u => u.Employee)
+                                               .Include(u => u.Requestor)
+                                               .FirstOrDefaultAsync(u => u.UserID == userId);
             }
-            // If there is no cookie, check the session
-            else if (HttpContext.Session.GetInt32("UserID") is int sessionUserId) {
-                // Load user information from database
+            else if (HttpContext.Session.GetInt32("UserID") is int sessionUserId)
+            {
                 ThisUser = await _context.Users.Include(u => u.Volunteer)
-                                                .Include(u => u.Employee)
-                                                .Include(u => u.Requestor)
-                                                .FirstOrDefaultAsync(u => u.UserID == sessionUserId);
-            }
-            // If there is no info in the session, the user isn't signed in
-            else {
-                // Redirect to the sign-in page if the user is not signed in
-                return RedirectToPage("/Sign-in");
+                                               .Include(u => u.Employee)
+                                               .Include(u => u.Requestor)
+                                               .FirstOrDefaultAsync(u => u.UserID == sessionUserId);
             }
 
-            if (ThisUser == null) {
-                // Handle case where user is not found in the database
-                return RedirectToPage("/Index");
-            }
-
-            if (requestId.HasValue) {
-                // Load the selected request details
+            // Load request details if requestId is provided
+            if (requestId.HasValue)
+            {
                 SelectedRequest = await _context.Requests
                     .Include(r => r.Requestor)
                     .ThenInclude(r => r.User)
                     .FirstOrDefaultAsync(r => r.RequestID == requestId.Value);
-            } else {
+            }
+            else
+            {
                 // Pagination logic
                 var totalRequests = await _context.Requests.CountAsync();
                 TotalPages = (int)Math.Ceiling(totalRequests / (double)PageSize);
                 CurrentPage = pageIndex;
 
-                if (CurrentPage > TotalPages) {
+                if (CurrentPage > TotalPages)
+                {
                     CurrentPage = TotalPages;
                 }
 
                 IQueryable<Request> requestsQuery = _context.Requests;
-                Console.WriteLine("Sort Order: " + sortOrder);
 
-                if (!string.IsNullOrEmpty(sortOrder)) {
+                // Sorting logic
+                if (!string.IsNullOrEmpty(sortOrder))
+                {
                     var sortParams = sortOrder.Split('_');
                     var sortColumn = sortParams[0];
                     var sortDirection = sortParams[1];
 
-                    if (CurrentSortColumn == sortColumn) {
-                        if (CurrentSortOrder == sortDirection) {
-                            CurrentSortOrder = sortDirection == "asc" ? "desc" : "asc";
-                        } else {
-                            CurrentSortOrder = sortDirection;
-                        }
-                    } else {
-                        CurrentSortColumn = sortColumn;
-                        CurrentSortOrder = sortDirection;
-                    }
-                    Console.WriteLine("Sorting:" + CurrentSortOrder);
-                    switch (CurrentSortColumn) {
+                    switch (sortColumn)
+                    {
                         case "title":
-                            requestsQuery = CurrentSortOrder == "asc" ? requestsQuery.OrderBy(r => r.RequestTitle) : requestsQuery.OrderByDescending(r => r.RequestTitle);
+                            requestsQuery = sortDirection == "asc" ? requestsQuery.OrderBy(r => r.RequestTitle) : requestsQuery.OrderByDescending(r => r.RequestTitle);
                             break;
                         case "date":
-                            requestsQuery = CurrentSortOrder == "asc" ? requestsQuery.OrderBy(r => r.RequestDate) : requestsQuery.OrderByDescending(r => r.RequestDate);
+                            requestsQuery = sortDirection == "asc" ? requestsQuery.OrderBy(r => r.RequestDate) : requestsQuery.OrderByDescending(r => r.RequestDate);
                             break;
                         case "deadline":
-                            requestsQuery = CurrentSortOrder == "asc" ? requestsQuery.OrderBy(r => r.RequestDeadline) : requestsQuery.OrderByDescending(r => r.RequestDeadline);
+                            requestsQuery = sortDirection == "asc" ? requestsQuery.OrderBy(r => r.RequestDeadline) : requestsQuery.OrderByDescending(r => r.RequestDeadline);
                             break;
                         default:
                             requestsQuery = requestsQuery.OrderBy(r => r.RequestDate);
                             break;
                     }
-                } else {
+                }
+                else
+                {
                     requestsQuery = requestsQuery.OrderBy(r => r.RequestDate);
                 }
 
-                // Load the list of requests with pagination and sorting
                 Requests = await requestsQuery
-                                    .Skip((CurrentPage - 1) * PageSize)
-                                    .Take(PageSize)
-                                    .ToListAsync();
+                                .Skip((CurrentPage - 1) * PageSize)
+                                .Take(PageSize)
+                                .ToListAsync();
             }
 
             return Page();
         }
 
-        public IActionResult OnPostDonate(int requestID) {
+
+        public IActionResult OnPostDonate(int requestID)
+        {
             return RedirectToPage("/Donation", new { requestID });
         }
 
-        public async Task<IActionResult> OnPostBackAsync(int pageIndex) {
+        public async Task<IActionResult> OnPostBackAsync(int pageIndex)
+        {
             // Ensure pageIndex is valid
-            if (pageIndex < 1) {
+            if (pageIndex < 1)
+            {
                 pageIndex = 1;
             }
 
@@ -133,7 +127,8 @@ namespace CommunityLink.Pages {
             TotalPages = (int)Math.Ceiling(totalRequests / (double)PageSize);
             CurrentPage = pageIndex;
 
-            if (CurrentPage > TotalPages) {
+            if (CurrentPage > TotalPages)
+            {
                 CurrentPage = TotalPages;
             }
 
@@ -147,8 +142,10 @@ namespace CommunityLink.Pages {
             return RedirectToPage("/Volunteer", new { pageIndex = CurrentPage });
         }
 
-        public string GetSortOrder(string column) {
-            if (CurrentSortColumn == column) {
+        public string GetSortOrder(string column)
+        {
+            if (CurrentSortColumn == column)
+            {
                 return CurrentSortOrder == "asc" ? $"{column}_desc" : $"{column}_asc";
             }
             return $"{column}_asc";
