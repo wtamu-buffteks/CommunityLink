@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Here’s a changelog message for the `requestorServices` page that aligns with your previous entries:
 
 ---
+## [0.5.2] - 2024-09-11
+### Fixed
+- Fixed Event page links on the home page (Index.cshtml)
+
 
 ## [0.5.1] - 2024-08-26
 ### Fixed
