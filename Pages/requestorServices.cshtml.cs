@@ -55,12 +55,14 @@ namespace CommunityLink.Pages
             }
             else
             {
-                return RedirectToPage("/Sign-in");
+                Requests = new List<Request>();
+                return Page();
             }
 
             if (ThisUser == null)
             {
-                return RedirectToPage("/Sign-in");
+                Requests = new List<Request>();
+                return Page();
             }
             // The Code Below is necessary as it handles if the user has "unchecked" requestor in MyProfile page
             // If a user has un-deleted requests "unchecking" requestor in MyProfile will delete their requests from the database
