@@ -10,6 +10,10 @@ Here’s a changelog message for the `requestorServices` page that aligns with y
 
 ---
 
+## [0.5.3] - 2024-09-23
+### Added
+- A home page for github pages talking about the project and how to access it.
+
 ## [0.5.2] - 2024-09-11
 ### Fixed
 - Fixed links from "#" to "/Events" (Index Page).
