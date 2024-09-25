@@ -178,6 +178,8 @@ namespace CommunityLink.Pages
             }
 
             Events = await eventsQuery.Skip((CurrentPage - 1) * PageSize).Take(PageSize).ToListAsync();
+            // Ensure pageIndex is at least 1
+            CurrentPage = pageIndex < 1 ? 1 : pageIndex;
         }
 
         private async Task LoadRSVPEventsAsync(int pageIndex, string sortOrder)
