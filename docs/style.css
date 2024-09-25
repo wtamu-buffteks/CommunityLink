@@ -1,0 +1,145 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%; 
+    background-color: #0d6efd;
+    z-index: 1000;
+    text-align: center;
+    padding: 10px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 15px; /* Space between each item */
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 8px 16px;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth hover effect */
+}
+
+nav ul li a:hover {
+    background-color: white;
+    color: black;
+    border-radius: 5px; /* Rounds corners slightly */
+}
+
+section {
+    padding: 60px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: white;
+    margin-top: 20px;
+    border-radius: 8px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+#intro {
+    padding-top: 30px;
+    text-align: center;
+}
+
+#intro h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+#intro p {
+    font-size: 18px;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.5;
+}
+
+h2 {
+    font-size: 28px;
+    color: #0d6efd;
+    border-bottom: 2px solid #0d6efd;
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+}
+
+ul {
+    list-style-type: disc;
+    padding-left: 20px;
+    margin: 0;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+.TeamMember {
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-left: 4px solid #0d6efd;
+    border-radius: 5px;
+}
+
+.TeamMember ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.TeamMember ul li {
+    margin-bottom: 5px;
+}
+
+.TeamMember p {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.TeamMember ul li a {
+    color: #0d6efd;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.TeamMember ul li a:hover {
+    text-decoration: underline;
+}
+
+
+
+@media screen and (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+    }
+
+    nav ul li {
+        margin: 10px 0;
+    }
+
+    #intro h1 {
+        font-size: 30px;
+    }
+
+    #intro p {
+        font-size: 16px;
+    }
+
+    section {
+        padding: 40px 10px;
+    }
+}

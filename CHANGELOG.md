@@ -10,6 +10,10 @@ Here’s a changelog message for the `requestorServices` page that aligns with y
 
 ---
 
+## [0.5.3] - 2024-09-23
+### Added
+- added /docs folder to contain the information for the github pages
+
 ## [0.5.2] - 2024-09-11
 ### Fixed
 - Fixed links from "#" to "/Events" (Index Page).
