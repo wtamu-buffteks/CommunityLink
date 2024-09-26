@@ -1,27 +1,56 @@
 # CommunityLink
 CommunityLink has been set as the running name
 
-# Setup:
+# Prerequisites for Running the Application:
+.NET Version 8
+Make sure you have version 8 of .NET installed.
+To check your installed version, run the following command:
 
-Ensure you have the latest version of .NET
-run dotnet --version to see. If you don't have version 8 get it <a src="dotnet.microsoft.com/en-us/download/dotnet/8.0">here</a>:
+dotnet --version
+
+If you don't have version 8 installed, download it from <a src="dotnet.microsoft.com/en-us/download/dotnet/8.0">here</a>:
 
 dotnet.microsoft.com/en-us/download/dotnet/8.0
 
-If you are making a branch for the first time, you will need to restore the bin files. To do this, you'll need to:
+MySQL
+Since our previous database is down, you'll need to have MySQL installed. You can download and install MySQL from <a src="https://dev.mysql.com/downloads/">here</a>. Make sure to set up a local database for the application to connect to.
 
-- run git clone <repository-url>
-- cd <repository-directory>
-- dotnet restore
-- dotnet build
-- Then you should be ready to run with dotnet run. If this doesn't work, please contact me so we can troubleshoot
+Recommended IDE
+We recommend using Visual Studio Code for development. You can download it from <a src="https://code.visualstudio.com/">here</a>. You will also need the C# extension for better support of .NET projects.
 
-To get the most up to date version of the development branch:
+Browser
+Any modern browser like Chrome, Firefox, or Edge will work to access and test the locally hosted web app.
 
-- git fetch
-- git checkout development
-- git pull origin development
+# Setup:
 
+## Restore Dependencies 
+
+- Run the following command to ensure that all required dependencies are downloaded: <strong>dotnet restore</strong>
+
+## Set Up MySQL Database
+
+- Open MySQL Workbench (or another MySQL management tool) and create a new database. Take note of the database name, username, and password.
+
+## Update Connection String
+
+- In the appsettings.json file, update the CommunityLinkContext connection string to point to your local MySQL database. Ensure the connection string includes the correct database name, username, and password.
+
+## Clean Outdated Migrations
+
+- Delete the now outdated Migrations folder
+
+## Create New Migration
+
+- Run the following command to create a new migration named InitialCreate: <strong>dotnet ef migrations add InitialCreate</strong>
+
+## Apply Migrations to Database
+
+- Run the following command to apply the migration and update the database schema: <strong>dotnet ef database update
+</strong>
+
+## Run the Application
+
+- Finally, start the application with: <strong>dotnet run</strong>
 
 # Procedural Guidelines
 
