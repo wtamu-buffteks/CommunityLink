@@ -3,6 +3,7 @@ CommunityLink has been set as the running name
 
 # Prerequisites for Running the Application:
 .NET Version 8
+
 Make sure you have version 8 of .NET installed.
 To check your installed version, run the following command:
 
@@ -13,10 +14,10 @@ If you don't have version 8 installed, download it from <a src="dotnet.microsoft
 dotnet.microsoft.com/en-us/download/dotnet/8.0
 
 MySQL
-Since our previous database is down, you'll need to have MySQL installed. You can download and install MySQL from <a src="https://dev.mysql.com/downloads/">here</a>. Make sure to set up a local database for the application to connect to.
+Since our previous database is down, you'll need to have MySQL installed. You can download and install MySQL from <a src="https://dev.mysql.com/downloads/">here</a>: https://dev.mysql.com/downloads/. Make sure to set up a local database for the application to connect to.
 
 Recommended IDE
-We recommend using Visual Studio Code for development. You can download it from <a src="https://code.visualstudio.com/">here</a>. You will also need the C# extension for better support of .NET projects.
+We recommend using Visual Studio Code for development. You can download it from <a src="https://code.visualstudio.com/">here</a>: https://code.visualstudio.com/. You will also need the C# extension for better support of .NET projects.
 
 Browser
 Any modern browser like Chrome, Firefox, or Edge will work to access and test the locally hosted web app.
