@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:5.7
+    container_name: mysql_db
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: communityLink
+      MYSQL_USER: donationAdmin
+      MYSQL_PASSWORD: buff_donation
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: aspnet_app
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ConnectionStrings__DefaultConnection=Server=db;Database=communityLink;User=donationAdmin;Password=buff_donation;
+    depends_on:
+      - db
+    ports:
+      - "5000:80"
+
+volumes:
+  db_data:
